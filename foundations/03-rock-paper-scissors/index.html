@@ -4,11 +4,27 @@
 <head>
     <meta charset="UTF-8">
     <title>Rock Paper Scissors</title>
-    <script src=index.js></script>
+    <script src=index.js defer></script>
 </head>
 
 <body>
     <h1>Rock Paper Scissors</h1>
+
+    <h2>Score</h2>
+    <div>Computer: <span id="computer-score">0</span></div>
+    <div>Player: <span id="player-score">0</span></div>
+    <div>Tie: <span id="tie-score">0</span></div>
+
+    <h2>Last Round</h2>
+    <div>Computer: <span id="computer-move"></span></div>
+    <div>Player: <span id="player-move"></span></div>
+    <div>Result: <span id="result"></span></div>
+
+    <span>
+        <button id="rock" type="button">Rock</button>
+        <button id="paper" type="button">Paper</button>
+        <button id="scissors" type="button">Scissors</button>
+    </span>
 </body>
 
 </html>
