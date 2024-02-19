@@ -1,20 +1,17 @@
-html, body {
+body {
     height: 100%;
     margin: 0;
-}
-
-.flex-container{
     display: flex;
     flex-direction: column;
     height: 100%;
 }
 
 .grid {
-    flex: 1 1 auto;
+    height: auto;
+    aspect-ratio: 1/1;
+    max-height: 90vh;
+    max-width: 90vh;
     background-color: red;
-    justify-content: space-evenly;
-    display: flex;
-    flex-direction: column;
 }
 
 .row {
@@ -22,16 +19,16 @@ html, body {
     flex-direction: row;
     justify-content: space-between;
     background-color: green;
-    padding: 2px;
-    margin: 10px;
     flex: 1 1 auto;
 }
 
 .square {
     background-color: blue;
     width: 100%;
-    margin: 2px;
+    height: auto;
+    aspect-ratio: 1/1;
     flex: 1 1 auto;
+    border: 1px solid;
 }
 
 
