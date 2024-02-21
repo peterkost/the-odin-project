@@ -1,4 +1,4 @@
-const OPERATIONS = new Set(["+", "-", "×", "÷"])
+const OPERATIONS = new Set(["+", "-", "×", "÷", "/", "*"])
 const DIV_BY_ZERO_MESSAGE = "Not a number"
 
 const initialState = {
@@ -12,20 +12,23 @@ let state = { ...initialState }
 
 const display = document.querySelector(".display")
 
-const handleButtonClick = (event) => {
-    let buttonText = event.target.textContent
 
-    // Ugly
-    if (buttonText === "AC") {
+const handleButtonClick = (event) => handleInput(event.target.textContent)
+const handleKeyPress = (event) => handleInput(event.key)
+
+// Ugly
+const handleInput = (input) => {
+    console.log(input)
+    if (input === "AC") {
         state = { ...initialState }
-    } else if (!isNaN(Number(buttonText))) {
+    } else if (!isNaN(Number(input))) {
         if (state.startNewNumber) {
-            state.display = buttonText
+            state.display = input
             state.startNewNumber = false
         } else {
-            state.display += buttonText
+            state.display += input
         }
-    } else if (OPERATIONS.has(buttonText)) {
+    } else if (OPERATIONS.has(input)) {
         if (state.storedNum === undefined) {
             state.storedNum = Number(state.display)
             state.startNewNumber = true
@@ -35,14 +38,14 @@ const handleButtonClick = (event) => {
             state.display = result
             state.startNewNumber = true
         }
-        state.operator = buttonText
-    } else if (buttonText === "=" && state.storedNum && state.operator) {
+        state.operator = input
+    } else if ((input === "=" || input === "Enter") && state.storedNum && state.operator) {
         const result = operate(state.storedNum, Number(state.display), state.operator)
         state.storedNum = result
         state.display = result
         state.operator = undefined
         state.startNewNumber = true
-    } else if (buttonText === "." && !state.display.includes(".")) {
+    } else if (input === "." && !state.display.includes(".")) {
         if (state.startNewNumber) {
             state.display = "0."
             state.startNewNumber = false
@@ -64,15 +67,17 @@ const operate = (num1, num2, operator) => {
         case "-":
             return num1 - num2
         case "×":
+        case "*":
             return num1 * num2
         case "÷":
+        case "/":
             return Math.round(((num1 / num2) + Number.EPSILON) * 10000) / 10000
     }
 }
 
-// Over-engineered and yet still impercise
 const getTextWidthEstimate = (size, len) => size * (len / 1.5)
 
+// Over-engineered and yet still impercise
 const updateFontSize = () => {
     const maxWidth = display.clientWidth
     const textLength = display.textContent.length
@@ -96,5 +101,6 @@ for (let i = 0; i < buttons.length; i++) {
     buttons.item(i).addEventListener("click", handleButtonClick)
     buttons.item(i).addEventListener("click", updateFontSize)
 }
+document.addEventListener("keydown", handleKeyPress)
 
 
