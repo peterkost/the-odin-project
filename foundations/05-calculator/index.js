@@ -28,13 +28,19 @@ const handleButtonClick = (event) => {
         if (state.storedNum === undefined) {
             state.storedNum = Number(state.display)
             state.startNewNumber = true
+        } else if (!state.startNewNumber) {
+            const result = operate(state.storedNum, Number(state.display), state.operator)
+            state.storedNum = result
+            state.display = result
+            state.startNewNumber = true
         }
         state.operator = buttonText
     } else if (buttonText === "=" && state.storedNum && state.operator) {
         const result = operate(state.storedNum, Number(state.display), state.operator)
-        state = { ...initialState }
         state.storedNum = result
         state.display = result
+        state.operator = undefined
+        state.startNewNumber = true
     }
     display.textContent = state.display
 }
