@@ -15,6 +15,7 @@ const display = document.querySelector(".display")
 const handleButtonClick = (event) => {
     let buttonText = event.target.textContent
 
+    // Ugly
     if (buttonText === "AC") {
         state = { ...initialState }
     } else if (!isNaN(Number(buttonText))) {
@@ -57,15 +58,35 @@ const operate = (num1, num2, operator) => {
         case "×":
             return num1 * num2
         case "÷":
-            return num1 / num2
+            return Math.round(((num1 / num2) + Number.EPSILON) * 10000) / 10000
     }
 }
 
+// Over-engineered and yet still impercise
+const getTextWidthEstimate = (size, len) => size * (len / 1.5)
 
-// Section: - Add onclick
-const buttons = document.getElementsByClassName("button");
-console.log(buttons)
-for (let i = 0; i < buttons.length; i++) {
-    buttons.item(i).onclick = handleButtonClick
+const updateFontSize = () => {
+    const maxWidth = display.clientWidth
+    const textLength = display.textContent.length
+    const fontSize = Number(window.getComputedStyle(display).fontSize.slice(0, -2))
+    const isOffScreen = getTextWidthEstimate(fontSize, textLength) > maxWidth
+
+    if (isOffScreen) {
+        display.style.fontSize = `${fontSize * .9}px`
+    } else {
+        const defaultSize = Math.min(window.innerWidth, window.innerHeight) * .8 / 6;
+        const defaultSizeFits = getTextWidthEstimate(defaultSize, textLength) < maxWidth
+        const increasedFontSize = Math.min(defaultSize, fontSize * 1.1)
+        const incrasedSizeFits = getTextWidthEstimate(increasedFontSize, textLength) < maxWidth
+        const newFontSize = defaultSizeFits ? defaultSize : incrasedSizeFits ? increasedFontSize : fontSize
+        display.style.fontSize = `${newFontSize}px`
+    }
 }
+
+const buttons = document.getElementsByClassName("button");
+for (let i = 0; i < buttons.length; i++) {
+    buttons.item(i).addEventListener("click", handleButtonClick)
+    buttons.item(i).addEventListener("click", updateFontSize)
+}
+
 
