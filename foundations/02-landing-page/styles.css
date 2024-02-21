@@ -1,153 +1,151 @@
 * {
-    font-family: roboto, sans-serif;
-    margin: 0px;
+  font-family: roboto, sans-serif;
+  margin: 0px;
 }
 
 .dark-background {
-    background-color: #1F2937;
-    color: #F9FAF8;
+  background-color: #1f2937;
+  color: #f9faf8;
 }
 
 .side-by-side {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .hero {
-    padding: 15px 80px 50px 80px;
+  padding: 15px 80px 50px 80px;
 }
 
 .header {
-    padding-bottom: 50px;
+  padding-bottom: 50px;
 }
 
 .header-link {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .header-logo {
-    font-size: 24px;
-    font-weight: bold;
+  font-size: 24px;
+  font-weight: bold;
 }
 
 .header-link-container {
-    display: inline-flex;
-    align-items: center;
-    gap: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
 }
 
 .hero-main-text {
-    font-size: 48px;
-    font-weight: bolder;
+  font-size: 48px;
+  font-weight: bolder;
 }
 
 .placeholder-image {
-    width: 425px;
-    height: 160px;
-    background-color: grey;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    margin-left: 50px;
+  width: 425px;
+  height: 160px;
+  background-color: grey;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-left: 50px;
 }
 
 .information {
-    text-align: center;
-    padding: 70px 100px;
+  text-align: center;
+  padding: 70px 100px;
 }
 
 .information-title {
-    font-size: 36px;
-    color: #1F2937;
-    padding-bottom: 40px;
+  font-size: 36px;
+  color: #1f2937;
+  padding-bottom: 40px;
 }
 
 .information-flex {
-    display: flex;
-    justify-content: space-evenly;
-
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .image-caption-container {
-    display: inline-block;
-    width: 130px;
+  display: inline-block;
+  width: 130px;
 }
 
 .caption {
-    color: darkgrey 
-
+  color: darkgrey;
 }
 
 .box-rounded {
-    display: inline-block;
-    width: 125px;
-    height: 125px;
-    border: solid;
-    border-radius: 10px;
-    border-color: #3882F6;
+  display: inline-block;
+  width: 125px;
+  height: 125px;
+  border: solid;
+  border-radius: 10px;
+  border-color: #3882f6;
 }
 
 .quote {
-    background-color: #E5E7EB;
-    padding: 70px 200px;
+  background-color: #e5e7eb;
+  padding: 70px 200px;
 }
 
 .quote-text {
-    font-size: 36px;
-    font-weight: lighter;
-    font-style: italic;
-    color: #1F2937;
+  font-size: 36px;
+  font-weight: lighter;
+  font-style: italic;
+  color: #1f2937;
 }
 
 .quote-attribution {
-    color: #1F2937;
-    font-size: 20px;
-    text-align: right;
-    font-weight: bold;
+  color: #1f2937;
+  font-size: 20px;
+  text-align: right;
+  font-weight: bold;
 }
 
 .action-banner {
-    background-color: #3882F6;
-    margin: 60px 125px;
-    padding: 45px 90px;
-    border-radius: 10px;
-    color: #F9FAF8;
+  background-color: #3882f6;
+  margin: 60px 125px;
+  padding: 45px 90px;
+  border-radius: 10px;
+  color: #f9faf8;
 }
 
 .banner-title {
-    font-size: 22px;
-    font-weight: bold;
+  font-size: 22px;
+  font-weight: bold;
 }
 
 .button {
-    padding: 5px 30px;
-    display: inline-flex;
-    align-items: center;
-    cursor: pointer;
-    border-radius: 5px;
+  padding: 5px 30px;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 5px;
 }
 
 .button-outline {
-    border: solid;
-    border-width: 3px;
+  border: solid;
+  border-width: 3px;
 }
 
 .button-fill {
-    margin-top: 10px;
-    padding: 10px 30px;
-    background-color: #3882F6;
+  margin-top: 10px;
+  padding: 10px 30px;
+  background-color: #3882f6;
 }
 
 .footer {
-    color: white;
-    display: flex;
-    justify-content: center;
-    padding:20px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
 }
 
 .secondary-text {
-    font-weight: lighter;
-    font-size: 18px;
-    color: #F9FAF8;
+  font-weight: lighter;
+  font-size: 18px;
+  color: #f9faf8;
 }

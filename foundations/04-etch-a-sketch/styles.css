@@ -1,36 +1,34 @@
 body {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .button {
-    padding: 10px;
-    width: fit-content;
-    margin-block-end: 0.67em;
+  padding: 10px;
+  width: fit-content;
+  margin-block-end: 0.67em;
 }
 
 .grid {
-    height: auto;
-    aspect-ratio: 1/1;
-    max-height: 85vh;
-    max-width: 85vh;
+  height: auto;
+  aspect-ratio: 1/1;
+  max-height: 85vh;
+  max-width: 85vh;
 }
 
 .row {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    flex: 1 1 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex: 1 1 auto;
 }
 
 .square {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 1/1;
-    flex: 1 1 auto;
-    border: 1px solid;
-    filter: brightness(0%);
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1/1;
+  flex: 1 1 auto;
+  border: 1px solid;
+  filter: brightness(0%);
 }
-
-
