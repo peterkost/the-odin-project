@@ -42,7 +42,15 @@ const handleButtonClick = (event) => {
         state.display = result
         state.operator = undefined
         state.startNewNumber = true
+    } else if (buttonText === "." && !state.display.includes(".")) {
+        if (state.startNewNumber) {
+            state.display = "0."
+            state.startNewNumber = false
+        } else {
+            state.display += "."
+        }
     }
+
     display.textContent = state.display
 }
 
