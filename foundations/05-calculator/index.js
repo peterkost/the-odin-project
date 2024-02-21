@@ -18,7 +18,6 @@ const handleKeyPress = (event) => handleInput(event.key)
 
 // Ugly
 const handleInput = (input) => {
-    console.log(input)
     if (input === "AC") {
         state = { ...initialState }
     } else if (!isNaN(Number(input))) {
@@ -51,6 +50,14 @@ const handleInput = (input) => {
             state.startNewNumber = false
         } else {
             state.display += "."
+        }
+    } else if (input === "Backspace") {
+
+        if (state.display.length > 1) {
+            state.display = state.display.slice(0, -1)
+        } else {
+            state.display = "0"
+            state.startNewNumber = true
         }
     }
 
@@ -96,10 +103,19 @@ const updateFontSize = () => {
     }
 }
 
+const showButtonPress = (event) => {
+    const button = event.target
+    button.style.filter = "brightness(150%)"
+    setTimeout(function() {
+        button.style.filter = "brightness(100%)"
+    }, 100);
+}
+
 const buttons = document.getElementsByClassName("button");
 for (let i = 0; i < buttons.length; i++) {
     buttons.item(i).addEventListener("click", handleButtonClick)
     buttons.item(i).addEventListener("click", updateFontSize)
+    buttons.item(i).addEventListener("click", showButtonPress)
 }
 document.addEventListener("keydown", handleKeyPress)
 
