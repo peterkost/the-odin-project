@@ -7,21 +7,31 @@
 Completed in 19:49:59
 
 ### Recipes
+Completed 2024/02/16
 
-[Live Preview](https://peterkost.github.io/the-odin-project/foundations/01-recipes/)
+
+[Live Preview](https://peterkost.github.io/the-odin-project/01-foundations/01-recipes/)
 
 ### Landing Page
+Completed 2024/02/17
 
-[Live Preview](https://peterkost.github.io/the-odin-project/foundations/02-landing-page/)
+
+[Live Preview](https://peterkost.github.io/the-odin-project/01-foundations/02-landing-page/)
 
 ### Rock Paper Scissors
+Completed 2024/02/17
 
-[Live Preview](https://peterkost.github.io/the-odin-project/foundations/03-rock-paper-scissors/)
+
+[Live Preview](https://peterkost.github.io/the-odin-project/01-foundations/03-rock-paper-scissors/)
 
 ### Etch-A-Sketch
+Completed 2024/02/19
 
-[Live Preview](https://peterkost.github.io/the-odin-project/foundations/04-etch-a-sketch/)
+
+[Live Preview](https://peterkost.github.io/the-odin-project/01-foundations/04-etch-a-sketch/)
 
 ### Calculator
+Completed 202402/21
 
-[Live Preview](https://peterkost.github.io/the-odin-project/foundations/05-calculator/)
+
+[Live Preview](https://peterkost.github.io/the-odin-project/01-foundations/05-calculator/)
