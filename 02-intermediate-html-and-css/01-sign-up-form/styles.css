@@ -1,0 +1,71 @@
+@font-face {
+  font-family: tt-chocolates;
+  src: url(./resources/tt-chocolates.otf);
+}
+body {
+  height: 100vh;
+  display: flex;
+  margin: 0;
+  font-family: Helvetica, sans-serif;
+  color: white;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+  cursor: pointer;
+}
+
+.image-panel {
+  --logo-scale: calc(50vmin / 7);
+
+  width: 40vw;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(./resources/background.jpeg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-box {
+  margin-top: 30vh;
+  width: 100%;
+  margin-bottom: auto;
+  justify-content: center;
+  gap: 1rem;
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.logo {
+  display: inline-block;
+  width: auto;
+  height: var(--logo-scale);
+  object-fit: cover;
+  opacity: 1;
+}
+
+.logo-text {
+  display: inline-block;
+  font-family: tt-chocolates;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  font-size: calc(var(--logo-scale) / 2);
+}
+
+.image-credit {
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+.form-panel {
+  width: 60vw;
+  background-color: blue;
+}
