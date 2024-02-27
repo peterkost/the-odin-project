@@ -22,6 +22,60 @@
       </div>
     </div>
 
-    <div class="form-panel"></div>
+    <div class="form-panel">
+      <div class="top-text-container">
+        <p class="top-text">
+          This is not a real online service! You know you need something like
+          this in your life to help you realize your deepest dreams.
+          <br />
+          Sign up <i>now</i> to get started. <br /><br />
+          You <i>know</i> you want to.
+        </p>
+      </div>
+      <form action="https://httpbin.org/" method="post">
+        <div class="mid-form">
+          <h1>Let's do this!</h1>
+          <div class="input-fields">
+            <span class="input-row">
+              <div class="input-container">
+                <label for="firstName">FIRST NAME</label>
+                <input type="text" name="firstName" />
+              </div>
+              <div class="input-container">
+                <label for="lastName">LAST NAME</label>
+                <input type="text" name="lastName" />
+              </div>
+            </span>
+            <span class="input-row">
+              <div class="input-container">
+                <label for="email">EMAIL</label>
+                <input type="email" name="email" />
+              </div>
+              <div class="input-container">
+                <label for="phoneNumber">PHONE NUMBER</label>
+                <input type="number" name="phoneNumber" />
+              </div>
+            </span>
+            <span class="input-row">
+              <div class="input-container">
+                <label for="password">PASSWORD</label>
+                <input type="password" name="password" />
+                <p class="passwords-missmatch">* Passwords do not match</p>
+              </div>
+              <div class="input-container">
+                <label for="passwordConfirm">CONFIRM PASSWORD</label>
+                <input type="password" name="passwordConfirm" />
+              </div>
+            </span>
+          </div>
+        </div>
+        <div class="bottom-section">
+          <button class="create-account-button">Create Acount</button>
+          <p class="login-text">
+            Already have an account? <a class="login-link">Log in</a>
+          </p>
+        </div>
+      </form>
+    </div>
   </body>
 </html>
