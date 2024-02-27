@@ -31,7 +31,15 @@ Completed 2024/02/19
 [Live Preview](https://peterkost.github.io/the-odin-project/01-foundations/04-etch-a-sketch/)
 
 ### Calculator
-Completed 202402/21
+Completed 2024/02/21
 
 
 [Live Preview](https://peterkost.github.io/the-odin-project/01-foundations/05-calculator/)
+
+## Intermediate HTML and CSS
+
+### Sign up form
+Completed 2024/02/27
+
+
+[Live Preview](https://peterkost.github.io/the-odin-project/02-intermediate-html-and-css/01-sign-up-form/)
