@@ -58,6 +58,7 @@ body {
   padding-right: 3rem;
   padding-left: 2rem;
   padding-top: 0.5rem;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .search-row {
@@ -104,6 +105,25 @@ body {
   width: 4rem;
 }
 
+.left-header {
+  font-size: 1.2rem;
+  font-weight: 500;
+  padding-top: 0;
+  margin: 0 0 -0.5rem 0;
+  grid-area: header;
+}
+
+.project-info {
+  margin: 0;
+  color: rgb(144 144 144);
+  padding-bottom: 1rem;
+  flex: 1;
+}
+
+.project-info::first-line {
+  color: black;
+}
+
 .hi-user {
   font-size: 1.2rem;
   font-weight: 500;
@@ -128,4 +148,100 @@ body {
 .main-panel {
   grid-area: main;
   background-color: rgb(226 232 240);
+  display: grid;
+  grid-template-columns: 8fr minmax(300px, 2fr);
+  gap: 1rem;
+  padding-top: 1.5rem;
+  padding-bottom: 2rem;
+}
+
+.main-left {
+  padding-left: 1rem;
+  display: grid;
+  grid-template: auto repeat(3, 1fr) / 1fr 1fr;
+  grid-template-areas: "header header";
+  gap: 1rem;
+}
+
+.main-content-box {
+  background-color: white;
+  border-radius: 1rem;
+  padding: 1rem;
+  box-sizing: border-box;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-left: solid 0.75rem rgb(240, 179, 25);
+  display: flex;
+  flex-direction: column;
+}
+
+.project-buttons {
+  justify-content: end;
+  display: flex;
+}
+
+.project-buttons > .icon {
+  filter: none;
+}
+
+.main-right {
+  display: grid;
+  grid-template: auto auto / 1fr;
+  gap: 2rem;
+  padding-right: 1.5rem;
+}
+
+.announcement:not(:last-child) {
+  border-bottom: solid 2px rgb(216, 216, 216);
+}
+
+.announcement {
+  margin: 0;
+  color: rgb(144 144 144);
+}
+
+.announcement::first-line {
+  color: black;
+}
+
+.section-header {
+  font-size: 1.2rem;
+  font-weight: 500;
+  padding-top: 0;
+  margin: 0 0 0.5rem 0;
+}
+
+.right-content-box {
+  background-color: white;
+  height: 100%;
+  border-radius: 1rem;
+  padding: 1rem;
+  box-sizing: border-box;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  display: grid;
+  gap: 1rem;
+}
+
+.right-section {
+  display: grid;
+  grid-template: auto 1fr / 1fr;
+}
+
+.trending-item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.25rem 0;
+}
+
+.trending-user-info {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  margin: 0;
+  color: rgb(144 144 144);
+}
+
+.trending-user-info > b {
+  color: black;
 }
