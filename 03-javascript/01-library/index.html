@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Library</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="index.js" defer></script>
+  </head>
+  <body>
+    <table id="library-table">
+      <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Page Count</th>
+        <th>Read</th>
+      </tr>
+    </table>
+    <button type="button" id="open-button">Add Book</button>
+    <dialog id="add-dialog">
+      <h1>Add a new book</h1>
+      <form id="form">
+        <label>Title: <input type="text" name="title" /> </label>
+        <label>Author: <input type="text" name="author" /> </label>
+        <label>Page Count: <input type="number" name="pageCount" /> </label>
+        <label>Read: <input type="checkbox" name="read" value="true" /></label>
+        <div>
+          <button value="cancel" formmethod="dialog">Cancel</button>
+          <button id="add-button">Add</button>
+        </div>
+      </form>
+    </dialog>
+    <output id="output"></output>
+  </body>
+</html>
