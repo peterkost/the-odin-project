@@ -59,16 +59,17 @@ function displayBook(book) {
   const readCell = row.insertCell();
   readCell.textContent = book.read;
   const toggleCell = row.insertCell();
-  toggleCell.replaceChildren(createToggleButton());
+  toggleCell.replaceChildren(createButton(handleToggleRead));
+  const deleteCell = row.insertCell();
+  deleteCell.replaceChildren(createButton(handleDelete));
 }
 
-function createToggleButton() {
-  const toggleButton = document.createElement("BUTTON");
-  toggleButton.type = "button";
-  toggleButton.textContent = "click";
-  toggleButton.addEventListener("click", handleToggleRead);
-
-  return toggleButton;
+function createButton(onClick) {
+  const button = document.createElement("BUTTON");
+  button.type = "button";
+  button.textContent = "click";
+  button.addEventListener("click", onClick);
+  return button;
 }
 
 function handleToggleRead(event) {
@@ -79,4 +80,10 @@ function handleToggleRead(event) {
 
   const readCell = row.getElementsByTagName("td")[3];
   readCell.textContent = updatedBook.read;
+}
+
+function handleDelete(event) {
+  const row = event.target.closest("tr");
+  library.splice(row.rowIndex - 1, 1);
+  row.remove();
 }

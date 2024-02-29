@@ -63,3 +63,7 @@ Making this made me appreciate component based libraries. Even a single page lik
 Completed in
 
 ### Library
+
+Completed 2024/02/28
+
+[Live Preview](https://peterkost.github.io/the-odin-project/03-javascript/01-library)
