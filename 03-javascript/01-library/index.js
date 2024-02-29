@@ -19,6 +19,7 @@ function Book(title, author, pageCount, read) {
   this.read = read;
   this.info = () =>
     `${this.title} by ${this.author}, ${pageCount} pages, ${read ? "already read" : "not read yet"}`;
+  this.toggleRead = () => (this.read = !this.read);
 }
 
 const library = [];
@@ -57,4 +58,25 @@ function displayBook(book) {
   pageCountCell.textContent = book.pageCount;
   const readCell = row.insertCell();
   readCell.textContent = book.read;
+  const toggleCell = row.insertCell();
+  toggleCell.replaceChildren(createToggleButton());
+}
+
+function createToggleButton() {
+  const toggleButton = document.createElement("BUTTON");
+  toggleButton.type = "button";
+  toggleButton.textContent = "click";
+  toggleButton.addEventListener("click", handleToggleRead);
+
+  return toggleButton;
+}
+
+function handleToggleRead(event) {
+  const row = event.target.closest("tr");
+  const bookIndex = row.rowIndex - 1;
+  const updatedBook = library[bookIndex];
+  updatedBook.toggleRead();
+
+  const readCell = row.getElementsByTagName("td")[3];
+  readCell.textContent = updatedBook.read;
 }
