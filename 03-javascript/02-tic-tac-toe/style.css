@@ -16,4 +16,9 @@ head {
 .square {
   background-color: white;
   height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: calc(20vmin / 1);
+  user-select: none;
 }

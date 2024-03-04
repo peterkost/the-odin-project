@@ -61,46 +61,46 @@ const Board = (function () {
   return { makeMove, print, isFull, isWinningMove };
 })();
 
+const Game = (function () {
+  let isX = true;
+
+  const makeMove = (move) => {
+    Board.makeMove(move);
+    DisplayController.updateSquare(move);
+    if (Board.isFull()) {
+      alert("The board is full, it's a tie!");
+    }
+    if (Board.isWinningMove(move)) {
+      alert(`Player ${move.p} wins!`);
+    }
+  };
+
+  const handleSquareClick = (e) => {
+    if (e.target.innerHTML === "") {
+      const [x, y] = e.target.id.split(",");
+      const move = new Move(Number(x), Number(y), isX ? "X" : "O");
+      isX = !isX;
+      makeMove(move);
+    }
+  };
+
+  return { handleSquareClick };
+})();
+
 const DisplayController = (function () {
-  const squareMap = new Map(
-    [...document.getElementsByClassName("square")].map((square) => [
-      square.id,
-      square,
-    ]),
+  const squares = [...document.getElementsByClassName("square")];
+  const squareMap = new Map(squares.map((square) => [square.id, square]));
+
+  squares.forEach((square) =>
+    square.addEventListener("click", Game.handleSquareClick),
   );
 
-  const setSquare = (move) => {
+  const updateSquare = (move) => {
     const id = `${move.x},${move.y}`;
     const square = squareMap.get(id);
     console.log(square);
     square.innerHTML = move.p;
   };
 
-  return { setSquare };
+  return { updateSquare };
 })();
-
-const Game = (function () {
-  const play = () => {
-    while (true) {
-      const [x, y, p] = prompt("Input move (x y p): ")
-        .split(" ")
-        .map((e) => (isNaN(Number(e)) ? e : Number(e)));
-      const move = new Move(x, y, p);
-      Board.makeMove(move);
-      DisplayController.setSquare(move);
-      if (Board.isFull()) {
-        console.log("The board is full, it's a tie!");
-        break;
-      }
-      if (Board.isWinningMove(move)) {
-        console.log(`Player ${move.p} wins!`);
-        break;
-      }
-      Board.print();
-    }
-  };
-
-  return { play };
-})();
-
-Game.play();
