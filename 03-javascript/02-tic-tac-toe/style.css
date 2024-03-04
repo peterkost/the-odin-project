@@ -1,3 +1,19 @@
-h1 {
-  color: blue;
+body,
+head {
+  box-sizing: border-box;
+  margin: 0;
+  height: 100vh;
+  background-color: black;
+}
+
+.board {
+  display: grid;
+  grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+  gap: 1rem;
+  height: 100%;
+}
+
+.square {
+  background-color: white;
+  height: 100%;
 }

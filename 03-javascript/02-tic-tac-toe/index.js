@@ -61,6 +61,24 @@ const Board = (function () {
   return { makeMove, print, isFull, isWinningMove };
 })();
 
+const DisplayController = (function () {
+  const squareMap = new Map(
+    [...document.getElementsByClassName("square")].map((square) => [
+      square.id,
+      square,
+    ]),
+  );
+
+  const setSquare = (move) => {
+    const id = `${move.x},${move.y}`;
+    const square = squareMap.get(id);
+    console.log(square);
+    square.innerHTML = move.p;
+  };
+
+  return { setSquare };
+})();
+
 const Game = (function () {
   const play = () => {
     while (true) {
@@ -69,6 +87,7 @@ const Game = (function () {
         .map((e) => (isNaN(Number(e)) ? e : Number(e)));
       const move = new Move(x, y, p);
       Board.makeMove(move);
+      DisplayController.setSquare(move);
       if (Board.isFull()) {
         console.log("The board is full, it's a tie!");
         break;
@@ -83,3 +102,5 @@ const Game = (function () {
 
   return { play };
 })();
+
+Game.play();
