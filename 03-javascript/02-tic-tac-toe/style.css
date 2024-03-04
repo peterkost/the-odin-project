@@ -1,16 +1,56 @@
-body,
-head {
+body {
   box-sizing: border-box;
   margin: 0;
   height: 100vh;
   background-color: black;
+  display: flex;
+  flex-direction: column;
+}
+
+button {
+  border: 0;
+  box-shadow:
+    rgba(0, 0, 0, 0.16) 0px 1px 4px,
+    rgb(51, 51, 51) 0px 0px 0px 3px;
+  padding: 0.75rem 1.5rem;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.top {
+  background-color: white;
+}
+
+.vs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15vmin;
+  gap: 1rem;
+}
+
+.vs > p {
+  margin: 0;
+}
+
+.button-container {
+  justify-content: center;
+  display: flex;
+}
+
+.winner {
+  color: green;
+  font-size: 10vmin;
+  margin: 0;
+  text-align: center;
 }
 
 .board {
   display: grid;
   grid-template: repeat(3, 1fr) / repeat(3, 1fr);
   gap: 1rem;
-  height: 100%;
+  flex: 1;
 }
 
 .square {
@@ -19,6 +59,6 @@ head {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: calc(20vmin / 1);
+  font-size: 20vmin;
   user-select: none;
 }

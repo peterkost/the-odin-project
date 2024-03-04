@@ -67,3 +67,9 @@ Completed in
 Completed 2024/02/28
 
 [Live Preview](https://peterkost.github.io/the-odin-project/03-javascript/01-library)
+
+### Tic Tac Toe 
+
+Completed 2024/03/04
+
+[Live Preview](https://peterkost.github.io/the-odin-project/03-javascript/02-tic-tac-toe)

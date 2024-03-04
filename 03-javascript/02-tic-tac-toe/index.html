@@ -8,6 +8,23 @@
     <script src="index.js" defer></script>
   </head>
   <body>
+    <div class="top">
+      <div class="vs">
+        <p id="player-1-label" onclick="DisplayController.setPlayerName(event)">
+          X
+        </p>
+        vs
+        <p id="player-2-label" onclick="DisplayController.setPlayerName(event)">
+          O
+        </p>
+      </div>
+      <p class="winner" id="winner"></p>
+      <div class="button-container">
+        <button type="button" id="start-button" onclick="Game.start()">
+          Start
+        </button>
+      </div>
+    </div>
     <div class="board">
       <div class="square" id="0,0"></div>
       <div class="square" id="1,0"></div>

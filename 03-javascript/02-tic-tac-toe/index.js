@@ -12,6 +12,14 @@ const Board = (function () {
     .fill()
     .map(() => Array(n).fill(emptyChar));
 
+  const reset = () => {
+    for (let i = 0; i < n; i++) {
+      for (let j = 0; j < n; j++) {
+        state[i][j] = emptyChar;
+      }
+    }
+  };
+
   const isFull = () => !state.flat().includes(emptyChar);
   const isWinningMove = (move) => {
     const isMiddle =
@@ -21,7 +29,6 @@ const Board = (function () {
     const isTopRightOrBotLeftCorner =
       (move.y === 0 && move.x == n - 1) || (move.y === n - 1 && move.x === 0);
 
-    // check vertical and horizontal
     let winVertical = (winHorizontal = true);
     let winSlopeDown = (winSlopeUp = false);
     for (let i = 0; i < n; i++) {
@@ -58,25 +65,37 @@ const Board = (function () {
 
   const print = () => console.log(`${this}`);
 
-  return { makeMove, print, isFull, isWinningMove };
+  return { makeMove, print, isFull, isWinningMove, reset };
 })();
 
 const Game = (function () {
   let isX = true;
+  const elWinner = document.getElementById("winner");
+  let inProgress = false;
+  const startButton = document.getElementById("start-button");
+
+  const start = () => {
+    Board.reset();
+    DisplayController.reset();
+    inProgress = true;
+    startButton.innerHTML = "Restart";
+    elWinner.innerHTML = "";
+  };
 
   const makeMove = (move) => {
     Board.makeMove(move);
     DisplayController.updateSquare(move);
-    if (Board.isFull()) {
-      alert("The board is full, it's a tie!");
-    }
     if (Board.isWinningMove(move)) {
-      alert(`Player ${move.p} wins!`);
+      elWinner.innerHTML = `Player ${move.p} wins!`;
+      inProgress = false;
+    } else if (Board.isFull()) {
+      elWinner.innerHTML = "Tie!";
+      inProgress = false;
     }
   };
 
   const handleSquareClick = (e) => {
-    if (e.target.innerHTML === "") {
+    if (inProgress && e.target.innerHTML === "") {
       const [x, y] = e.target.id.split(",");
       const move = new Move(Number(x), Number(y), isX ? "X" : "O");
       isX = !isX;
@@ -84,7 +103,7 @@ const Game = (function () {
     }
   };
 
-  return { handleSquareClick };
+  return { start, handleSquareClick };
 })();
 
 const DisplayController = (function () {
@@ -95,6 +114,14 @@ const DisplayController = (function () {
     square.addEventListener("click", Game.handleSquareClick),
   );
 
+  const reset = () => squares.forEach((square) => (square.innerHTML = ""));
+
+  const setPlayerName = (e) => {
+    const name = prompt(`Enter ${e.target.innerHTML.trim()}'s new name`);
+
+    e.target.innerHTML = name ? name : e.target.innerHTML;
+  };
+
   const updateSquare = (move) => {
     const id = `${move.x},${move.y}`;
     const square = squareMap.get(id);
@@ -102,5 +129,5 @@ const DisplayController = (function () {
     square.innerHTML = move.p;
   };
 
-  return { updateSquare };
+  return { updateSquare, reset, setPlayerName };
 })();
