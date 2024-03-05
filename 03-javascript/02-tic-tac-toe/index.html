@@ -10,17 +10,13 @@
   <body>
     <div class="top">
       <div class="vs">
-        <p id="player-1-label" onclick="DisplayController.setPlayerName(event)">
-          X
-        </p>
+        <p id="player-1-label" onclick="display.setPlayerName(event)">X</p>
         vs
-        <p id="player-2-label" onclick="DisplayController.setPlayerName(event)">
-          O
-        </p>
+        <p id="player-2-label" onclick="display.setPlayerName(event)">O</p>
       </div>
       <p class="winner" id="winner"></p>
       <div class="button-container">
-        <button type="button" id="start-button" onclick="Game.start()">
+        <button type="button" id="start-button" onclick="game.start()">
           Start
         </button>
       </div>

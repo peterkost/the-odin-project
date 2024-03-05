@@ -1,133 +1,156 @@
-const Move = function (x, y, p) {
-  this.x = x;
-  this.y = y;
-  this.p = p;
-};
+class Move {
+  constructor(x, y, p) {
+    this.x = x;
+    this.y = y;
+    this.p = p;
+  }
+}
 
-const Board = (function () {
-  const n = 3;
-  const emptyChar = ".";
+class Board {
+  constructor() {
+    this.n = 3;
+    this.emptyChar = ".";
+    this.state = Array(this.n)
+      .fill()
+      .map(() => Array(this.n).fill(this.emptyChar));
+  }
 
-  const state = Array(n)
-    .fill()
-    .map(() => Array(n).fill(emptyChar));
-
-  const reset = () => {
-    for (let i = 0; i < n; i++) {
-      for (let j = 0; j < n; j++) {
-        state[i][j] = emptyChar;
+  reset() {
+    for (let i = 0; i < this.n; i++) {
+      for (let j = 0; j < this.n; j++) {
+        this.state[i][j] = this.emptyChar;
       }
     }
-  };
+  }
 
-  const isFull = () => !state.flat().includes(emptyChar);
-  const isWinningMove = (move) => {
+  isFull() {
+    return !this.state.flat().includes(this.emptyChar);
+  }
+  isWinningMove(move) {
     const isMiddle =
-      n % 2 === 1 && move.y === move.x && move.x === Math.floor(n / 2);
+      this.n % 2 === 1 &&
+      move.y === move.x &&
+      move.x === Math.floor(this.n / 2);
     const isTopLeftOrBotRightCorner =
-      (move.y === 0 && move.x == 0) || (move.y === n - 1 && move.x === n - 1);
+      (move.y === 0 && move.x == 0) ||
+      (move.y === this.n - 1 && move.x === this.n - 1);
     const isTopRightOrBotLeftCorner =
-      (move.y === 0 && move.x == n - 1) || (move.y === n - 1 && move.x === 0);
+      (move.y === 0 && move.x == this.n - 1) ||
+      (move.y === this.n - 1 && move.x === 0);
 
-    let winVertical = (winHorizontal = true);
-    let winSlopeDown = (winSlopeUp = false);
-    for (let i = 0; i < n; i++) {
-      if (state[i][move.x] !== move.p) {
+    let winVertical, winHorizontal;
+    winVertical = winHorizontal = true;
+    let winSlopeDown, winSlopeUp;
+    winSlopeDown = winSlopeUp = false;
+    for (let i = 0; i < this.n; i++) {
+      if (this.state[i][move.x] !== move.p) {
         winVertical = false;
       }
-      if (state[move.y][i] !== move.p) {
+      if (this.state[move.y][i] !== move.p) {
         winHorizontal = false;
       }
     }
 
     if (isTopLeftOrBotRightCorner || isMiddle) {
       winSlopeUp = true;
-      for (let j = 0; j < n; j++) {
-        if (state[j][j] !== move.p) {
+      for (let j = 0; j < this.n; j++) {
+        if (this.state[j][j] !== move.p) {
           winSlopeUp = false;
         }
       }
     } else if (isTopRightOrBotLeftCorner || isMiddle) {
       winSlopeDown = true;
-      for (let k = 0; k < n; k++) {
-        if (state[k][n - k - 1] !== move.p) {
+      for (let k = 0; k < this.n; k++) {
+        if (this.state[k][this.n - k - 1] !== move.p) {
           winSlopeDown = false;
         }
       }
     }
     return winVertical || winHorizontal || winSlopeDown || winSlopeUp;
-  };
+  }
 
-  const makeMove = (move) => (state[move.y][move.x] = move.p);
+  makeMove(move) {
+    this.state[move.y][move.x] = move.p;
+  }
 
-  Object.prototype.toString = () =>
+  toString() {
     state.map((row) => row.join(" ")).join("\n");
+  }
 
-  const print = () => console.log(`${this}`);
+  print() {
+    console.log(`${this}`);
+  }
+}
 
-  return { makeMove, print, isFull, isWinningMove, reset };
-})();
+const board = new Board();
 
-const Game = (function () {
-  let isX = true;
-  const elWinner = document.getElementById("winner");
-  let inProgress = false;
-  const startButton = document.getElementById("start-button");
+class Game {
+  constructor() {
+    this.isX = true;
+    this.elWinner = document.getElementById("winner");
+    this.inProgress = false;
+    this.startButton = document.getElementById("start-button");
+  }
 
-  const start = () => {
-    Board.reset();
-    DisplayController.reset();
-    inProgress = true;
-    startButton.innerHTML = "Restart";
-    elWinner.innerHTML = "";
-  };
+  start() {
+    board.reset();
+    display.reset();
+    this.inProgress = true;
+    this.startButton.innerHTML = "Restart";
+    this.elWinner.innerHTML = "";
+  }
 
-  const makeMove = (move) => {
-    Board.makeMove(move);
-    DisplayController.updateSquare(move);
-    if (Board.isWinningMove(move)) {
-      elWinner.innerHTML = `Player ${move.p} wins!`;
-      inProgress = false;
-    } else if (Board.isFull()) {
-      elWinner.innerHTML = "Tie!";
-      inProgress = false;
+  makeMove(move) {
+    board.makeMove(move);
+    display.updateSquare(move);
+    if (board.isWinningMove(move)) {
+      this.elWinner.innerHTML = `Player ${move.p} wins!`;
+      this.inProgress = false;
+    } else if (board.isFull()) {
+      this.elWinner.innerHTML = "Tie!";
+      this.inProgress = false;
     }
-  };
+  }
+}
 
-  const handleSquareClick = (e) => {
-    if (inProgress && e.target.innerHTML === "") {
-      const [x, y] = e.target.id.split(",");
-      const move = new Move(Number(x), Number(y), isX ? "X" : "O");
-      isX = !isX;
-      makeMove(move);
-    }
-  };
+const game = new Game();
 
-  return { start, handleSquareClick };
-})();
+class DisplayController {
+  constructor() {
+    const squares = [...document.getElementsByClassName("square")];
+    this.squares = squares;
+    this.squareMap = new Map(squares.map((square) => [square.id, square]));
 
-const DisplayController = (function () {
-  const squares = [...document.getElementsByClassName("square")];
-  const squareMap = new Map(squares.map((square) => [square.id, square]));
+    console.log(game.handleSquareClick);
+    squares.forEach((square) =>
+      square.addEventListener("click", this.handleSquareClick),
+    );
+  }
 
-  squares.forEach((square) =>
-    square.addEventListener("click", Game.handleSquareClick),
-  );
+  reset() {
+    this.squares.forEach((square) => (square.innerHTML = ""));
+  }
 
-  const reset = () => squares.forEach((square) => (square.innerHTML = ""));
-
-  const setPlayerName = (e) => {
+  setPlayerName(e) {
     const name = prompt(`Enter ${e.target.innerHTML.trim()}'s new name`);
 
     e.target.innerHTML = name ? name : e.target.innerHTML;
-  };
+  }
 
-  const updateSquare = (move) => {
+  updateSquare(move) {
     const id = `${move.x},${move.y}`;
-    const square = squareMap.get(id);
-    console.log(square);
+    const square = this.squareMap.get(id);
     square.innerHTML = move.p;
-  };
+  }
 
-  return { updateSquare, reset, setPlayerName };
-})();
+  handleSquareClick(e) {
+    if (game.inProgress && e.target.innerHTML === "") {
+      const [x, y] = e.target.id.split(",");
+      const move = new Move(Number(x), Number(y), game.isX ? "X" : "O");
+      game.isX = !game.isX;
+      game.makeMove(move);
+    }
+  }
+}
+
+const display = new DisplayController();
