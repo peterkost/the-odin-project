@@ -1,7 +1,32 @@
-function component() {
-  const el = document.createElement("div");
-  el.innerHTML = "Hi -src/index.js";
-  return el;
-}
+import "./style.css";
+import home from "./pages/home";
+import menu from "./pages/menu";
+import locations from "./pages/locations";
+import about from "./pages/about";
 
-document.body.appendChild(component());
+const content = document.getElementById("content");
+
+const handleNavButtonClick = (e) => {
+  switch (e.target.id) {
+    case "home":
+      content.replaceChildren(home());
+      break;
+    case "menu":
+      content.replaceChildren(menu());
+      break;
+    case "locations":
+      content.replaceChildren(locations());
+      break;
+    case "about":
+      content.replaceChildren(about());
+      break;
+    default:
+      console.log("Unknown nav button clicked!");
+  }
+};
+
+Array.from(document.getElementsByTagName("button")).forEach((button) =>
+  button.addEventListener("click", handleNavButtonClick),
+);
+
+content.appendChild(home());

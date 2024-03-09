@@ -1,0 +1,52 @@
+@font-face {
+  font-family: RobotoMono;
+  src: url(./resources/RobotoMono-Regular.ttf);
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 1rem;
+  box-sizing: border-box;
+  font-family: RobotoMono;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  gap: 2rem;
+}
+
+nav > button {
+  background-color: black;
+  flex: 1;
+  border: 0;
+  background-color: white;
+  font-family: RobotoMono;
+  font-size: 1.5rem;
+}
+
+#content {
+  flex: 1;
+}
+
+#home-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  border: 0.5rem solid black;
+}
+
+#home-title {
+  font-size: 5rem;
+}
+
+#home-subtitle {
+  font-size: 2rem;
+}
