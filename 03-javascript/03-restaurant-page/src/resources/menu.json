@@ -1,0 +1,37 @@
+{
+  "menu": {
+    "Appetizers": [
+      {"Оливье (Olivier Salad)": "Classic Russian salad with diced potatoes, carrots, peas, pickles, and mayo."},
+      {"Селедка под шубой (Herring Under a Fur Coat / Shuba)": "Layered salad of herring, potatoes, beets, and mayo, topped with grated eggs."},
+      {"Пельмени (Pelmeni)": "Handmade dumplings filled with seasoned meat, served with sour cream."}
+    ],
+    "Main Courses": [
+      {"Бефстроганов (Beef Stroganoff)": "Tender beef strips in a creamy mushroom sauce, served over egg noodles."},
+      {"Котлеты (Kotleti)": "Pan-fried meat patties seasoned with onions and herbs, accompanied by mashed potatoes."},
+      {"Плов (Plov)": "Fragrant rice pilaf with carrots, onions, and your choice of meat."}
+    ],
+    "Soups": [
+      {"Борщ (Borscht)": "Hearty beet soup with cabbage, potatoes, and a dollop of sour cream."},
+      {"Солянка (Solyanka)": "Rich and tangy soup with a mix of meats, pickles, and a hint of citrus."},
+      {"Щи (Shchi)": "Traditional cabbage soup with carrots, onions, and dill, served with sour cream."}
+    ],
+    "Vegetarian Delights": [
+      {"Вареники с картошкой и грибами (Vareniki with Potatoes and Mushrooms)": "Dumplings filled with a savory mixture of potatoes and mushrooms, served with caramelized onions."},
+      {"Голубцы (Golubtsy)": "Cabbage leaves stuffed with a flavorful mix of rice, vegetables, and herbs."}
+    ],
+    "Side Dishes": [
+      {"Картошка пюре (Mashed Potatoes)": "Creamy mashed potatoes with butter and herbs."},
+      {"Маринованные овощи (Pickled Vegetables)": "Assortment of tangy pickled cucumbers, tomatoes, and cabbage."}
+    ],
+    "Desserts": [
+      {"Медовик (Medovik)": "Layered honey cake with sweet cream filling."},
+      {"Птичье молоко (Ptichye Moloko)": "Soft milk soufflé covered in chocolate."},
+      {"Ватрушка (Vatrushka)": "Sweet pastry filled with farmer's cheese and raisins."}
+    ],
+    "Beverages": [
+      {"Чай (Russian Tea)": "A comforting blend of black tea with spices, lemon, and honey."},
+      {"Квас (Kvass)": "Traditional fermented beverage made from bread, slightly tangy and refreshing."}
+    ]
+  }
+}
+

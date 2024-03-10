@@ -6,6 +6,8 @@ import about from "./pages/about";
 
 const content = document.getElementById("content");
 
+const buttons = Array.from(document.getElementsByTagName("button"));
+
 const handleNavButtonClick = (e) => {
   switch (e.target.id) {
     case "home":
@@ -23,10 +25,15 @@ const handleNavButtonClick = (e) => {
     default:
       console.log("Unknown nav button clicked!");
   }
+
+  buttons.forEach(
+    (button) => (button.innerHTML = button.innerHTML.replaceAll('"', "")),
+  );
+  e.target.innerHTML = `"${e.target.innerHTML}"`;
 };
 
-Array.from(document.getElementsByTagName("button")).forEach((button) =>
+buttons.forEach((button) =>
   button.addEventListener("click", handleNavButtonClick),
 );
 
-content.appendChild(home());
+content.appendChild(menu());
