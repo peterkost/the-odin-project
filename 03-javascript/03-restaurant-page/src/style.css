@@ -110,3 +110,31 @@ h1 {
   font-size: 2rem;
   padding-bottom: 0.5rem;
 }
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.about-container {
+  height: 100%;
+  padding: 1rem;
+  box-sizing: border-box;
+  border: 0.5rem solid black;
+  white-space: pre-line;
+}
+
+.about-text {
+  animation: fadeIn 5s;
+  align-self: flex-start;
+  padding-right: 1rem;
+}
+
+.about-text-container {
+  display: inline-flex;
+  flex-wrap: wrap;
+}

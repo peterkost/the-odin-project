@@ -73,3 +73,9 @@ Completed 2024/02/28
 Completed 2024/03/04
 
 [Live Preview](https://peterkost.github.io/the-odin-project/03-javascript/02-tic-tac-toe)
+
+### Restaurant 
+
+Completed 2024/03/14
+
+[Live Preview](https://peterkost.github.io/the-odin-project/03-javascript/03-restaurant-page/dist/)
