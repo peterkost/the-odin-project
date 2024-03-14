@@ -1,0 +1,14 @@
+{
+  "0": {
+    "city": "New York",
+    "address": "444 Broadway\nNew York, NY 10013",
+    "contact": "+1 212 461 9128",
+    "hours": "Monday to Sunday 07:00-21:00"
+  },
+  "1": {
+    "city": "London",
+    "address": "10 Russell St\nLondon, WC2B 5HZ",
+    "contact": "+44 20 3971 6119",
+    "hours": "Monday to Sunday 09:00-18:00"
+  }
+}

@@ -36,4 +36,4 @@ buttons.forEach((button) =>
   button.addEventListener("click", handleNavButtonClick),
 );
 
-content.appendChild(menu());
+content.appendChild(locations());

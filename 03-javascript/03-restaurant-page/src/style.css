@@ -2,6 +2,11 @@
   font-family: RobotoMono;
   src: url(./resources/RobotoMono-Regular.ttf);
 }
+@font-face {
+  font-family: RobotoMono;
+  src: url(./resources/RobotoMono-Bold.ttf);
+  font-weight: bold;
+}
 
 body {
   height: 100vh;
@@ -77,4 +82,31 @@ h1 {
   border: 0.5rem solid black;
   padding: 1rem;
   margin-bottom: 1rem;
+}
+
+.location-container {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  padding: 1rem;
+  box-sizing: border-box;
+  border: 0.5rem solid black;
+  white-space: pre-line;
+}
+
+.location-address,
+.location-contact {
+  padding-bottom: 0.5rem;
+}
+
+.location-photo {
+  width: 100%;
+  filter: grayscale(100%);
+}
+
+.location-city {
+  font-weight: bold;
+  font-size: 2rem;
+  padding-bottom: 0.5rem;
 }
