@@ -12,4 +12,7 @@ function root() {
 
 document.body.appendChild(root());
 
-window.onload = () => domController.renderTasks();
+window.onload = () => {
+  document.getElementById("add-modal").showModal();
+  domController.renderTasks();
+};

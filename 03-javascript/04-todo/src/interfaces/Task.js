@@ -9,7 +9,6 @@ class Task {
   }
 
   getEl() {
-    console.log(this);
     return task(this);
   }
 }

@@ -1,14 +1,24 @@
 import html from "./index.html";
 import Task from "../../interfaces/Task";
 import state from "../../helpers/State";
+import "./style.css";
 
 const handleSubmit = (event) => {
   event.preventDefault();
 
-  const task = createTask(event.target);
+  const form = event.target;
+  const task = createTask(form);
   state.addTask(task);
 
   const modal = event.srcElement.parentNode;
+  form.reset();
+  modal.close();
+};
+
+const handleCancel = (event) => {
+  const form = event.srcElement.parentNode.parentNode;
+  const modal = form.parentNode;
+  form.reset();
   modal.close();
 };
 
@@ -32,7 +42,7 @@ const addModal = () => {
   form.addEventListener("submit", handleSubmit);
 
   const closeButton = modal.getElementsByTagName("button")[0];
-  closeButton.onclick = () => modal.close();
+  closeButton.onclick = handleCancel;
 
   return modal;
 };

@@ -1,0 +1,42 @@
+#add-modal {
+  background-color: rgb(43 43 47);
+  color: white;
+  border-color: var(--main-outline-color);
+  border-radius: 0.5rem;
+  border-width: 2px;
+  padding: 0.5rem;
+}
+
+#add-title {
+  font-size: 1.25rem;
+}
+
+#add-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+#add-modal input,
+#add-modal select {
+  background-color: transparent;
+  border: 0;
+  padding: 0.2rem;
+  color: lightgray;
+}
+
+#add-modal input::placeholder {
+  color: lightgray;
+}
+
+#add-button-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#add-modal button {
+  background-color: transparent;
+  color: lightgray;
+  border: 2px solid var(--main-outline-color);
+  border-radius: 1px;
+}
