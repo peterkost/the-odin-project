@@ -1,0 +1,24 @@
+#taskview-container {
+  display: flex;
+  flex-direction: column;
+}
+
+#taskview-add {
+  background: none;
+  outline: none;
+  border: none;
+  align-self: flex-end;
+  justify-self: flex-end;
+}
+
+#taskview-add {
+  color: rgb(150 152 152);
+  font-size: 2rem;
+  margin-top: 0;
+  margin-bottom: -1rem;
+}
+
+#taskview-title {
+  color: rgb(10 132 255);
+  margin-top: 0;
+}

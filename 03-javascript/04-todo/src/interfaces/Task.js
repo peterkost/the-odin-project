@@ -1,3 +1,5 @@
+import task from "../sections/taskView/task";
+
 class Task {
   constructor(title, description, dueDate, priority) {
     this.title = title;
@@ -7,9 +9,8 @@ class Task {
   }
 
   getEl() {
-    const container = document.createElement("div");
-    container.innerText = `${this.title}, ${this.description}, ${this.dueDate}, ${this.priority}`;
-    return container;
+    console.log(this);
+    return task(this);
   }
 }
 

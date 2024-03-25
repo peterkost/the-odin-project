@@ -1,4 +1,6 @@
-import taskList from "./sections/tasklist/index.js";
+import "./style.css";
+import taskList from "./sections/taskView/index.js";
+import domController from "./helpers/DomController.js";
 
 function root() {
   const container = document.createElement("div");
@@ -9,3 +11,5 @@ function root() {
 }
 
 document.body.appendChild(root());
+
+window.onload = () => domController.renderTasks();

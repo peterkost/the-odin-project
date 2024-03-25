@@ -1,4 +1,7 @@
 import domController from "./DomController";
+import mock from "./Mock";
+
+const useMock = true;
 
 let instance;
 class State {
@@ -7,7 +10,7 @@ class State {
       throw new Error("State already exists, you can not initalize multiple!");
     }
     instance = this;
-    this.tasks = [];
+    this.tasks = useMock ? mock.getTasks() : [];
   }
 
   getTasks() {

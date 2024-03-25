@@ -1,0 +1,39 @@
+.task-container {
+  --main-outline-color: rgb(54 57 59);
+  padding-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.task-complete-button {
+  --size: 1.5rem;
+  background-color: transparent;
+  height: var(--size);
+  width: var(--size);
+  border-radius: 50%;
+  border: 2px solid var(--main-outline-color);
+}
+
+.task-content {
+  border-bottom: 2px solid var(--main-outline-color);
+  flex: 1;
+}
+
+div.task-content p {
+  margin: 0;
+}
+
+div.task-content p:last-child {
+  padding-bottom: 0.5rem;
+}
+
+.task-title {
+  font-size: 1.25rem;
+}
+
+.task-details-row {
+  display: flex;
+  gap: 0.5rem;
+  color: rgb(154 156 157);
+}
