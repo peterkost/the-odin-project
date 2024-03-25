@@ -2,12 +2,16 @@
 <form id="form">
   <label>Title: <input type="text" name="title" /> </label>
   <label>Description: <input type="text" name="description" /> </label>
-  <label>Due Date: <input type="number" name="due-date" /> </label>
-  <label
-    >Priority: <input type="checkbox" name="priority" value="true"
-  /></label>
+  <label>Due Date: <input type="date" name="dueDate" /> </label>
+  <label for="priority">Priority:</label>
+  <select name="priority">
+    <option value="">-</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+  </select>
   <div>
-    <button value="cancel" formmethod="dialog">Cancel</button>
+    <button id="close-button" type="button">Cancel</button>
     <button id="add-button">Add</button>
   </div>
 </form>
