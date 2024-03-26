@@ -7,6 +7,10 @@ const projectPanel = () => {
 
   container.innerHTML = html;
 
+  Array.from(
+    container.getElementsByClassName("project-panel-all-count"),
+  ).forEach((e) => (e.innerText = "16"));
+
   return container;
 };
 

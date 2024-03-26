@@ -89,11 +89,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, `.project-button p {
-  margin: 0;
-}
-
-.project-button {
+___CSS_LOADER_EXPORT___.push([module.id, `.project-button {
   display: flex;
   width: 100%;
   background: none;
@@ -148,16 +144,50 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, `#project-panel-container {
+___CSS_LOADER_EXPORT___.push([module.id, `#project-panel-container p {
+  margin: 0;
+}
+
+#project-panel-container {
   background-color: rgb(43 47 48);
   border-right: 2px solid black;
   min-width: 10rem;
   height: 100vh;
   padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+#project-panel-all {
+  background-color: rgb(78 79 83);
+  border: none;
+  padding: 1rem;
+  margin-top: 1rem;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+  font-size: 1.05rem;
 }
 
 #project-panel-heading {
-  color: rgb(154 156 157);
+  color: var(--grey-accent-color);
+}
+
+#project-panel-list {
+  flex: 1;
+}
+
+#project-panel-add {
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  color: var(--grey-accent-color);
+  gap: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 `, ""]);
 // Exports
@@ -303,6 +333,7 @@ var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBP
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, `body {
   --main-outline-color: rgb(54 57 59);
+  --grey-accent-color: rgb(154 156 157);
   background-color: rgb(32 36 38);
   color: white;
   font-family: Helvetica, Arial, sans-serif;
@@ -456,7 +487,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 // Module
-var code = "<p id=\"project-panel-heading\">My Projects</p>\n<div id=\"project-panel-list\"></div>\n";
+var code = "<link\n  rel=\"stylesheet\"\n  href=\"https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200\"\n/>\n<button id=\"project-panel-all\" type=\"button\">\n  All Tasks\n  <p class=\"project-panel-all-count\"></p>\n</button>\n<p id=\"project-panel-heading\">My Projects</p>\n<div id=\"project-panel-list\"></div>\n<button id=\"project-panel-add\" type=\"button\">\n  <span class=\"material-symbols-outlined\"> add_circle </span>Add Project\n</button>\n";
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (code);
 
@@ -1392,6 +1423,10 @@ const projectPanel = () => {
   container.id = "project-panel-container";
 
   container.innerHTML = _index_html__WEBPACK_IMPORTED_MODULE_1__["default"];
+
+  Array.from(
+    container.getElementsByClassName("project-panel-all-count"),
+  ).forEach((e) => (e.innerText = "16"));
 
   return container;
 };

@@ -1,5 +1,6 @@
 body {
   --main-outline-color: rgb(54 57 59);
+  --grey-accent-color: rgb(154 156 157);
   background-color: rgb(32 36 38);
   color: white;
   font-family: Helvetica, Arial, sans-serif;
