@@ -11,7 +11,7 @@ class State {
     }
     instance = this;
     this.projects = useMock ? mock.getProjects() : [];
-    this.curProjectIndex = 0;
+    this.curProjectIndex = -1;
   }
 
   getTasks() {

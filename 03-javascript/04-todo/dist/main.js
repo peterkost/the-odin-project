@@ -174,7 +174,10 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, `.project-button {
+___CSS_LOADER_EXPORT___.push([module.id, `.project-container {
+  border-radius: 0.8rem;
+}
+.project-button {
   display: flex;
   width: 100%;
   background: none;
@@ -182,7 +185,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.project-button {
   color: white;
   align-items: center;
   cursor: pointer;
-  padding-bottom: 0.5rem;
+  padding: 0.5rem;
 }
 
 .project-icon {
@@ -244,6 +247,8 @@ ___CSS_LOADER_EXPORT___.push([module.id, `#project-panel-container p {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  position: sticky;
+  top: 0;
 }
 
 .project-panel-all {
@@ -279,7 +284,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `#project-panel-container p {
 }
 
 .project-selected {
-  background-color: red;
+  background-color: rgb(10 132 255);
 }
 `, ""]);
 // Exports
@@ -1347,6 +1352,7 @@ class DomController {
   renderOnload() {
     this.renderTasks();
     this.renderProjects();
+    this.hightlightSelectedProject(0, -1);
   }
 }
 
@@ -1443,7 +1449,7 @@ class State {
     }
     instance = this;
     this.projects = useMock ? _Mock__WEBPACK_IMPORTED_MODULE_1__["default"].getProjects() : [];
-    this.curProjectIndex = 0;
+    this.curProjectIndex = -1;
   }
 
   getTasks() {
@@ -1749,7 +1755,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const handleClick = (event) => {
-  // Should probably use a table and get row index instead
   const projects = Array.from(document.querySelectorAll(".project-container"));
   const clickedProject = event.target.closest(".project-container");
   const index = projects.indexOf(clickedProject);

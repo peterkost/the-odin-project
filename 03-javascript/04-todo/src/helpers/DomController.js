@@ -53,6 +53,7 @@ class DomController {
   renderOnload() {
     this.renderTasks();
     this.renderProjects();
+    this.hightlightSelectedProject(0, -1);
   }
 }
 

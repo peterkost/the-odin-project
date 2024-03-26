@@ -3,7 +3,6 @@ import html from "./index.html";
 import state from "../../../helpers/State";
 
 const handleClick = (event) => {
-  // Should probably use a table and get row index instead
   const projects = Array.from(document.querySelectorAll(".project-container"));
   const clickedProject = event.target.closest(".project-container");
   const index = projects.indexOf(clickedProject);
