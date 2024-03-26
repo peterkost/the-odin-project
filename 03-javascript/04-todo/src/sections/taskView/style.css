@@ -11,9 +11,9 @@
   border: none;
   align-self: flex-end;
   justify-self: flex-end;
-}
-
-#taskview-add {
+  cursor: pointer;
+  padding-left: 1rem;
+  padding-bottom: 1rem;
   color: rgb(150 152 152);
   font-size: 2rem;
   margin-top: 0;

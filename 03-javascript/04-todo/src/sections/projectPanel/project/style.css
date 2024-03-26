@@ -25,5 +25,5 @@
 }
 
 .project-count {
-  color: rgb(154 156 157);
+  color: var(--grey-accent-color);
 }

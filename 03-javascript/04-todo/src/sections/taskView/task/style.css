@@ -34,5 +34,5 @@ div.task-content p:last-child {
 .task-details-row {
   display: flex;
   gap: 0.5rem;
-  color: rgb(154 156 157);
+  color: var(--grey-accent-color);
 }

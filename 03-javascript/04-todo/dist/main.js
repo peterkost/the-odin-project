@@ -28,6 +28,13 @@ ___CSS_LOADER_EXPORT___.push([module.id, `#add-modal {
   border-radius: 0.5rem;
   border-width: 2px;
   padding: 0.5rem;
+  margin-left: auto;
+  margin-right: 2rem;
+  margin-top: 1rem;
+}
+
+#add-modal::backdrop {
+  backdrop-filter: brightness(0.5);
 }
 
 #add-title {
@@ -116,7 +123,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.project-button {
 }
 
 .project-count {
-  color: rgb(154 156 157);
+  color: var(--grey-accent-color);
 }
 `, ""]);
 // Exports
@@ -188,6 +195,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `#project-panel-container p {
   color: var(--grey-accent-color);
   gap: 0.5rem;
   padding-bottom: 0.5rem;
+  cursor: pointer;
 }
 `, ""]);
 // Exports
@@ -228,9 +236,9 @@ ___CSS_LOADER_EXPORT___.push([module.id, `#taskview-container {
   border: none;
   align-self: flex-end;
   justify-self: flex-end;
-}
-
-#taskview-add {
+  cursor: pointer;
+  padding-left: 1rem;
+  padding-bottom: 1rem;
   color: rgb(150 152 152);
   font-size: 2rem;
   margin-top: 0;
@@ -303,7 +311,7 @@ div.task-content p:last-child {
 .task-details-row {
   display: flex;
   gap: 0.5rem;
-  color: rgb(154 156 157);
+  color: var(--grey-accent-color);
 }
 `, ""]);
 // Exports
@@ -1668,6 +1676,7 @@ document.body.appendChild(root());
 
 window.onload = () => {
   _helpers_DomController_js__WEBPACK_IMPORTED_MODULE_2__["default"].renderOnload();
+  //document.getElementById("add-modal").showModal();
 };
 
 })();
