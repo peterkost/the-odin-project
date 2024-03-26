@@ -11,6 +11,7 @@ class State {
     }
     instance = this;
     this.tasks = useMock ? mock.getTasks() : [];
+    this.projects = useMock ? mock.getProjects() : [];
   }
 
   getTasks() {
@@ -20,6 +21,10 @@ class State {
   addTask(task) {
     this.tasks.push(task);
     domController.renderTasks();
+  }
+
+  getProjects() {
+    return this.projects;
   }
 }
 

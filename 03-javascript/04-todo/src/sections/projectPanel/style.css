@@ -1,0 +1,6 @@
+#project-panel-container {
+  background-color: rgb(43 47 48);
+  border-right: 2px solid black;
+  min-width: 13rem;
+  height: 100vh;
+}

@@ -1,4 +1,5 @@
 import Task from "../interfaces/Task";
+import Project from "../interfaces/Project";
 
 let instance;
 class Mock {
@@ -12,8 +13,8 @@ class Mock {
   getTasks() {
     const tasks = [];
     const task = new Task(
-      "Program",
-      "Work on The Odin Project for 4 hours",
+      "Title",
+      "Description",
       new Date().toLocaleDateString(),
       1,
     );
@@ -21,6 +22,16 @@ class Mock {
       tasks.push(task);
     }
     return tasks;
+  }
+
+  getProjects() {
+    const projects = [];
+    const project = new Project("SAMPLE-PROJECT", "6BCC43", "SP");
+
+    for (let i = 0; i < 5; i++) {
+      projects.push(project);
+    }
+    return projects;
   }
 }
 
