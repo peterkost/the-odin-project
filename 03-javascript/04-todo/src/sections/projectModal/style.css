@@ -1,0 +1,52 @@
+#project-modal {
+  background-color: rgb(43 43 47);
+  color: white;
+  border-color: var(--main-outline-color);
+  border-radius: 0.5rem;
+  border-width: 2px;
+  padding: 0.5rem;
+  margin-left: 1.5rem;
+  margin-bottom: 2.1rem;
+}
+
+#project-modal::backdrop {
+  backdrop-filter: brightness(0.5);
+}
+
+#project-modal-title {
+  font-size: 1.25rem;
+}
+
+#project-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+#project-modal input {
+  background-color: transparent;
+  border: 0;
+  padding: 0.2rem;
+  color: lightgray;
+}
+
+#project-modal input::placeholder {
+  color: lightgray;
+}
+
+#project-modal-button-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#project-modal button {
+  background-color: transparent;
+  color: lightgray;
+  border: 2px solid var(--main-outline-color);
+  border-radius: 1px;
+}
+
+#project-modal label {
+  padding-left: 4px;
+  color: lightgray;
+}

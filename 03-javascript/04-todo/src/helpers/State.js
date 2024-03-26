@@ -26,6 +26,11 @@ class State {
   getProjects() {
     return this.projects;
   }
+
+  addTask(project) {
+    this.projects.push(project);
+    domController.renderProjects();
+  }
 }
 
 const state = Object.freeze(new State());

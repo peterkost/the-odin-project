@@ -77,6 +77,84 @@ ___CSS_LOADER_EXPORT___.push([module.id, `#add-modal {
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/dist/cjs.js!./src/sections/projectModal/style.css":
+/*!***********************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./src/sections/projectModal/style.css ***!
+  \***********************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/noSourceMaps.js */ "./node_modules/css-loader/dist/runtime/noSourceMaps.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+// Imports
+
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, `#project-modal {
+  background-color: rgb(43 43 47);
+  color: white;
+  border-color: var(--main-outline-color);
+  border-radius: 0.5rem;
+  border-width: 2px;
+  padding: 0.5rem;
+  margin-left: 1.5rem;
+  margin-bottom: 2.1rem;
+}
+
+#project-modal::backdrop {
+  backdrop-filter: brightness(0.5);
+}
+
+#project-modal-title {
+  font-size: 1.25rem;
+}
+
+#project-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+#project-modal input {
+  background-color: transparent;
+  border: 0;
+  padding: 0.2rem;
+  color: lightgray;
+}
+
+#project-modal input::placeholder {
+  color: lightgray;
+}
+
+#project-modal-button-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#project-modal button {
+  background-color: transparent;
+  color: lightgray;
+  border: 2px solid var(--main-outline-color);
+  border-radius: 1px;
+}
+
+#project-modal label {
+  padding-left: 4px;
+  color: lightgray;
+}
+`, ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js!./src/sections/projectPanel/project/style.css":
 /*!*******************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js!./src/sections/projectPanel/project/style.css ***!
@@ -120,6 +198,8 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.project-button {
 .project-name {
   padding-left: 0.5rem;
   padding-right: 1rem;
+  display: flex;
+  flex: 1;
 }
 
 .project-count {
@@ -187,7 +267,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `#project-panel-container p {
   flex: 1;
 }
 
-#project-panel-add {
+.project-panel-add {
   background: none;
   border: none;
   display: flex;
@@ -484,6 +564,23 @@ var code = "<form id=\"add-form\">\n  <input id=\"add-title\" type=\"text\" name
 
 /***/ }),
 
+/***/ "./src/sections/projectModal/index.html":
+/*!**********************************************!*\
+  !*** ./src/sections/projectModal/index.html ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+// Module
+var code = "<form id=\"project-form\">\n  <input id=\"project-modal-title\" type=\"text\" name=\"name\" placeholder=\"Name\" />\n  <label>Color: <input type=\"color\" name=\"color\" value=\"#6BCC43\" /></label>\n  <div id=\"project-modal-button-container\">\n    <button id=\"close-button\" type=\"button\">Cancel</button>\n    <button id=\"project-modal-button\">Add</button>\n  </div>\n</form>\n";
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (code);
+
+/***/ }),
+
 /***/ "./src/sections/projectPanel/index.html":
 /*!**********************************************!*\
   !*** ./src/sections/projectPanel/index.html ***!
@@ -495,7 +592,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 // Module
-var code = "<link\n  rel=\"stylesheet\"\n  href=\"https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200\"\n/>\n<button id=\"project-panel-all\" type=\"button\">\n  All Tasks\n  <p class=\"project-panel-all-count\"></p>\n</button>\n<p id=\"project-panel-heading\">My Projects</p>\n<div id=\"project-panel-list\"></div>\n<button id=\"project-panel-add\" type=\"button\">\n  <span class=\"material-symbols-outlined\"> add_circle </span>Add Project\n</button>\n";
+var code = "<link\n  rel=\"stylesheet\"\n  href=\"https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200\"\n/>\n<button id=\"project-panel-all\" type=\"button\">\n  All Tasks\n  <p class=\"project-panel-all-count\"></p>\n</button>\n<p id=\"project-panel-heading\">My Projects</p>\n<div id=\"project-panel-list\"></div>\n<button class=\"project-panel-add\" type=\"button\">\n  <span class=\"material-symbols-outlined\"> add_circle </span>Add Project\n</button>\n";
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (code);
 
@@ -558,6 +655,60 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/styleTagTransform.js */ "./node_modules/style-loader/dist/runtime/styleTagTransform.js");
 /* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _node_modules_css_loader_dist_cjs_js_style_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js!./style.css */ "./node_modules/css-loader/dist/cjs.js!./src/sections/addModal/style.css");
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+var options = {};
+
+options.styleTagTransform = (_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default());
+options.setAttributes = (_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default());
+
+      options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+    
+options.domAPI = (_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default());
+options.insertStyleElement = (_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default());
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_style_css__WEBPACK_IMPORTED_MODULE_6__["default"], options);
+
+
+
+
+       /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_style_css__WEBPACK_IMPORTED_MODULE_6__["default"] && _node_modules_css_loader_dist_cjs_js_style_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals ? _node_modules_css_loader_dist_cjs_js_style_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals : undefined);
+
+
+/***/ }),
+
+/***/ "./src/sections/projectModal/style.css":
+/*!*********************************************!*\
+  !*** ./src/sections/projectModal/style.css ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/styleDomAPI.js */ "./node_modules/style-loader/dist/runtime/styleDomAPI.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/insertBySelector.js */ "./node_modules/style-loader/dist/runtime/insertBySelector.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js */ "./node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/insertStyleElement.js */ "./node_modules/style-loader/dist/runtime/insertStyleElement.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/styleTagTransform.js */ "./node_modules/style-loader/dist/runtime/styleTagTransform.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_style_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js!./style.css */ "./node_modules/css-loader/dist/cjs.js!./src/sections/projectModal/style.css");
 
       
       
@@ -1269,6 +1420,11 @@ class State {
   getProjects() {
     return this.projects;
   }
+
+  addTask(project) {
+    this.projects.push(project);
+    _DomController__WEBPACK_IMPORTED_MODULE_0__["default"].renderProjects();
+  }
 }
 
 const state = Object.freeze(new State());
@@ -1411,6 +1567,70 @@ const addModal = () => {
 
 /***/ }),
 
+/***/ "./src/sections/projectModal/index.js":
+/*!********************************************!*\
+  !*** ./src/sections/projectModal/index.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _index_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.html */ "./src/sections/projectModal/index.html");
+/* harmony import */ var _interfaces_Project__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../interfaces/Project */ "./src/interfaces/Project.js");
+/* harmony import */ var _helpers_State__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../helpers/State */ "./src/helpers/State.js");
+/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./style.css */ "./src/sections/projectModal/style.css");
+
+
+
+
+
+const handleSubmit = (event) => {
+  event.preventDefault();
+
+  const form = event.target;
+  const task = createProject(form);
+  _helpers_State__WEBPACK_IMPORTED_MODULE_2__["default"].addTask(task);
+
+  const modal = event.srcElement.parentNode;
+  form.reset();
+  modal.close();
+};
+
+const handleCancel = (event) => {
+  const form = event.srcElement.parentNode.parentNode;
+  const modal = form.parentNode;
+  form.reset();
+  modal.close();
+};
+
+function createProject(form) {
+  const formData = new FormData(form);
+  const values = Object.fromEntries(formData);
+  console.log(values);
+  return new _interfaces_Project__WEBPACK_IMPORTED_MODULE_1__["default"](values.name, values.color);
+}
+
+const projectModal = () => {
+  const modal = document.createElement("dialog");
+  modal.id = "project-modal";
+  modal.innerHTML = _index_html__WEBPACK_IMPORTED_MODULE_0__["default"];
+
+  const form = modal.getElementsByTagName("form")[0];
+  form.addEventListener("submit", handleSubmit);
+
+  const closeButton = modal.getElementsByTagName("button")[0];
+  closeButton.onclick = handleCancel;
+
+  return modal;
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (projectModal);
+
+
+/***/ }),
+
 /***/ "./src/sections/projectPanel/index.js":
 /*!********************************************!*\
   !*** ./src/sections/projectPanel/index.js ***!
@@ -1423,18 +1643,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ "./src/sections/projectPanel/style.css");
 /* harmony import */ var _index_html__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index.html */ "./src/sections/projectPanel/index.html");
+/* harmony import */ var _projectModal_index_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../projectModal/index.js */ "./src/sections/projectModal/index.js");
+
 
 
 
 const projectPanel = () => {
   const container = document.createElement("div");
   container.id = "project-panel-container";
-
   container.innerHTML = _index_html__WEBPACK_IMPORTED_MODULE_1__["default"];
+
+  const modal = (0,_projectModal_index_js__WEBPACK_IMPORTED_MODULE_2__["default"])();
+  container.appendChild(modal);
 
   Array.from(
     container.getElementsByClassName("project-panel-all-count"),
   ).forEach((e) => (e.innerText = "16"));
+
+  Array.from(container.getElementsByClassName("project-panel-add")).forEach(
+    (e) => (e.onclick = () => modal.showModal()),
+  );
 
   return container;
 };
@@ -1465,9 +1693,8 @@ const project = (project) => {
   container.innerHTML = _index_html__WEBPACK_IMPORTED_MODULE_1__["default"];
 
   Array.from(container.getElementsByClassName("project-icon")).forEach((e) => {
-    e.innerText = project.icon;
+    e.innerText = project.icon ? project.icon : "";
     e.style.backgroundColor = project.color;
-    console.log(project.color);
   });
   Array.from(container.getElementsByClassName("project-name")).forEach(
     (e) => (e.innerText = project.name),
@@ -1677,6 +1904,7 @@ document.body.appendChild(root());
 window.onload = () => {
   _helpers_DomController_js__WEBPACK_IMPORTED_MODULE_2__["default"].renderOnload();
   //document.getElementById("add-modal").showModal();
+  //document.getElementById("project-modal").showModal();
 };
 
 })();

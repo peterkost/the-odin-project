@@ -7,9 +7,8 @@ const project = (project) => {
   container.innerHTML = html;
 
   Array.from(container.getElementsByClassName("project-icon")).forEach((e) => {
-    e.innerText = project.icon;
+    e.innerText = project.icon ? project.icon : "";
     e.style.backgroundColor = project.color;
-    console.log(project.color);
   });
   Array.from(container.getElementsByClassName("project-name")).forEach(
     (e) => (e.innerText = project.name),

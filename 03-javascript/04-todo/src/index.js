@@ -18,4 +18,5 @@ document.body.appendChild(root());
 window.onload = () => {
   domController.renderOnload();
   //document.getElementById("add-modal").showModal();
+  //document.getElementById("project-modal").showModal();
 };

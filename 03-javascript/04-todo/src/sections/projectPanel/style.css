@@ -34,7 +34,7 @@
   flex: 1;
 }
 
-#project-panel-add {
+.project-panel-add {
   background: none;
   border: none;
   display: flex;
