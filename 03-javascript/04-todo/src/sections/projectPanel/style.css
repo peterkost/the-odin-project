@@ -13,7 +13,7 @@
   gap: 1rem;
 }
 
-#project-panel-all {
+.project-panel-all {
   background-color: rgb(78 79 83);
   border: none;
   padding: 1rem;
@@ -43,4 +43,8 @@
   gap: 0.5rem;
   padding-bottom: 0.5rem;
   cursor: pointer;
+}
+
+.project-selected {
+  background-color: red;
 }

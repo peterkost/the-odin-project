@@ -23,6 +23,33 @@ class DomController {
       .forEach((project) => projectList.appendChild(project.getEl()));
   }
 
+  hightlightSelectedProject(prevIndex, newIndex) {
+    if (prevIndex == newIndex) {
+      return;
+    }
+    const projects = Array.from(
+      document.querySelectorAll(".project-container"),
+    );
+    const allButton = Array.from(
+      document.getElementsByClassName("project-panel-all"),
+    );
+    if (prevIndex > projects.length || newIndex > projects.length) {
+      throw new Error("Index is out of bounds.");
+    }
+
+    if (prevIndex == -1) {
+      allButton.forEach((e) => e.classList.remove("project-selected"));
+    } else {
+      projects[prevIndex].classList.remove("project-selected");
+    }
+
+    if (newIndex == -1) {
+      allButton.forEach((e) => e.classList.add("project-selected"));
+    } else {
+      projects[newIndex].classList.add("project-selected");
+    }
+  }
+
   renderOnload() {
     this.renderTasks();
     this.renderProjects();

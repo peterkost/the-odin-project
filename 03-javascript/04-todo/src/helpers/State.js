@@ -15,7 +15,9 @@ class State {
   }
 
   getTasks() {
-    return this.projects[this.curProjectIndex].getTasks();
+    return this.curProjectIndex == -1
+      ? this.projects.flatMap((p) => p.getTasks())
+      : this.projects[this.curProjectIndex].getTasks();
   }
 
   addTask(task) {
@@ -31,7 +33,13 @@ class State {
     this.projects.push(project);
     domController.renderProjects();
   }
+
+  setProjectIndex(index) {
+    domController.hightlightSelectedProject(this.curProjectIndex, index);
+    this.curProjectIndex = index;
+    domController.renderTasks();
+  }
 }
 
-const state = Object.freeze(new State());
+const state = new State();
 export default state;

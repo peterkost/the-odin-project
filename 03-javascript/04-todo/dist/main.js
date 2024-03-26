@@ -246,7 +246,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `#project-panel-container p {
   gap: 1rem;
 }
 
-#project-panel-all {
+.project-panel-all {
   background-color: rgb(78 79 83);
   border: none;
   padding: 1rem;
@@ -276,6 +276,10 @@ ___CSS_LOADER_EXPORT___.push([module.id, `#project-panel-container p {
   gap: 0.5rem;
   padding-bottom: 0.5rem;
   cursor: pointer;
+}
+
+.project-selected {
+  background-color: red;
 }
 `, ""]);
 // Exports
@@ -592,7 +596,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 // Module
-var code = "<link\n  rel=\"stylesheet\"\n  href=\"https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200\"\n/>\n<button id=\"project-panel-all\" type=\"button\">\n  All Tasks\n  <p class=\"project-panel-all-count\"></p>\n</button>\n<p id=\"project-panel-heading\">My Projects</p>\n<div id=\"project-panel-list\"></div>\n<button class=\"project-panel-add\" type=\"button\">\n  <span class=\"material-symbols-outlined\"> add_circle </span>Add Project\n</button>\n";
+var code = "<link\n  rel=\"stylesheet\"\n  href=\"https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200\"\n/>\n<button class=\"project-panel-all\" type=\"button\">\n  All Tasks\n  <p class=\"project-panel-all-count\"></p>\n</button>\n<p id=\"project-panel-heading\">My Projects</p>\n<div id=\"project-panel-list\"></div>\n<button class=\"project-panel-add\" type=\"button\">\n  <span class=\"material-symbols-outlined\"> add_circle </span>Add Project\n</button>\n";
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (code);
 
@@ -1313,6 +1317,33 @@ class DomController {
       .forEach((project) => projectList.appendChild(project.getEl()));
   }
 
+  hightlightSelectedProject(prevIndex, newIndex) {
+    if (prevIndex == newIndex) {
+      return;
+    }
+    const projects = Array.from(
+      document.querySelectorAll(".project-container"),
+    );
+    const allButton = Array.from(
+      document.getElementsByClassName("project-panel-all"),
+    );
+    if (prevIndex > projects.length || newIndex > projects.length) {
+      throw new Error("Index is out of bounds.");
+    }
+
+    if (prevIndex == -1) {
+      allButton.forEach((e) => e.classList.remove("project-selected"));
+    } else {
+      projects[prevIndex].classList.remove("project-selected");
+    }
+
+    if (newIndex == -1) {
+      allButton.forEach((e) => e.classList.add("project-selected"));
+    } else {
+      projects[newIndex].classList.add("project-selected");
+    }
+  }
+
   renderOnload() {
     this.renderTasks();
     this.renderProjects();
@@ -1374,6 +1405,7 @@ class Mock {
     );
 
     for (let i = 0; i < 5; i++) {
+      project.tasks[0].title = `Project ${i}`;
       projects.push(project);
     }
     return projects;
@@ -1415,7 +1447,9 @@ class State {
   }
 
   getTasks() {
-    return this.projects[this.curProjectIndex].getTasks();
+    return this.curProjectIndex == -1
+      ? this.projects.flatMap((p) => p.getTasks())
+      : this.projects[this.curProjectIndex].getTasks();
   }
 
   addTask(task) {
@@ -1431,9 +1465,15 @@ class State {
     this.projects.push(project);
     _DomController__WEBPACK_IMPORTED_MODULE_0__["default"].renderProjects();
   }
+
+  setProjectIndex(index) {
+    _DomController__WEBPACK_IMPORTED_MODULE_0__["default"].hightlightSelectedProject(this.curProjectIndex, index);
+    this.curProjectIndex = index;
+    _DomController__WEBPACK_IMPORTED_MODULE_0__["default"].renderTasks();
+  }
 }
 
-const state = Object.freeze(new State());
+const state = new State();
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (state);
 
 
@@ -1618,7 +1658,7 @@ const handleCancel = (event) => {
 function createProject(form) {
   const formData = new FormData(form);
   const values = Object.fromEntries(formData);
-  return new _interfaces_Project__WEBPACK_IMPORTED_MODULE_1__["default"](values.name, values.color);
+  return new _interfaces_Project__WEBPACK_IMPORTED_MODULE_1__["default"](values.name, values.color, "", []);
 }
 
 const projectModal = () => {
@@ -1653,9 +1693,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ "./src/sections/projectPanel/style.css");
 /* harmony import */ var _index_html__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index.html */ "./src/sections/projectPanel/index.html");
 /* harmony import */ var _projectModal_index_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../projectModal/index.js */ "./src/sections/projectModal/index.js");
+/* harmony import */ var _helpers_State_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../helpers/State.js */ "./src/helpers/State.js");
 
 
 
+
+
+const handleClick = () => {
+  _helpers_State_js__WEBPACK_IMPORTED_MODULE_3__["default"].setProjectIndex(-1);
+};
 
 const projectPanel = () => {
   const container = document.createElement("div");
@@ -1664,6 +1710,10 @@ const projectPanel = () => {
 
   const modal = (0,_projectModal_index_js__WEBPACK_IMPORTED_MODULE_2__["default"])();
   container.appendChild(modal);
+
+  Array.from(container.getElementsByClassName("project-panel-all")).forEach(
+    (e) => (e.onclick = handleClick),
+  );
 
   Array.from(
     container.getElementsByClassName("project-panel-all-count"),
@@ -1693,14 +1743,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ "./src/sections/projectPanel/project/style.css");
 /* harmony import */ var _index_html__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index.html */ "./src/sections/projectPanel/project/index.html");
+/* harmony import */ var _helpers_State__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../helpers/State */ "./src/helpers/State.js");
 
 
+
+
+const handleClick = (event) => {
+  // Should probably use a table and get row index instead
+  const projects = Array.from(document.querySelectorAll(".project-container"));
+  const clickedProject = event.target.closest(".project-container");
+  const index = projects.indexOf(clickedProject);
+  _helpers_State__WEBPACK_IMPORTED_MODULE_2__["default"].setProjectIndex(index);
+};
 
 const project = (project) => {
   const container = document.createElement("div");
   container.classList = "project-container";
   container.innerHTML = _index_html__WEBPACK_IMPORTED_MODULE_1__["default"];
 
+  Array.from(container.getElementsByClassName("project-button")).forEach(
+    (e) => (e.onclick = handleClick),
+  );
   Array.from(container.getElementsByClassName("project-icon")).forEach((e) => {
     e.innerText = project.icon ? project.icon : "";
     e.style.backgroundColor = project.color;

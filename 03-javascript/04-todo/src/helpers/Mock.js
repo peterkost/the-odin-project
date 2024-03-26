@@ -35,6 +35,7 @@ class Mock {
     );
 
     for (let i = 0; i < 5; i++) {
+      project.tasks[0].title = `Project ${i}`;
       projects.push(project);
     }
     return projects;
