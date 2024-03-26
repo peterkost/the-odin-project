@@ -1352,11 +1352,12 @@ class Mock {
   getTasks() {
     const tasks = [];
     const task = new _interfaces_Task__WEBPACK_IMPORTED_MODULE_0__["default"](
-      "Title",
-      "Description",
+      "SAMPLE TITLE",
+      "SAMPLE DESCRIPTION",
       new Date().toLocaleDateString(),
       1,
     );
+
     for (let i = 0; i < 5; i++) {
       tasks.push(task);
     }
@@ -1365,7 +1366,12 @@ class Mock {
 
   getProjects() {
     const projects = [];
-    const project = new _interfaces_Project__WEBPACK_IMPORTED_MODULE_1__["default"]("SAMPLE-PROJECT", "#6BCC43", "SP");
+    const project = new _interfaces_Project__WEBPACK_IMPORTED_MODULE_1__["default"](
+      "SAMPLE PROJECT",
+      "#6BCC43",
+      "",
+      this.getTasks(),
+    );
 
     for (let i = 0; i < 5; i++) {
       projects.push(project);
@@ -1404,12 +1410,12 @@ class State {
       throw new Error("State already exists, you can not initalize multiple!");
     }
     instance = this;
-    this.tasks = useMock ? _Mock__WEBPACK_IMPORTED_MODULE_1__["default"].getTasks() : [];
     this.projects = useMock ? _Mock__WEBPACK_IMPORTED_MODULE_1__["default"].getProjects() : [];
+    this.curProjectIndex = 0;
   }
 
   getTasks() {
-    return this.tasks;
+    return this.projects[this.curProjectIndex].getTasks();
   }
 
   addTask(task) {
@@ -1447,15 +1453,19 @@ __webpack_require__.r(__webpack_exports__);
 
 
 class Project {
-  constructor(name, color, icon) {
+  constructor(name, color, icon, tasks) {
     this.name = name;
     this.color = color;
     this.icon = icon;
-    this.tasks = [];
+    this.tasks = tasks;
   }
 
   getTaskCount() {
     return this.tasks.length;
+  }
+
+  getTasks() {
+    return this.tasks;
   }
 
   getEl() {
@@ -1608,7 +1618,6 @@ const handleCancel = (event) => {
 function createProject(form) {
   const formData = new FormData(form);
   const values = Object.fromEntries(formData);
-  console.log(values);
   return new _interfaces_Project__WEBPACK_IMPORTED_MODULE_1__["default"](values.name, values.color);
 }
 

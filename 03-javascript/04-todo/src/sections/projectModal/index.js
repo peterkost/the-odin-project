@@ -25,7 +25,6 @@ const handleCancel = (event) => {
 function createProject(form) {
   const formData = new FormData(form);
   const values = Object.fromEntries(formData);
-  console.log(values);
   return new Project(values.name, values.color);
 }
 

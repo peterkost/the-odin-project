@@ -13,11 +13,12 @@ class Mock {
   getTasks() {
     const tasks = [];
     const task = new Task(
-      "Title",
-      "Description",
+      "SAMPLE TITLE",
+      "SAMPLE DESCRIPTION",
       new Date().toLocaleDateString(),
       1,
     );
+
     for (let i = 0; i < 5; i++) {
       tasks.push(task);
     }
@@ -26,7 +27,12 @@ class Mock {
 
   getProjects() {
     const projects = [];
-    const project = new Project("SAMPLE-PROJECT", "#6BCC43", "SP");
+    const project = new Project(
+      "SAMPLE PROJECT",
+      "#6BCC43",
+      "",
+      this.getTasks(),
+    );
 
     for (let i = 0; i < 5; i++) {
       projects.push(project);

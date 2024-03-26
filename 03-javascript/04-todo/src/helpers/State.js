@@ -10,12 +10,12 @@ class State {
       throw new Error("State already exists, you can not initalize multiple!");
     }
     instance = this;
-    this.tasks = useMock ? mock.getTasks() : [];
     this.projects = useMock ? mock.getProjects() : [];
+    this.curProjectIndex = 0;
   }
 
   getTasks() {
-    return this.tasks;
+    return this.projects[this.curProjectIndex].getTasks();
   }
 
   addTask(task) {
