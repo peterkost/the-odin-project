@@ -6,13 +6,15 @@ const project = (project) => {
   container.classList = "project-container";
   container.innerHTML = html;
 
-  Array.from(container.getElementsByClassName("project-icon")).forEach(
-    (e) => (e.innerText = project.icon),
-  );
+  Array.from(container.getElementsByClassName("project-icon")).forEach((e) => {
+    e.innerText = project.icon;
+    e.style.backgroundColor = project.color;
+    console.log(project.color);
+  });
   Array.from(container.getElementsByClassName("project-name")).forEach(
     (e) => (e.innerText = project.name),
   );
-  Array.from(container.getElementsByClassName("project-name")).forEach(
+  Array.from(container.getElementsByClassName("project-count")).forEach(
     (e) => (e.innerText = project.getTaskCount()),
   );
 

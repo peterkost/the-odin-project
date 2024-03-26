@@ -89,7 +89,40 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ``, ""]);
+___CSS_LOADER_EXPORT___.push([module.id, `.project-button p {
+  margin: 0;
+}
+
+.project-button {
+  display: flex;
+  width: 100%;
+  background: none;
+  border: none;
+  color: white;
+  align-items: center;
+  cursor: pointer;
+  padding-bottom: 0.5rem;
+}
+
+.project-icon {
+  border-radius: 50%;
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.project-name {
+  padding-left: 0.5rem;
+  padding-right: 1rem;
+}
+
+.project-count {
+  color: rgb(154 156 157);
+}
+`, ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -118,8 +151,13 @@ var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBP
 ___CSS_LOADER_EXPORT___.push([module.id, `#project-panel-container {
   background-color: rgb(43 47 48);
   border-right: 2px solid black;
-  min-width: 13rem;
+  min-width: 10rem;
   height: 100vh;
+  padding: 0 1rem;
+}
+
+#project-panel-heading {
+  color: rgb(154 156 157);
 }
 `, ""]);
 // Exports
@@ -435,7 +473,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 // Module
-var code = "<button id=\"project-button\" type=\"button\" >\n  <p class=\"project-icon\"></p>\n  <p class=\"project-name\"></p>\n  <p class=\"project-count\"></p>\n</div>\n";
+var code = "<button class=\"project-button\" type=\"button\" >\n  <p class=\"project-icon\"></p>\n  <p class=\"project-name\"></p>\n  <p class=\"project-count\"></p>\n</div>\n";
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (code);
 
@@ -1137,7 +1175,7 @@ class Mock {
 
   getProjects() {
     const projects = [];
-    const project = new _interfaces_Project__WEBPACK_IMPORTED_MODULE_1__["default"]("SAMPLE-PROJECT", "6BCC43", "SP");
+    const project = new _interfaces_Project__WEBPACK_IMPORTED_MODULE_1__["default"]("SAMPLE-PROJECT", "#6BCC43", "SP");
 
     for (let i = 0; i < 5; i++) {
       projects.push(project);
@@ -1383,13 +1421,15 @@ const project = (project) => {
   container.classList = "project-container";
   container.innerHTML = _index_html__WEBPACK_IMPORTED_MODULE_1__["default"];
 
-  Array.from(container.getElementsByClassName("project-icon")).forEach(
-    (e) => (e.innerText = project.icon),
-  );
+  Array.from(container.getElementsByClassName("project-icon")).forEach((e) => {
+    e.innerText = project.icon;
+    e.style.backgroundColor = project.color;
+    console.log(project.color);
+  });
   Array.from(container.getElementsByClassName("project-name")).forEach(
     (e) => (e.innerText = project.name),
   );
-  Array.from(container.getElementsByClassName("project-name")).forEach(
+  Array.from(container.getElementsByClassName("project-count")).forEach(
     (e) => (e.innerText = project.getTaskCount()),
   );
 

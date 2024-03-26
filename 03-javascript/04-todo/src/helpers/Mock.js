@@ -26,7 +26,7 @@ class Mock {
 
   getProjects() {
     const projects = [];
-    const project = new Project("SAMPLE-PROJECT", "6BCC43", "SP");
+    const project = new Project("SAMPLE-PROJECT", "#6BCC43", "SP");
 
     for (let i = 0; i < 5; i++) {
       projects.push(project);

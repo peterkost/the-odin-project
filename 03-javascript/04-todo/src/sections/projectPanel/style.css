@@ -1,6 +1,11 @@
 #project-panel-container {
   background-color: rgb(43 47 48);
   border-right: 2px solid black;
-  min-width: 13rem;
+  min-width: 10rem;
   height: 100vh;
+  padding: 0 1rem;
+}
+
+#project-panel-heading {
+  color: rgb(154 156 157);
 }
