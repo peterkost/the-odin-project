@@ -10,8 +10,12 @@ class State {
       throw new Error("State already exists, you can not initalize multiple!");
     }
     instance = this;
-    this.projects = useMock ? mock.getProjects() : new Map();
+    this.projects = new Map();
     this.selectedProjectId = -1;
+  }
+
+  loadProjects() {
+    this.projects = useMock ? mock.getProjects() : new Map();
   }
 
   getTasks() {
@@ -37,6 +41,12 @@ class State {
       task.projectId,
       this.getTasksLength(task.projectId),
     );
+  }
+
+  removeTask(taskId, projectId) {
+    this.getProject(projectId).removeTask(taskId);
+    domController.renderTasks();
+    domController.updateTaskCount(projectId);
   }
 
   getProject(id) {

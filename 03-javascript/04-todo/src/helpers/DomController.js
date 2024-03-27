@@ -15,10 +15,11 @@ class DomController {
     state.getTasks().forEach((task) => taskList.appendChild(task.getEl()));
   }
 
-  updateTaskCount(projectId, newCount) {
+  updateTaskCount(projectId) {
     document
       .getElementById(projectId)
-      .querySelector(".project-count").innerHTML = newCount;
+      .querySelector(".project-count").innerHTML =
+      state.getTasksLength(projectId);
     document.getElementById("project-panel-all-count").innerText =
       state.getTotalTasks();
   }

@@ -1,8 +1,13 @@
 import "./style.css";
 import html from "./index.html";
+import state from "../../../helpers/State";
 
 const handleCompleteClick = (event) => {
-  console.log("Note to self: don't use array index lamo");
+  const taskId = event.target.closest(".task-container").id;
+  const projectId = event.target
+    .closest(".task-container")
+    .getAttribute("project-id");
+  state.removeTask(taskId, projectId);
 };
 
 const task = (task) => {
@@ -10,6 +15,7 @@ const task = (task) => {
   container.classList = "task-container";
   container.innerHTML = html;
   container.id = task.id;
+  container.setAttribute("project-id", task.projectId);
 
   container.querySelector(".task-complete-button").onclick =
     handleCompleteClick;

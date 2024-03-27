@@ -11,15 +11,19 @@ class Project {
   }
 
   getTaskCount() {
-    return this.tasks.length;
+    return this.tasks.size;
   }
 
   getTasks() {
-    return this.tasks;
+    return this.tasks.values();
   }
 
   addTask(task) {
-    this.tasks.push(task);
+    this.tasks.set(task.id, task);
+  }
+
+  removeTask(taskId) {
+    this.tasks.delete(taskId);
   }
 
   getEl() {

@@ -1490,10 +1490,11 @@ class DomController {
     _State__WEBPACK_IMPORTED_MODULE_0__["default"].getTasks().forEach((task) => taskList.appendChild(task.getEl()));
   }
 
-  updateTaskCount(projectId, newCount) {
+  updateTaskCount(projectId) {
     document
       .getElementById(projectId)
-      .querySelector(".project-count").innerHTML = newCount;
+      .querySelector(".project-count").innerHTML =
+      _State__WEBPACK_IMPORTED_MODULE_0__["default"].getTasksLength(projectId);
     document.getElementById("project-panel-all-count").innerText =
       _State__WEBPACK_IMPORTED_MODULE_0__["default"].getTotalTasks();
   }
@@ -1592,7 +1593,7 @@ class Mock {
         `SAMPLE PROJECT - #0${i + 1}`,
         `#${Math.floor(Math.random() * 16777215).toString(16)}`,
         "",
-        [],
+        new Map(),
       );
       const tasks = this.getTasks(project.id);
       tasks.forEach((task) => project.addTask(task));
@@ -1632,8 +1633,12 @@ class State {
       throw new Error("State already exists, you can not initalize multiple!");
     }
     instance = this;
-    this.projects = useMock ? _Mock__WEBPACK_IMPORTED_MODULE_1__["default"].getProjects() : new Map();
+    this.projects = new Map();
     this.selectedProjectId = -1;
+  }
+
+  loadProjects() {
+    this.projects = useMock ? _Mock__WEBPACK_IMPORTED_MODULE_1__["default"].getProjects() : new Map();
   }
 
   getTasks() {
@@ -1659,6 +1664,12 @@ class State {
       task.projectId,
       this.getTasksLength(task.projectId),
     );
+  }
+
+  removeTask(taskId, projectId) {
+    this.getProject(projectId).removeTask(taskId);
+    _DomController__WEBPACK_IMPORTED_MODULE_0__["default"].renderTasks();
+    _DomController__WEBPACK_IMPORTED_MODULE_0__["default"].updateTaskCount(projectId);
   }
 
   getProject(id) {
@@ -1726,15 +1737,19 @@ class Project {
   }
 
   getTaskCount() {
-    return this.tasks.length;
+    return this.tasks.size;
   }
 
   getTasks() {
-    return this.tasks;
+    return this.tasks.values();
   }
 
   addTask(task) {
-    this.tasks.push(task);
+    this.tasks.set(task.id, task);
+  }
+
+  removeTask(taskId) {
+    this.tasks.delete(taskId);
   }
 
   getEl() {
@@ -2068,11 +2083,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ "./src/sections/taskView/task/style.css");
 /* harmony import */ var _index_html__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index.html */ "./src/sections/taskView/task/index.html");
+/* harmony import */ var _helpers_State__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../helpers/State */ "./src/helpers/State.js");
+
 
 
 
 const handleCompleteClick = (event) => {
-  console.log("Note to self: don't use array index lamo");
+  const taskId = event.target.closest(".task-container").id;
+  const projectId = event.target
+    .closest(".task-container")
+    .getAttribute("project-id");
+  _helpers_State__WEBPACK_IMPORTED_MODULE_2__["default"].removeTask(taskId, projectId);
 };
 
 const task = (task) => {
@@ -2080,6 +2101,7 @@ const task = (task) => {
   container.classList = "task-container";
   container.innerHTML = _index_html__WEBPACK_IMPORTED_MODULE_1__["default"];
   container.id = task.id;
+  container.setAttribute("project-id", task.projectId);
 
   container.querySelector(".task-complete-button").onclick =
     handleCompleteClick;
@@ -2189,6 +2211,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _sections_taskView_index_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./sections/taskView/index.js */ "./src/sections/taskView/index.js");
 /* harmony import */ var _helpers_DomController_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./helpers/DomController.js */ "./src/helpers/DomController.js");
 /* harmony import */ var _sections_projectPanel_index_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./sections/projectPanel/index.js */ "./src/sections/projectPanel/index.js");
+/* harmony import */ var _helpers_State_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./helpers/State.js */ "./src/helpers/State.js");
+
 
 
 
@@ -2207,6 +2231,7 @@ function root() {
 document.body.appendChild(root());
 
 window.onload = () => {
+  _helpers_State_js__WEBPACK_IMPORTED_MODULE_4__["default"].loadProjects();
   _helpers_DomController_js__WEBPACK_IMPORTED_MODULE_2__["default"].renderOnload();
   //document.getElementById("add-modal").showModal();
   //document.getElementById("project-modal").showModal();

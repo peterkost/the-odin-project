@@ -33,7 +33,7 @@ class Mock {
         `SAMPLE PROJECT - #0${i + 1}`,
         `#${Math.floor(Math.random() * 16777215).toString(16)}`,
         "",
-        [],
+        new Map(),
       );
       const tasks = this.getTasks(project.id);
       tasks.forEach((task) => project.addTask(task));

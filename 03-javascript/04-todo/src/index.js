@@ -2,6 +2,7 @@ import "./style.css";
 import taskList from "./sections/taskView/index.js";
 import domController from "./helpers/DomController.js";
 import projectPanel from "./sections/projectPanel/index.js";
+import state from "./helpers/State.js";
 
 function root() {
   const container = document.createElement("div");
@@ -16,6 +17,7 @@ function root() {
 document.body.appendChild(root());
 
 window.onload = () => {
+  state.loadProjects();
   domController.renderOnload();
   //document.getElementById("add-modal").showModal();
   //document.getElementById("project-modal").showModal();
