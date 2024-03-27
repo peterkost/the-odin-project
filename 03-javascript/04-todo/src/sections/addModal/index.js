@@ -29,9 +29,10 @@ function addTask(form) {
     values.description,
     values.dueDate,
     values.priority,
+    values.projectId,
   );
 
-  state.addTask(task, Number(values.projectIndex));
+  state.addTask(task);
 }
 
 const addModal = () => {

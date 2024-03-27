@@ -1,4 +1,5 @@
 import project from "../sections/projectPanel/project";
+import { v4 as uuid } from "uuid";
 
 class Project {
   constructor(name, color, icon, tasks) {
@@ -6,6 +7,7 @@ class Project {
     this.color = color;
     this.icon = icon;
     this.tasks = tasks;
+    this.id = uuid();
   }
 
   getTaskCount() {

@@ -10,31 +10,34 @@ class Mock {
     instance = this;
   }
 
-  getTasks() {
+  getTasks(projectId) {
     const tasks = [];
-    const task = new Task(
-      "SAMPLE TITLE",
-      "SAMPLE DESCRIPTION",
-      new Date().toLocaleDateString(),
-      1,
-    );
 
     for (let i = 0; i < 5; i++) {
+      const task = new Task(
+        `SAMPLE TITLE - ${i + 1}`,
+        `${projectId} - ${i + 1}`,
+        new Date().toLocaleDateString(),
+        1,
+        projectId,
+      );
       tasks.push(task);
     }
     return tasks;
   }
 
   getProjects() {
-    const projects = [];
+    const projects = new Map();
     for (let i = 0; i < 5; i++) {
       const project = new Project(
         `SAMPLE PROJECT - #0${i + 1}`,
-        "#6BCC43",
+        `#${Math.floor(Math.random() * 16777215).toString(16)}`,
         "",
-        this.getTasks(),
+        [],
       );
-      projects.push(project);
+      const tasks = this.getTasks(project.id);
+      tasks.forEach((task) => project.addTask(task));
+      projects.set(project.id, project);
     }
     return projects;
   }

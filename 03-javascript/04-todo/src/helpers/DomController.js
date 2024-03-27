@@ -15,55 +15,38 @@ class DomController {
     state.getTasks().forEach((task) => taskList.appendChild(task.getEl()));
   }
 
-  updateTaskCount(projectIndex, newCount) {
-    document.getElementsByClassName("project-count")[projectIndex].innerHTML =
-      newCount;
+  updateTaskCount(projectId, newCount) {
+    document
+      .getElementById(projectId)
+      .querySelector(".project-count").innerHTML = newCount;
     document.getElementById("project-panel-all-count").innerText =
-      state.getTasksLength(-1);
+      state.getTotalTasks();
   }
 
   renderProjects() {
     const projectList = document.getElementById("project-panel-list");
     projectList.innerHTML = "";
     state
-      .getProjects()
+      .getAllProjects()
       .forEach((project) => projectList.appendChild(project.getEl()));
   }
 
-  hightlightSelectedProject(prevIndex, newIndex) {
-    if (prevIndex == newIndex) {
-      return;
-    }
-    const projects = Array.from(
-      document.querySelectorAll(".project-container"),
-    );
-    const allButton = Array.from(
-      document.getElementsByClassName("project-panel-all"),
-    );
-    if (prevIndex > projects.length || newIndex > projects.length) {
-      throw new Error("Index is out of bounds.");
-    }
+  handleSelectedProjectChange(prevId, newId) {
+    this.hightlightSelectedProject(prevId, newId);
+    this.renderTasks();
+  }
 
-    if (prevIndex == -1) {
-      allButton.forEach((e) => e.classList.remove("project-selected"));
-    } else {
-      projects[prevIndex].classList.remove("project-selected");
-    }
-
-    if (newIndex == -1) {
-      allButton.forEach((e) => e.classList.add("project-selected"));
-    } else {
-      projects[newIndex].classList.add("project-selected");
-    }
+  hightlightSelectedProject(prevId, newId) {
+    document.getElementById(prevId)?.classList.remove("project-selected");
+    document.getElementById(newId)?.classList.add("project-selected");
   }
 
   renderProjectListInModal() {
-    const optionEls = state.getProjectNames().map((name, i) => {
+    const optionEls = state.getAllProjects().map((project) => {
       const option = document.createElement("option");
-      option.value = i;
-      option.innerText = name;
-      if (i == state.getSelectedProjectIndex()) {
-        console.log("selected");
+      option.value = project.id;
+      option.innerText = project.name;
+      if (project.id == state.getSelectedProjectId()) {
         option.selected = true;
       }
       return option;

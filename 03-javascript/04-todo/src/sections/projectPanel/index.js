@@ -4,7 +4,7 @@ import projectModal from "../projectModal/index.js";
 import state from "../../helpers/State.js";
 
 const handleClick = () => {
-  state.setProjectIndex(-1);
+  state.setSelectedProjectId(-1);
 };
 
 const projectPanel = () => {
@@ -17,7 +17,7 @@ const projectPanel = () => {
 
   container.querySelector(".project-panel-all").onclick = handleClick;
   container.querySelector(".project-panel-all-count").innerText =
-    state.getTasksLength(-1);
+    state.getTotalTasks();
   container.querySelector(".project-panel-add").onclick = () =>
     modal.showModal();
 

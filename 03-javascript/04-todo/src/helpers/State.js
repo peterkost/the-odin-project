@@ -10,55 +10,66 @@ class State {
       throw new Error("State already exists, you can not initalize multiple!");
     }
     instance = this;
-    this.projects = useMock ? mock.getProjects() : [];
-    this.curProjectIndex = -1;
+    this.projects = useMock ? mock.getProjects() : new Map();
+    this.selectedProjectId = -1;
   }
 
   getTasks() {
-    return this.curProjectIndex == -1
-      ? this.projects.flatMap((p) => p.getTasks())
-      : this.projects[this.curProjectIndex].getTasks();
+    return this.selectedProjectId == -1
+      ? this.getAllProjects().flatMap((p) => p.getTasks())
+      : this.getSelectedProject().getTasks();
   }
 
-  getTasksLength(projectIndex) {
-    if (projectIndex === -1) {
-      return this.projects.flatMap((p) => p.getTasks()).length;
-    }
-    return this.projects[projectIndex].getTaskCount();
+  getTotalTasks() {
+    return this.getAllProjects().reduce((sum, p) => sum + p.getTaskCount(), 0);
   }
 
-  addTask(task, projectIndex) {
-    this.projects[projectIndex].addTask(task);
-    if (projectIndex === this.getSelectedProjectIndex()) {
+  getTasksLength(projectId) {
+    return this.getProject(projectId).getTaskCount();
+  }
+
+  addTask(task) {
+    this.getProject(task.projectId).addTask(task);
+    if (task.projectId === this.getSelectedProjectId()) {
       domController.renderTasks();
     }
     domController.updateTaskCount(
-      projectIndex,
-      this.getTasksLength(projectIndex),
+      task.projectId,
+      this.getTasksLength(task.projectId),
     );
   }
 
-  getProjects() {
-    return this.projects;
+  getProject(id) {
+    return this.projects.get(id);
   }
 
-  getProjectNames() {
-    return this.projects.map((project) => project.name);
+  getAllProjects() {
+    return this.projects.values();
+  }
+
+  getSelectedProject() {
+    if (this.selectedProjectId === -1) {
+      throw new Error("Called getSelectedProject while All Tasks is Selected");
+    }
+    return this.projects.get(this.selectedProjectId);
   }
 
   addProject(project) {
-    this.projects.push(project);
+    this.projects.set(project.id, project);
     domController.renderProjects();
   }
 
-  setProjectIndex(index) {
-    domController.hightlightSelectedProject(this.curProjectIndex, index);
-    this.curProjectIndex = index;
-    domController.renderTasks();
+  setSelectedProjectId(id) {
+    const curId = this.selectedProjectId;
+    if (id === curId) {
+      return;
+    }
+    this.selectedProjectId = id;
+    domController.handleSelectedProjectChange(curId, id);
   }
 
-  getSelectedProjectIndex() {
-    return this.curProjectIndex;
+  getSelectedProjectId() {
+    return this.selectedProjectId;
   }
 }
 

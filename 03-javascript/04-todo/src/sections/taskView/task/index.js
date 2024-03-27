@@ -9,6 +9,7 @@ const task = (task) => {
   const container = document.createElement("div");
   container.classList = "task-container";
   container.innerHTML = html;
+  container.id = task.id;
 
   container.querySelector(".task-complete-button").onclick =
     handleCompleteClick;
