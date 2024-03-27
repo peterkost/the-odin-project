@@ -1668,6 +1668,7 @@ class State {
 
   removeTask(taskId, projectId) {
     this.getProject(projectId).removeTask(taskId);
+    // perform fade animation
     _DomController__WEBPACK_IMPORTED_MODULE_0__["default"].renderTasks();
     _DomController__WEBPACK_IMPORTED_MODULE_0__["default"].updateTaskCount(projectId);
   }
@@ -2093,7 +2094,12 @@ const handleCompleteClick = (event) => {
   const projectId = event.target
     .closest(".task-container")
     .getAttribute("project-id");
-  _helpers_State__WEBPACK_IMPORTED_MODULE_2__["default"].removeTask(taskId, projectId);
+
+  event.target.style.backgroundColor = "#0a84ff";
+  event.target.closest(".task-container").style.filter = "brightness(0.5";
+  setTimeout(() => {
+    _helpers_State__WEBPACK_IMPORTED_MODULE_2__["default"].removeTask(taskId, projectId);
+  }, 500);
 };
 
 const task = (task) => {

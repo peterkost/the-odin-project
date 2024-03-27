@@ -7,7 +7,12 @@ const handleCompleteClick = (event) => {
   const projectId = event.target
     .closest(".task-container")
     .getAttribute("project-id");
-  state.removeTask(taskId, projectId);
+
+  event.target.style.backgroundColor = "#0a84ff";
+  event.target.closest(".task-container").style.filter = "brightness(0.5";
+  setTimeout(() => {
+    state.removeTask(taskId, projectId);
+  }, 500);
 };
 
 const task = (task) => {
