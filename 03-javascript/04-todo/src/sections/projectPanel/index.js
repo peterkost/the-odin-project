@@ -16,8 +16,6 @@ const projectPanel = () => {
   container.appendChild(modal);
 
   container.querySelector(".project-panel-all").onclick = handleClick;
-  container.querySelector(".project-panel-all-count").innerText =
-    state.getTotalTasks();
   container.querySelector(".project-panel-add").onclick = () =>
     modal.showModal();
 

@@ -1495,6 +1495,10 @@ class DomController {
       .getElementById(projectId)
       .querySelector(".project-count").innerHTML =
       _State__WEBPACK_IMPORTED_MODULE_0__["default"].getTasksLength(projectId);
+    this.updateTotalTaskCount();
+  }
+
+  updateTotalTaskCount() {
     document.getElementById("project-panel-all-count").innerText =
       _State__WEBPACK_IMPORTED_MODULE_0__["default"].getTotalTasks();
   }
@@ -1534,6 +1538,7 @@ class DomController {
   }
 
   renderOnload() {
+    this.updateTotalTaskCount();
     this.renderTasks();
     this.renderProjects();
     this.hightlightSelectedProject(0, -1);
@@ -1668,7 +1673,6 @@ class State {
 
   removeTask(taskId, projectId) {
     this.getProject(projectId).removeTask(taskId);
-    // perform fade animation
     _DomController__WEBPACK_IMPORTED_MODULE_0__["default"].renderTasks();
     _DomController__WEBPACK_IMPORTED_MODULE_0__["default"].updateTaskCount(projectId);
   }
@@ -1963,8 +1967,6 @@ const projectPanel = () => {
   container.appendChild(modal);
 
   container.querySelector(".project-panel-all").onclick = handleClick;
-  container.querySelector(".project-panel-all-count").innerText =
-    _helpers_State_js__WEBPACK_IMPORTED_MODULE_3__["default"].getTotalTasks();
   container.querySelector(".project-panel-add").onclick = () =>
     modal.showModal();
 

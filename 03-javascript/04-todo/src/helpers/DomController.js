@@ -20,6 +20,10 @@ class DomController {
       .getElementById(projectId)
       .querySelector(".project-count").innerHTML =
       state.getTasksLength(projectId);
+    this.updateTotalTaskCount();
+  }
+
+  updateTotalTaskCount() {
     document.getElementById("project-panel-all-count").innerText =
       state.getTotalTasks();
   }
@@ -59,6 +63,7 @@ class DomController {
   }
 
   renderOnload() {
+    this.updateTotalTaskCount();
     this.renderTasks();
     this.renderProjects();
     this.hightlightSelectedProject(0, -1);

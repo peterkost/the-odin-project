@@ -45,7 +45,6 @@ class State {
 
   removeTask(taskId, projectId) {
     this.getProject(projectId).removeTask(taskId);
-    // perform fade animation
     domController.renderTasks();
     domController.updateTaskCount(projectId);
   }
