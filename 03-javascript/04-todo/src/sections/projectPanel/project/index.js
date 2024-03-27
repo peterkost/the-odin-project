@@ -14,19 +14,14 @@ const project = (project) => {
   container.classList = "project-container";
   container.innerHTML = html;
 
-  Array.from(container.getElementsByClassName("project-button")).forEach(
-    (e) => (e.onclick = handleClick),
-  );
-  Array.from(container.getElementsByClassName("project-icon")).forEach((e) => {
-    e.innerText = project.icon ? project.icon : "";
-    e.style.backgroundColor = project.color;
-  });
-  Array.from(container.getElementsByClassName("project-name")).forEach(
-    (e) => (e.innerText = project.name),
-  );
-  Array.from(container.getElementsByClassName("project-count")).forEach(
-    (e) => (e.innerText = project.getTaskCount()),
-  );
+  const icon = container.querySelector(".project-icon");
+  icon.innerText = project.icon ? project.icon : "";
+  icon.style.backgroundColor = project.color;
+
+  container.querySelector(".project-button").onclick = handleClick;
+  container.querySelector(".project-name").innerText = project.name;
+  container.getElementsByClassName("project-count").innerText =
+    project.getTaskCount();
 
   return container;
 };

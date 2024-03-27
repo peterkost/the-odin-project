@@ -27,7 +27,6 @@ class Mock {
 
   getProjects() {
     const projects = [];
-
     for (let i = 0; i < 5; i++) {
       const project = new Project(
         `SAMPLE PROJECT - #0${i + 1}`,

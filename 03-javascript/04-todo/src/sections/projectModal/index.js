@@ -33,10 +33,10 @@ const projectModal = () => {
   modal.id = "project-modal";
   modal.innerHTML = html;
 
-  const form = modal.getElementsByTagName("form")[0];
+  const form = modal.querySelector("form");
   form.addEventListener("submit", handleSubmit);
 
-  const closeButton = modal.getElementsByTagName("button")[0];
+  const closeButton = modal.querySelector("button");
   closeButton.onclick = handleCancel;
 
   return modal;

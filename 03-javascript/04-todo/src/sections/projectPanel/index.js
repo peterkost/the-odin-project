@@ -15,17 +15,11 @@ const projectPanel = () => {
   const modal = projectModal();
   container.appendChild(modal);
 
-  Array.from(container.getElementsByClassName("project-panel-all")).forEach(
-    (e) => (e.onclick = handleClick),
-  );
-
-  Array.from(
-    container.getElementsByClassName("project-panel-all-count"),
-  ).forEach((e) => (e.innerText = state.getTasksLength(-1)));
-
-  Array.from(container.getElementsByClassName("project-panel-add")).forEach(
-    (e) => (e.onclick = () => modal.showModal()),
-  );
+  container.querySelector(".project-panel-all").onclick = handleClick;
+  container.querySelector(".project-panel-all-count").innerText =
+    state.getTasksLength(-1);
+  container.querySelector(".project-panel-add").onclick = () =>
+    modal.showModal();
 
   return container;
 };

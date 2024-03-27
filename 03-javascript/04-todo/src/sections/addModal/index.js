@@ -39,12 +39,8 @@ const addModal = () => {
   modal.id = "add-modal";
   modal.innerHTML = html;
 
-  const form = modal.getElementsByTagName("form")[0];
+  const form = modal.querySelector("form");
   form.addEventListener("submit", handleSubmit);
-
-  Array.from(modal.getElementsByClassName("add-project-form")).forEach((e) => {
-    getProjectOptions().forEach((option) => e.appendChild(option));
-  });
 
   const closeButton = modal.getElementsByTagName("button")[0];
   closeButton.onclick = handleCancel;

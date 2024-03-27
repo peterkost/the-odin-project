@@ -1427,7 +1427,6 @@ class Mock {
 
   getProjects() {
     const projects = [];
-
     for (let i = 0; i < 5; i++) {
       const project = new _interfaces_Project__WEBPACK_IMPORTED_MODULE_1__["default"](
         `SAMPLE PROJECT - #0${i + 1}`,
@@ -1658,12 +1657,8 @@ const addModal = () => {
   modal.id = "add-modal";
   modal.innerHTML = _index_html__WEBPACK_IMPORTED_MODULE_0__["default"];
 
-  const form = modal.getElementsByTagName("form")[0];
+  const form = modal.querySelector("form");
   form.addEventListener("submit", handleSubmit);
-
-  Array.from(modal.getElementsByClassName("add-project-form")).forEach((e) => {
-    getProjectOptions().forEach((option) => e.appendChild(option));
-  });
 
   const closeButton = modal.getElementsByTagName("button")[0];
   closeButton.onclick = handleCancel;
@@ -1725,10 +1720,10 @@ const projectModal = () => {
   modal.id = "project-modal";
   modal.innerHTML = _index_html__WEBPACK_IMPORTED_MODULE_0__["default"];
 
-  const form = modal.getElementsByTagName("form")[0];
+  const form = modal.querySelector("form");
   form.addEventListener("submit", handleSubmit);
 
-  const closeButton = modal.getElementsByTagName("button")[0];
+  const closeButton = modal.querySelector("button");
   closeButton.onclick = handleCancel;
 
   return modal;
@@ -1770,17 +1765,11 @@ const projectPanel = () => {
   const modal = (0,_projectModal_index_js__WEBPACK_IMPORTED_MODULE_2__["default"])();
   container.appendChild(modal);
 
-  Array.from(container.getElementsByClassName("project-panel-all")).forEach(
-    (e) => (e.onclick = handleClick),
-  );
-
-  Array.from(
-    container.getElementsByClassName("project-panel-all-count"),
-  ).forEach((e) => (e.innerText = _helpers_State_js__WEBPACK_IMPORTED_MODULE_3__["default"].getTasksLength(-1)));
-
-  Array.from(container.getElementsByClassName("project-panel-add")).forEach(
-    (e) => (e.onclick = () => modal.showModal()),
-  );
+  container.querySelector(".project-panel-all").onclick = handleClick;
+  container.querySelector(".project-panel-all-count").innerText =
+    _helpers_State_js__WEBPACK_IMPORTED_MODULE_3__["default"].getTasksLength(-1);
+  container.querySelector(".project-panel-add").onclick = () =>
+    modal.showModal();
 
   return container;
 };
@@ -1819,19 +1808,14 @@ const project = (project) => {
   container.classList = "project-container";
   container.innerHTML = _index_html__WEBPACK_IMPORTED_MODULE_1__["default"];
 
-  Array.from(container.getElementsByClassName("project-button")).forEach(
-    (e) => (e.onclick = handleClick),
-  );
-  Array.from(container.getElementsByClassName("project-icon")).forEach((e) => {
-    e.innerText = project.icon ? project.icon : "";
-    e.style.backgroundColor = project.color;
-  });
-  Array.from(container.getElementsByClassName("project-name")).forEach(
-    (e) => (e.innerText = project.name),
-  );
-  Array.from(container.getElementsByClassName("project-count")).forEach(
-    (e) => (e.innerText = project.getTaskCount()),
-  );
+  const icon = container.querySelector(".project-icon");
+  icon.innerText = project.icon ? project.icon : "";
+  icon.style.backgroundColor = project.color;
+
+  container.querySelector(".project-button").onclick = handleClick;
+  container.querySelector(".project-name").innerText = project.name;
+  container.getElementsByClassName("project-count").innerText =
+    project.getTaskCount();
 
   return container;
 };
@@ -1908,24 +1892,29 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+const handleCompleteClick = (event) => {
+  console.log("Note to self: don't use array index lamo");
+};
+
 const task = (task) => {
   const container = document.createElement("div");
   container.classList = "task-container";
   container.innerHTML = _index_html__WEBPACK_IMPORTED_MODULE_1__["default"];
 
-  container.getElementsByClassName("task-title")[0].innerText = task.title;
-  container.getElementsByClassName("task-description")[0].innerText =
-    task.description;
-  container.getElementsByClassName("task-date")[0].innerText = task.dueDate;
+  container.querySelector(".task-complete-button").onclick =
+    handleCompleteClick;
+
+  container.querySelector(".task-title").innerText = task.title;
+  container.querySelector(".task-description").innerText = task.description;
+  container.querySelector(".task-date").innerText = task.dueDate;
 
   if (task.priority) {
-    container.getElementsByClassName("task-priority")[0].innerText =
+    container.querySelector(".task-priority").innerText =
       `Priority: ${task.priority}`;
   }
 
   if (!(task.dueDate && task.priority)) {
-    container.getElementsByClassName("task-details-divider")[0].style.display =
-      "none";
+    container.querySelector(".task-details-divider").style.display = "none";
   }
 
   return container;
