@@ -33,6 +33,16 @@ function createTask(form) {
   );
 }
 
+function getProjectOptions() {
+  return state.getProjectNames().map((name, i) => {
+    const option = document.createElement("option");
+    option.value = i;
+    option.innerText = name;
+    console.log(i, state.getSelectedProjectIndex());
+    return option;
+  });
+}
+
 const addModal = () => {
   const modal = document.createElement("dialog");
   modal.id = "add-modal";
@@ -40,6 +50,10 @@ const addModal = () => {
 
   const form = modal.getElementsByTagName("form")[0];
   form.addEventListener("submit", handleSubmit);
+
+  Array.from(modal.getElementsByClassName("add-project-form")).forEach((e) => {
+    getProjectOptions().forEach((option) => e.appendChild(option));
+  });
 
   const closeButton = modal.getElementsByTagName("button")[0];
   closeButton.onclick = handleCancel;

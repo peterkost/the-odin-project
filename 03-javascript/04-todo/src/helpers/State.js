@@ -29,6 +29,10 @@ class State {
     return this.projects;
   }
 
+  getProjectNames() {
+    return this.projects.map((project) => project.name);
+  }
+
   addTask(project) {
     this.projects.push(project);
     domController.renderProjects();
@@ -38,6 +42,10 @@ class State {
     domController.hightlightSelectedProject(this.curProjectIndex, index);
     this.curProjectIndex = index;
     domController.renderTasks();
+  }
+
+  getSelectedProjectIndex() {
+    return this.curProjectIndex;
   }
 }
 

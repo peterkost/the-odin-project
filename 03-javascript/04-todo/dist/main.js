@@ -567,7 +567,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 // Module
-var code = "<form id=\"add-form\">\n  <input id=\"add-title\" type=\"text\" name=\"title\" placeholder=\"Title\" />\n  <input type=\"text\" name=\"description\" placeholder=\"Description\" />\n  <input type=\"date\" name=\"dueDate\" />\n  <select name=\"priority\">\n    <option value=\"\" disabled selected>Priority</option>\n    <option value=\"1\">Low</option>\n    <option value=\"2\">Medium</option>\n    <option value=\"3\">High</option>\n  </select>\n  <div id=\"add-button-container\">\n    <button id=\"close-button\" type=\"button\">Cancel</button>\n    <button id=\"add-button\">Add</button>\n  </div>\n</form>\n";
+var code = "<form id=\"add-form\">\n  <input id=\"add-title\" type=\"text\" name=\"title\" placeholder=\"Title\" />\n  <input type=\"text\" name=\"description\" placeholder=\"Description\" />\n  <input type=\"date\" name=\"dueDate\" />\n  <select name=\"project\" id=\"add-project-form\"></select>\n  <select name=\"priority\">\n    <option value=\"\" disabled selected>Priority</option>\n    <option value=\"1\">Low</option>\n    <option value=\"2\">Medium</option>\n    <option value=\"3\">High</option>\n  </select>\n  <div id=\"add-button-container\">\n    <button id=\"close-button\" type=\"button\">Cancel</button>\n    <button id=\"add-button\">Add</button>\n  </div>\n</form>\n";
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (code);
 
@@ -1349,6 +1349,23 @@ class DomController {
     }
   }
 
+  renderProjectListInModal() {
+    const optionEls = _State__WEBPACK_IMPORTED_MODULE_0__["default"].getProjectNames().map((name, i) => {
+      const option = document.createElement("option");
+      option.value = i;
+      option.innerText = name;
+      if (i == _State__WEBPACK_IMPORTED_MODULE_0__["default"].getSelectedProjectIndex()) {
+        console.log("selected");
+        option.selected = true;
+      }
+      return option;
+    });
+
+    const selectEl = document.getElementById("add-project-form");
+    selectEl.innerHTML = "";
+    optionEls.forEach((el) => selectEl.appendChild(el));
+  }
+
   renderOnload() {
     this.renderTasks();
     this.renderProjects();
@@ -1467,6 +1484,10 @@ class State {
     return this.projects;
   }
 
+  getProjectNames() {
+    return this.projects.map((project) => project.name);
+  }
+
   addTask(project) {
     this.projects.push(project);
     _DomController__WEBPACK_IMPORTED_MODULE_0__["default"].renderProjects();
@@ -1476,6 +1497,10 @@ class State {
     _DomController__WEBPACK_IMPORTED_MODULE_0__["default"].hightlightSelectedProject(this.curProjectIndex, index);
     this.curProjectIndex = index;
     _DomController__WEBPACK_IMPORTED_MODULE_0__["default"].renderTasks();
+  }
+
+  getSelectedProjectIndex() {
+    return this.curProjectIndex;
   }
 }
 
@@ -1604,6 +1629,16 @@ function createTask(form) {
   );
 }
 
+function getProjectOptions() {
+  return _helpers_State__WEBPACK_IMPORTED_MODULE_2__["default"].getProjectNames().map((name, i) => {
+    const option = document.createElement("option");
+    option.value = i;
+    option.innerText = name;
+    console.log(i, _helpers_State__WEBPACK_IMPORTED_MODULE_2__["default"].getSelectedProjectIndex());
+    return option;
+  });
+}
+
 const addModal = () => {
   const modal = document.createElement("dialog");
   modal.id = "add-modal";
@@ -1611,6 +1646,10 @@ const addModal = () => {
 
   const form = modal.getElementsByTagName("form")[0];
   form.addEventListener("submit", handleSubmit);
+
+  Array.from(modal.getElementsByClassName("add-project-form")).forEach((e) => {
+    getProjectOptions().forEach((option) => e.appendChild(option));
+  });
 
   const closeButton = modal.getElementsByTagName("button")[0];
   closeButton.onclick = handleCancel;
@@ -1800,6 +1839,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ "./src/sections/taskView/style.css");
 /* harmony import */ var _addModal_index_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../addModal/index.js */ "./src/sections/addModal/index.js");
+/* harmony import */ var _helpers_DomController_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../helpers/DomController.js */ "./src/helpers/DomController.js");
+
 
 
 
@@ -1815,6 +1856,10 @@ const tasklist = () => {
   addButton.innerText = "+";
   addButton.id = "taskview-add";
   addButton.addEventListener("click", () => modal.showModal());
+  addButton.addEventListener("click", () =>
+    _helpers_DomController_js__WEBPACK_IMPORTED_MODULE_2__["default"].renderProjectListInModal(),
+  );
+
   container.appendChild(addButton);
 
   const title = document.createElement("h1");

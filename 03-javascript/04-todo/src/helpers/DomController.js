@@ -50,6 +50,23 @@ class DomController {
     }
   }
 
+  renderProjectListInModal() {
+    const optionEls = state.getProjectNames().map((name, i) => {
+      const option = document.createElement("option");
+      option.value = i;
+      option.innerText = name;
+      if (i == state.getSelectedProjectIndex()) {
+        console.log("selected");
+        option.selected = true;
+      }
+      return option;
+    });
+
+    const selectEl = document.getElementById("add-project-form");
+    selectEl.innerHTML = "";
+    optionEls.forEach((el) => selectEl.appendChild(el));
+  }
+
   renderOnload() {
     this.renderTasks();
     this.renderProjects();

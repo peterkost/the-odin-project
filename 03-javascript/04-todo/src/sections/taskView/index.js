@@ -1,5 +1,6 @@
 import "./style.css";
 import addModal from "../addModal/index.js";
+import domController from "../../helpers/DomController.js";
 
 const tasklist = () => {
   const container = document.createElement("div");
@@ -13,6 +14,10 @@ const tasklist = () => {
   addButton.innerText = "+";
   addButton.id = "taskview-add";
   addButton.addEventListener("click", () => modal.showModal());
+  addButton.addEventListener("click", () =>
+    domController.renderProjectListInModal(),
+  );
+
   container.appendChild(addButton);
 
   const title = document.createElement("h1");
