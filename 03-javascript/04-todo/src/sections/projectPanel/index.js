@@ -21,7 +21,7 @@ const projectPanel = () => {
 
   Array.from(
     container.getElementsByClassName("project-panel-all-count"),
-  ).forEach((e) => (e.innerText = "16"));
+  ).forEach((e) => (e.innerText = state.getTasksLength(-1)));
 
   Array.from(container.getElementsByClassName("project-panel-add")).forEach(
     (e) => (e.onclick = () => modal.showModal()),

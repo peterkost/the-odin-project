@@ -20,9 +20,22 @@ class State {
       : this.projects[this.curProjectIndex].getTasks();
   }
 
-  addTask(task) {
-    this.tasks.push(task);
-    domController.renderTasks();
+  getTasksLength(projectIndex) {
+    if (projectIndex === -1) {
+      return this.projects.flatMap((p) => p.getTasks()).length;
+    }
+    return this.projects[projectIndex].getTaskCount();
+  }
+
+  addTask(task, projectIndex) {
+    this.projects[projectIndex].addTask(task);
+    if (projectIndex === this.getSelectedProjectIndex()) {
+      domController.renderTasks();
+    }
+    domController.updateTaskCount(
+      projectIndex,
+      this.getTasksLength(projectIndex),
+    );
   }
 
   getProjects() {
@@ -33,7 +46,7 @@ class State {
     return this.projects.map((project) => project.name);
   }
 
-  addTask(project) {
+  addProject(project) {
     this.projects.push(project);
     domController.renderProjects();
   }

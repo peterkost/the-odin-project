@@ -8,7 +8,7 @@ const handleSubmit = (event) => {
 
   const form = event.target;
   const task = createProject(form);
-  state.addTask(task);
+  state.addProject(task);
 
   const modal = event.srcElement.parentNode;
   form.reset();

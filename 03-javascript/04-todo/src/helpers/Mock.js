@@ -27,15 +27,14 @@ class Mock {
 
   getProjects() {
     const projects = [];
-    const project = new Project(
-      "SAMPLE PROJECT",
-      "#6BCC43",
-      "",
-      this.getTasks(),
-    );
 
     for (let i = 0; i < 5; i++) {
-      project.tasks[0].title = `Project ${i}`;
+      const project = new Project(
+        `SAMPLE PROJECT - #0${i + 1}`,
+        "#6BCC43",
+        "",
+        this.getTasks(),
+      );
       projects.push(project);
     }
     return projects;

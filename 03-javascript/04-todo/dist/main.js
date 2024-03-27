@@ -567,7 +567,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 // Module
-var code = "<form id=\"add-form\">\n  <input id=\"add-title\" type=\"text\" name=\"title\" placeholder=\"Title\" />\n  <input type=\"text\" name=\"description\" placeholder=\"Description\" />\n  <input type=\"date\" name=\"dueDate\" />\n  <select name=\"project\" id=\"add-project-form\"></select>\n  <select name=\"priority\">\n    <option value=\"\" disabled selected>Priority</option>\n    <option value=\"1\">Low</option>\n    <option value=\"2\">Medium</option>\n    <option value=\"3\">High</option>\n  </select>\n  <div id=\"add-button-container\">\n    <button id=\"close-button\" type=\"button\">Cancel</button>\n    <button id=\"add-button\">Add</button>\n  </div>\n</form>\n";
+var code = "<form id=\"add-form\">\n  <input id=\"add-title\" type=\"text\" name=\"title\" placeholder=\"Title\" />\n  <input type=\"text\" name=\"description\" placeholder=\"Description\" />\n  <input type=\"date\" name=\"dueDate\" />\n  <select name=\"projectIndex\" id=\"add-project-form\"></select>\n  <select name=\"priority\">\n    <option value=\"\" disabled selected>Priority</option>\n    <option value=\"1\">Low</option>\n    <option value=\"2\">Medium</option>\n    <option value=\"3\">High</option>\n  </select>\n  <div id=\"add-button-container\">\n    <button id=\"close-button\" type=\"button\">Cancel</button>\n    <button id=\"add-button\">Add</button>\n  </div>\n</form>\n";
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (code);
 
@@ -601,7 +601,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 // Module
-var code = "<link\n  rel=\"stylesheet\"\n  href=\"https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200\"\n/>\n<button class=\"project-panel-all\" type=\"button\">\n  All Tasks\n  <p class=\"project-panel-all-count\"></p>\n</button>\n<p id=\"project-panel-heading\">My Projects</p>\n<div id=\"project-panel-list\"></div>\n<button class=\"project-panel-add\" type=\"button\">\n  <span class=\"material-symbols-outlined\"> add_circle </span>Add Project\n</button>\n";
+var code = "<link\n  rel=\"stylesheet\"\n  href=\"https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200\"\n/>\n<button class=\"project-panel-all\" type=\"button\">\n  All Tasks\n  <p id=\"project-panel-all-count\" class=\"project-panel-all-count\"></p>\n</button>\n<p id=\"project-panel-heading\">My Projects</p>\n<div id=\"project-panel-list\"></div>\n<button class=\"project-panel-add\" type=\"button\">\n  <span class=\"material-symbols-outlined\"> add_circle </span>Add Project\n</button>\n";
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (code);
 
@@ -1314,6 +1314,13 @@ class DomController {
     _State__WEBPACK_IMPORTED_MODULE_0__["default"].getTasks().forEach((task) => taskList.appendChild(task.getEl()));
   }
 
+  updateTaskCount(projectIndex, newCount) {
+    document.getElementsByClassName("project-count")[projectIndex].innerHTML =
+      newCount;
+    document.getElementById("project-panel-all-count").innerText =
+      _State__WEBPACK_IMPORTED_MODULE_0__["default"].getTasksLength(-1);
+  }
+
   renderProjects() {
     const projectList = document.getElementById("project-panel-list");
     projectList.innerHTML = "";
@@ -1420,15 +1427,14 @@ class Mock {
 
   getProjects() {
     const projects = [];
-    const project = new _interfaces_Project__WEBPACK_IMPORTED_MODULE_1__["default"](
-      "SAMPLE PROJECT",
-      "#6BCC43",
-      "",
-      this.getTasks(),
-    );
 
     for (let i = 0; i < 5; i++) {
-      project.tasks[0].title = `Project ${i}`;
+      const project = new _interfaces_Project__WEBPACK_IMPORTED_MODULE_1__["default"](
+        `SAMPLE PROJECT - #0${i + 1}`,
+        "#6BCC43",
+        "",
+        this.getTasks(),
+      );
       projects.push(project);
     }
     return projects;
@@ -1475,9 +1481,22 @@ class State {
       : this.projects[this.curProjectIndex].getTasks();
   }
 
-  addTask(task) {
-    this.tasks.push(task);
-    _DomController__WEBPACK_IMPORTED_MODULE_0__["default"].renderTasks();
+  getTasksLength(projectIndex) {
+    if (projectIndex === -1) {
+      return this.projects.flatMap((p) => p.getTasks()).length;
+    }
+    return this.projects[projectIndex].getTaskCount();
+  }
+
+  addTask(task, projectIndex) {
+    this.projects[projectIndex].addTask(task);
+    if (projectIndex === this.getSelectedProjectIndex()) {
+      _DomController__WEBPACK_IMPORTED_MODULE_0__["default"].renderTasks();
+    }
+    _DomController__WEBPACK_IMPORTED_MODULE_0__["default"].updateTaskCount(
+      projectIndex,
+      this.getTasksLength(projectIndex),
+    );
   }
 
   getProjects() {
@@ -1488,7 +1507,7 @@ class State {
     return this.projects.map((project) => project.name);
   }
 
-  addTask(project) {
+  addProject(project) {
     this.projects.push(project);
     _DomController__WEBPACK_IMPORTED_MODULE_0__["default"].renderProjects();
   }
@@ -1537,6 +1556,10 @@ class Project {
 
   getTasks() {
     return this.tasks;
+  }
+
+  addTask(task) {
+    this.tasks.push(task);
   }
 
   getEl() {
@@ -1603,8 +1626,7 @@ const handleSubmit = (event) => {
   event.preventDefault();
 
   const form = event.target;
-  const task = createTask(form);
-  _helpers_State__WEBPACK_IMPORTED_MODULE_2__["default"].addTask(task);
+  addTask(form);
 
   const modal = event.srcElement.parentNode;
   form.reset();
@@ -1618,25 +1640,17 @@ const handleCancel = (event) => {
   modal.close();
 };
 
-function createTask(form) {
+function addTask(form) {
   const formData = new FormData(form);
   const values = Object.fromEntries(formData);
-  return new _interfaces_Task__WEBPACK_IMPORTED_MODULE_1__["default"](
+  const task = new _interfaces_Task__WEBPACK_IMPORTED_MODULE_1__["default"](
     values.title,
     values.description,
     values.dueDate,
     values.priority,
   );
-}
 
-function getProjectOptions() {
-  return _helpers_State__WEBPACK_IMPORTED_MODULE_2__["default"].getProjectNames().map((name, i) => {
-    const option = document.createElement("option");
-    option.value = i;
-    option.innerText = name;
-    console.log(i, _helpers_State__WEBPACK_IMPORTED_MODULE_2__["default"].getSelectedProjectIndex());
-    return option;
-  });
+  _helpers_State__WEBPACK_IMPORTED_MODULE_2__["default"].addTask(task, Number(values.projectIndex));
 }
 
 const addModal = () => {
@@ -1686,7 +1700,7 @@ const handleSubmit = (event) => {
 
   const form = event.target;
   const task = createProject(form);
-  _helpers_State__WEBPACK_IMPORTED_MODULE_2__["default"].addTask(task);
+  _helpers_State__WEBPACK_IMPORTED_MODULE_2__["default"].addProject(task);
 
   const modal = event.srcElement.parentNode;
   form.reset();
@@ -1762,7 +1776,7 @@ const projectPanel = () => {
 
   Array.from(
     container.getElementsByClassName("project-panel-all-count"),
-  ).forEach((e) => (e.innerText = "16"));
+  ).forEach((e) => (e.innerText = _helpers_State_js__WEBPACK_IMPORTED_MODULE_3__["default"].getTasksLength(-1)));
 
   Array.from(container.getElementsByClassName("project-panel-add")).forEach(
     (e) => (e.onclick = () => modal.showModal()),

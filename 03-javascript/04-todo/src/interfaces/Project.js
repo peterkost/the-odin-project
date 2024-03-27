@@ -16,6 +16,10 @@ class Project {
     return this.tasks;
   }
 
+  addTask(task) {
+    this.tasks.push(task);
+  }
+
   getEl() {
     return project(this);
   }

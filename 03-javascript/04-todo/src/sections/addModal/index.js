@@ -7,8 +7,7 @@ const handleSubmit = (event) => {
   event.preventDefault();
 
   const form = event.target;
-  const task = createTask(form);
-  state.addTask(task);
+  addTask(form);
 
   const modal = event.srcElement.parentNode;
   form.reset();
@@ -22,25 +21,17 @@ const handleCancel = (event) => {
   modal.close();
 };
 
-function createTask(form) {
+function addTask(form) {
   const formData = new FormData(form);
   const values = Object.fromEntries(formData);
-  return new Task(
+  const task = new Task(
     values.title,
     values.description,
     values.dueDate,
     values.priority,
   );
-}
 
-function getProjectOptions() {
-  return state.getProjectNames().map((name, i) => {
-    const option = document.createElement("option");
-    option.value = i;
-    option.innerText = name;
-    console.log(i, state.getSelectedProjectIndex());
-    return option;
-  });
+  state.addTask(task, Number(values.projectIndex));
 }
 
 const addModal = () => {
