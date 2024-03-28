@@ -16,10 +16,14 @@ const handleCompleteClick = (event) => {
 };
 
 const handleEditClick = (event) => {
+  domController.renderProjectListInModal();
+
   const taskContainer = event.target.closest(".task-container");
   const taskId = taskContainer.id;
   const projectId = taskContainer.getAttribute("project-id");
   const task = state.getProject(projectId).getTask(taskId);
+
+  state.setEditTaskId(taskId);
 
   document.getElementById("add-title").value = task.title;
   document.getElementById("add-description").value = task.description;
@@ -44,12 +48,7 @@ const task = (task) => {
   editButton.style.display = "none";
   container.onmouseover = () => (editButton.style.display = "block");
   container.onmouseout = () => (editButton.style.display = "none");
-  editButton.addEventListener("click", () =>
-    domController.renderProjectListInModal(),
-  );
-  editButton.onclick = container.querySelector(
-    ".task-complete-button",
-  ).onclick = handleEditClick;
+  editButton.onclick = handleEditClick;
 
   container.querySelector(".task-title").innerText = task.title;
   container.querySelector(".task-description").innerText = task.description;

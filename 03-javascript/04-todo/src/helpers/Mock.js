@@ -17,7 +17,7 @@ class Mock {
       const task = new Task(
         `SAMPLE TITLE - ${i + 1}`,
         `${projectId} - ${i + 1}`,
-        new Date().toLocaleDateString(),
+        Date.now(),
         1,
         projectId,
       );

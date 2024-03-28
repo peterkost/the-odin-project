@@ -12,6 +12,7 @@ class State {
     instance = this;
     this.projects = new Map();
     this.selectedProjectId = -1;
+    this.editTaskId = "";
   }
 
   loadProjects() {
@@ -35,7 +36,11 @@ class State {
 
   addTask(task) {
     this.getProject(task.projectId).addTask(task);
-    if (task.projectId === this.getSelectedProjectId()) {
+
+    if (
+      this.getSelectedProjectId() === -1 ||
+      task.projectId === this.getSelectedProjectId()
+    ) {
       domController.renderTasks();
     }
     domController.updateTaskCount(
@@ -48,6 +53,14 @@ class State {
     this.getProject(projectId).removeTask(taskId);
     domController.renderTasks();
     domController.updateTaskCount(projectId);
+  }
+
+  setEditTaskId(id) {
+    this.editTaskId = id;
+  }
+
+  isEditingTask() {
+    return this.editTaskId !== "";
   }
 
   getProject(id) {
