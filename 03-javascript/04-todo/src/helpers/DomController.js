@@ -37,6 +37,11 @@ class DomController {
   }
 
   handleSelectedProjectChange(prevId, newId) {
+    const taskViewTitle = document.getElementById("taskview-title");
+    const newProject = state.getProject(newId);
+    taskViewTitle.innerText = newId === -1 ? "All Tasks" : newProject.name;
+    taskViewTitle.style.color = newId === -1 ? "#0a84ff" : newProject.color;
+
     this.hightlightSelectedProject(prevId, newId);
     this.renderTasks();
   }
@@ -47,6 +52,8 @@ class DomController {
   }
 
   updateAddModalOnOpen() {
+    document.body.style.overflow = "hidden";
+
     const addButton = document.getElementById("add-button");
     if (state.isEditingTask()) {
       addButton.innerText = "Save";

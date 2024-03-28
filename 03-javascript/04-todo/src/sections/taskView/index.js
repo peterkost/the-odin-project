@@ -6,7 +6,6 @@ import state from "../../helpers/State.js";
 const handleAddTaskClick = () => {
   state.setEditTaskId("");
   domController.updateAddModalOnOpen();
-  document.body.style.overflow = "hidden";
   document.getElementById("add-modal").showModal();
 };
 
@@ -26,7 +25,7 @@ const tasklist = () => {
 
   const title = document.createElement("h1");
   title.id = "taskview-title";
-  title.innerText = "Tasks";
+  title.innerText = "All Tasks";
   container.appendChild(title);
 
   const taskList = document.createElement("div");

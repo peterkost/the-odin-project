@@ -1,5 +1,6 @@
 import domController from "./DomController";
 import mock from "./Mock";
+import Project from "../interfaces/Project";
 
 const useMock = true;
 
@@ -17,7 +18,12 @@ class State {
 
   loadProjects() {
     // TODO - Add save and load from local storage
-    this.projects = useMock ? mock.getProjects() : new Map();
+    if (useMock) {
+      this.projects = mock.getProjects();
+    } else {
+      const defaultProject = new Project("My Tasks", "#49ad45", "", new Map());
+      this.projects = new Map([[defaultProject.id, defaultProject]]);
+    }
   }
 
   getTasks() {

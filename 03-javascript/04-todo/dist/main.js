@@ -23192,6 +23192,11 @@ class DomController {
   }
 
   handleSelectedProjectChange(prevId, newId) {
+    const taskViewTitle = document.getElementById("taskview-title");
+    const newProject = _State__WEBPACK_IMPORTED_MODULE_0__["default"].getProject(newId);
+    taskViewTitle.innerText = newId === -1 ? "All Tasks" : newProject.name;
+    taskViewTitle.style.color = newId === -1 ? "#0a84ff" : newProject.color;
+
     this.hightlightSelectedProject(prevId, newId);
     this.renderTasks();
   }
@@ -23202,6 +23207,8 @@ class DomController {
   }
 
   updateAddModalOnOpen() {
+    document.body.style.overflow = "hidden";
+
     const addButton = document.getElementById("add-button");
     if (_State__WEBPACK_IMPORTED_MODULE_0__["default"].isEditingTask()) {
       addButton.innerText = "Save";
@@ -23314,6 +23321,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _DomController__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DomController */ "./src/helpers/DomController.js");
 /* harmony import */ var _Mock__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Mock */ "./src/helpers/Mock.js");
+/* harmony import */ var _interfaces_Project__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../interfaces/Project */ "./src/interfaces/Project.js");
+
 
 
 
@@ -23333,7 +23342,12 @@ class State {
 
   loadProjects() {
     // TODO - Add save and load from local storage
-    this.projects = useMock ? _Mock__WEBPACK_IMPORTED_MODULE_1__["default"].getProjects() : new Map();
+    if (useMock) {
+      this.projects = _Mock__WEBPACK_IMPORTED_MODULE_1__["default"].getProjects();
+    } else {
+      const defaultProject = new _interfaces_Project__WEBPACK_IMPORTED_MODULE_2__["default"]("My Tasks", "#49ad45", "", new Map());
+      this.projects = new Map([[defaultProject.id, defaultProject]]);
+    }
   }
 
   getTasks() {
@@ -23764,7 +23778,6 @@ __webpack_require__.r(__webpack_exports__);
 const handleAddTaskClick = () => {
   _helpers_State_js__WEBPACK_IMPORTED_MODULE_3__["default"].setEditTaskId("");
   _helpers_DomController_js__WEBPACK_IMPORTED_MODULE_2__["default"].updateAddModalOnOpen();
-  document.body.style.overflow = "hidden";
   document.getElementById("add-modal").showModal();
 };
 
@@ -23784,7 +23797,7 @@ const tasklist = () => {
 
   const title = document.createElement("h1");
   title.id = "taskview-title";
-  title.innerText = "Tasks";
+  title.innerText = "All Tasks";
   container.appendChild(title);
 
   const taskList = document.createElement("div");
