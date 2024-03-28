@@ -1,8 +1,10 @@
 import domController from "./DomController";
 import mock from "./Mock";
 import Project from "../interfaces/Project";
+import Task from "../interfaces/Task";
 
 const useMock = true;
+const LOCAL_STORAGE_KEY = "todo-projects";
 
 let instance;
 class State {
@@ -17,13 +19,23 @@ class State {
   }
 
   loadProjects() {
-    // TODO - Add save and load from local storage
-    if (useMock) {
-      this.projects = mock.getProjects();
-    } else {
-      const defaultProject = new Project("My Tasks", "#49ad45", "", new Map());
-      this.projects = new Map([[defaultProject.id, defaultProject]]);
-    }
+    this.projects = this.loadState();
+  }
+
+  saveState() {
+    const projectsJSON = JSON.stringify(Array.from(this.projects.entries()));
+    localStorage.setItem(LOCAL_STORAGE_KEY, projectsJSON);
+  }
+
+  loadState() {
+    const storedProjects = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
+    console.log(storedProjects);
+    const revived = storedProjects.map(([id, project]) => [
+      id,
+      Project.revive(project),
+    ]);
+    console.log(revived);
+    return new Map(revived);
   }
 
   getTasks() {
@@ -53,6 +65,7 @@ class State {
       task.projectId,
       this.getTasksLength(task.projectId),
     );
+    this.saveState();
   }
 
   removeTask(taskId, projectId) {
@@ -87,6 +100,7 @@ class State {
   addProject(project) {
     this.projects.set(project.id, project);
     domController.renderProjects();
+    this.saveState();
   }
 
   setSelectedProjectId(id) {

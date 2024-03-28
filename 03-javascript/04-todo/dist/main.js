@@ -23192,8 +23192,10 @@ class DomController {
   }
 
   handleSelectedProjectChange(prevId, newId) {
+    console.log(_State__WEBPACK_IMPORTED_MODULE_0__["default"]);
     const taskViewTitle = document.getElementById("taskview-title");
     const newProject = _State__WEBPACK_IMPORTED_MODULE_0__["default"].getProject(newId);
+    console.log("new proj", newProject, prevId, newId, newId == -1);
     taskViewTitle.innerText = newId === -1 ? "All Tasks" : newProject.name;
     taskViewTitle.style.color = newId === -1 ? "#0a84ff" : newProject.color;
 
@@ -23322,11 +23324,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _DomController__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DomController */ "./src/helpers/DomController.js");
 /* harmony import */ var _Mock__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Mock */ "./src/helpers/Mock.js");
 /* harmony import */ var _interfaces_Project__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../interfaces/Project */ "./src/interfaces/Project.js");
+/* harmony import */ var _interfaces_Task__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../interfaces/Task */ "./src/interfaces/Task.js");
+
 
 
 
 
 const useMock = true;
+const LOCAL_STORAGE_KEY = "todo-projects";
 
 let instance;
 class State {
@@ -23341,13 +23346,23 @@ class State {
   }
 
   loadProjects() {
-    // TODO - Add save and load from local storage
-    if (useMock) {
-      this.projects = _Mock__WEBPACK_IMPORTED_MODULE_1__["default"].getProjects();
-    } else {
-      const defaultProject = new _interfaces_Project__WEBPACK_IMPORTED_MODULE_2__["default"]("My Tasks", "#49ad45", "", new Map());
-      this.projects = new Map([[defaultProject.id, defaultProject]]);
-    }
+    this.projects = this.loadState();
+  }
+
+  saveState() {
+    const projectsJSON = JSON.stringify(Array.from(this.projects.entries()));
+    localStorage.setItem(LOCAL_STORAGE_KEY, projectsJSON);
+  }
+
+  loadState() {
+    const storedProjects = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
+    console.log(storedProjects);
+    const revived = storedProjects.map(([id, project]) => [
+      id,
+      _interfaces_Project__WEBPACK_IMPORTED_MODULE_2__["default"].revive(project),
+    ]);
+    console.log(revived);
+    return new Map(revived);
   }
 
   getTasks() {
@@ -23377,6 +23392,7 @@ class State {
       task.projectId,
       this.getTasksLength(task.projectId),
     );
+    this.saveState();
   }
 
   removeTask(taskId, projectId) {
@@ -23411,6 +23427,7 @@ class State {
   addProject(project) {
     this.projects.set(project.id, project);
     _DomController__WEBPACK_IMPORTED_MODULE_0__["default"].renderProjects();
+    this.saveState();
   }
 
   setSelectedProjectId(id) {
@@ -23444,17 +23461,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _sections_projectPanel_project__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../sections/projectPanel/project */ "./src/sections/projectPanel/project/index.js");
-/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/v4.js");
+/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/v4.js");
+/* harmony import */ var _Task__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Task */ "./src/interfaces/Task.js");
+
 
 
 
 class Project {
-  constructor(name, color, icon, tasks) {
+  constructor(name, color, icon, tasks, projectId) {
     this.name = name;
     this.color = color;
     this.icon = icon;
     this.tasks = tasks;
-    this.id = (0,uuid__WEBPACK_IMPORTED_MODULE_1__["default"])();
+    this.id = projectId ? projectId : (0,uuid__WEBPACK_IMPORTED_MODULE_2__["default"])();
   }
 
   getTaskCount() {
@@ -23480,6 +23499,18 @@ class Project {
   getEl() {
     return (0,_sections_projectPanel_project__WEBPACK_IMPORTED_MODULE_0__["default"])(this);
   }
+
+  toJSON() {
+    return {
+      ...this,
+      tasks: Array.from(this.tasks.entries()),
+    };
+  }
+
+  static revive(p) {
+    const taskArray = p.tasks.map(([id, task]) => [id, _Task__WEBPACK_IMPORTED_MODULE_1__["default"].revive(task)]);
+    return new Project(p.name, p.color, p.icon, new Map(taskArray), p.id);
+  }
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Project);
@@ -23501,7 +23532,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/v4.js");
 
 
-const { format } = __webpack_require__(/*! date-fns */ "./node_modules/date-fns/index.js");
+const { format, parse } = __webpack_require__(/*! date-fns */ "./node_modules/date-fns/index.js");
 
 class Task {
   constructor(title, description, dueDate, priority, projectId, taskId) {
@@ -23519,6 +23550,17 @@ class Task {
 
   getDateString() {
     return format(this.dueDate, "yyyy-MM-dd");
+  }
+
+  static revive(t) {
+    return new Task(
+      t.title,
+      t.description,
+      new Date(t.dueDate),
+      t.priority,
+      t.projectId,
+      t.taskId,
+    );
   }
 }
 
@@ -23570,7 +23612,6 @@ const handleCancel = (event) => {
 function addTask(form) {
   const formData = new FormData(form);
   const values = Object.fromEntries(formData);
-  console.log(values.dueDate, new Date(values.dueDate));
   const task = new _interfaces_Task__WEBPACK_IMPORTED_MODULE_1__["default"](
     values.title,
     values.description,
@@ -23587,7 +23628,6 @@ const addModal = () => {
   const modal = document.createElement("dialog");
   modal.id = "add-modal";
   modal.innerHTML = _index_html__WEBPACK_IMPORTED_MODULE_0__["default"];
-  modal.addEventListener("show", () => console.log("showing"));
 
   const form = modal.querySelector("form");
   form.addEventListener("submit", handleSubmit);

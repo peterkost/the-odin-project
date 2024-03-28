@@ -27,7 +27,6 @@ const handleCancel = (event) => {
 function addTask(form) {
   const formData = new FormData(form);
   const values = Object.fromEntries(formData);
-  console.log(values.dueDate, new Date(values.dueDate));
   const task = new Task(
     values.title,
     values.description,
@@ -44,7 +43,6 @@ const addModal = () => {
   const modal = document.createElement("dialog");
   modal.id = "add-modal";
   modal.innerHTML = html;
-  modal.addEventListener("show", () => console.log("showing"));
 
   const form = modal.querySelector("form");
   form.addEventListener("submit", handleSubmit);

@@ -1,13 +1,14 @@
 import project from "../sections/projectPanel/project";
 import { v4 as uuid } from "uuid";
+import Task from "./Task";
 
 class Project {
-  constructor(name, color, icon, tasks) {
+  constructor(name, color, icon, tasks, projectId) {
     this.name = name;
     this.color = color;
     this.icon = icon;
     this.tasks = tasks;
-    this.id = uuid();
+    this.id = projectId ? projectId : uuid();
   }
 
   getTaskCount() {
@@ -32,6 +33,18 @@ class Project {
 
   getEl() {
     return project(this);
+  }
+
+  toJSON() {
+    return {
+      ...this,
+      tasks: Array.from(this.tasks.entries()),
+    };
+  }
+
+  static revive(p) {
+    const taskArray = p.tasks.map(([id, task]) => [id, Task.revive(task)]);
+    return new Project(p.name, p.color, p.icon, new Map(taskArray), p.id);
   }
 }
 
