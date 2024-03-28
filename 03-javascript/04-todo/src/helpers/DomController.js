@@ -46,7 +46,15 @@ class DomController {
     document.getElementById(newId)?.classList.add("project-selected");
   }
 
-  renderProjectListInModal() {
+  updateAddModalOnOpen() {
+    const addButton = document.getElementById("add-button");
+    if (state.isEditingTask()) {
+      addButton.innerText = "Save";
+    } else {
+      addButton.innerText = "Add";
+      document.getElementById("add-modal").style.top = "0px";
+    }
+
     const optionEls = state.getAllProjects().map((project) => {
       const option = document.createElement("option");
       option.value = project.id;

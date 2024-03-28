@@ -16,8 +16,6 @@ const handleCompleteClick = (event) => {
 };
 
 const handleEditClick = (event) => {
-  domController.renderProjectListInModal();
-
   const taskContainer = event.target.closest(".task-container");
   const taskId = taskContainer.id;
   const projectId = taskContainer.getAttribute("project-id");
@@ -31,7 +29,14 @@ const handleEditClick = (event) => {
   document.getElementById("add-project-form").value = task.projectId;
   document.getElementById("add-priority").value = task.priority;
 
-  document.getElementById("add-modal").show();
+  document.body.style.overflow = "hidden";
+
+  const modal = document.getElementById("add-modal");
+  const clickY = event.target.getBoundingClientRect().top;
+  const modalTop = Math.min(clickY, window.innerHeight - 250);
+  modal.style.top = `${modalTop}px`;
+  domController.updateAddModalOnOpen();
+  modal.showModal();
 };
 
 const task = (task) => {

@@ -403,10 +403,11 @@ div.task-content p:last-child {
   color: var(--grey-accent-color);
 }
 
-.material-symbols-outlined {
+.task-edit-button {
   color: orange;
-  padding-right: 6px;
   cursor: pointer;
+  position: absolute;
+  right: 6px;
 }
 `, ""]);
 // Exports
@@ -22314,7 +22315,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 // Module
-var code = "<link\n  rel=\"stylesheet\"\n  href=\"https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200\"\n/>\n<button class=\"task-complete-button\"></button>\n<div class=\"task-content\">\n  <p class=\"task-title\"></p>\n  <p class=\"task-description\"></p>\n  <div class=\"task-details-row\">\n    <p class=\"task-date\"></p>\n    <p class=\"task-details-divider\">-</p>\n    <p class=\"task-priority\"></p>\n  </div>\n</div>\n<span class=\"material-symbols-outlined\"> edit </span>\n";
+var code = "<link\n  rel=\"stylesheet\"\n  href=\"https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200\"\n/>\n<button class=\"task-complete-button\"></button>\n<div class=\"task-content\">\n  <p class=\"task-title\"></p>\n  <p class=\"task-description\"></p>\n  <div class=\"task-details-row\">\n    <p class=\"task-date\"></p>\n    <p class=\"task-details-divider\">-</p>\n    <p class=\"task-priority\"></p>\n  </div>\n</div>\n<span class=\"task-edit-button material-symbols-outlined\"> edit </span>\n";
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (code);
 
@@ -23200,7 +23201,15 @@ class DomController {
     document.getElementById(newId)?.classList.add("project-selected");
   }
 
-  renderProjectListInModal() {
+  updateAddModalOnOpen() {
+    const addButton = document.getElementById("add-button");
+    if (_State__WEBPACK_IMPORTED_MODULE_0__["default"].isEditingTask()) {
+      addButton.innerText = "Save";
+    } else {
+      addButton.innerText = "Add";
+      document.getElementById("add-modal").style.top = "0px";
+    }
+
     const optionEls = _State__WEBPACK_IMPORTED_MODULE_0__["default"].getAllProjects().map((project) => {
       const option = document.createElement("option");
       option.value = project.id;
@@ -23533,6 +23542,7 @@ const handleSubmit = (event) => {
   const modal = event.srcElement.parentNode;
   form.reset();
   modal.close();
+  document.body.style.overflow = "";
 };
 
 const handleCancel = (event) => {
@@ -23540,6 +23550,7 @@ const handleCancel = (event) => {
   const modal = form.parentNode;
   form.reset();
   modal.close();
+  document.body.style.overflow = "";
 };
 
 function addTask(form) {
@@ -23607,6 +23618,7 @@ const handleSubmit = (event) => {
   const modal = event.srcElement.parentNode;
   form.reset();
   modal.close();
+  document.body.style.overflow = "";
 };
 
 const handleCancel = (event) => {
@@ -23614,6 +23626,7 @@ const handleCancel = (event) => {
   const modal = form.parentNode;
   form.reset();
   modal.close();
+  document.body.style.overflow = "";
 };
 
 function createProject(form) {
@@ -23660,6 +23673,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+const handleAddButtonClick = () => {
+  document.body.style.overflow = "hidden";
+  document.getElementById("project-modal").showModal();
+};
+
 const projectPanel = () => {
   const container = document.createElement("div");
   container.id = "project-panel-container";
@@ -23670,8 +23688,7 @@ const projectPanel = () => {
 
   container.querySelector(".project-panel-all").onclick = () =>
     _helpers_State_js__WEBPACK_IMPORTED_MODULE_3__["default"].setSelectedProjectId(-1);
-  container.querySelector(".project-panel-add").onclick = () =>
-    modal.showModal();
+  container.querySelector(".project-panel-add").onclick = handleAddButtonClick;
 
   return container;
 };
@@ -23745,9 +23762,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const handleAddTaskClick = () => {
-  _helpers_DomController_js__WEBPACK_IMPORTED_MODULE_2__["default"].renderProjectListInModal();
-  document.getElementById("add-modal").showModal();
   _helpers_State_js__WEBPACK_IMPORTED_MODULE_3__["default"].setEditTaskId("");
+  _helpers_DomController_js__WEBPACK_IMPORTED_MODULE_2__["default"].updateAddModalOnOpen();
+  document.body.style.overflow = "hidden";
+  document.getElementById("add-modal").showModal();
 };
 
 const tasklist = () => {
@@ -23813,8 +23831,6 @@ const handleCompleteClick = (event) => {
 };
 
 const handleEditClick = (event) => {
-  _helpers_DomController__WEBPACK_IMPORTED_MODULE_3__["default"].renderProjectListInModal();
-
   const taskContainer = event.target.closest(".task-container");
   const taskId = taskContainer.id;
   const projectId = taskContainer.getAttribute("project-id");
@@ -23828,7 +23844,14 @@ const handleEditClick = (event) => {
   document.getElementById("add-project-form").value = task.projectId;
   document.getElementById("add-priority").value = task.priority;
 
-  document.getElementById("add-modal").show();
+  document.body.style.overflow = "hidden";
+
+  const modal = document.getElementById("add-modal");
+  const clickY = event.target.getBoundingClientRect().top;
+  const modalTop = Math.min(clickY, window.innerHeight - 250);
+  modal.style.top = `${modalTop}px`;
+  _helpers_DomController__WEBPACK_IMPORTED_MODULE_3__["default"].updateAddModalOnOpen();
+  modal.showModal();
 };
 
 const task = (task) => {

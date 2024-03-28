@@ -4,9 +4,10 @@ import domController from "../../helpers/DomController.js";
 import state from "../../helpers/State.js";
 
 const handleAddTaskClick = () => {
-  domController.renderProjectListInModal();
-  document.getElementById("add-modal").showModal();
   state.setEditTaskId("");
+  domController.updateAddModalOnOpen();
+  document.body.style.overflow = "hidden";
+  document.getElementById("add-modal").showModal();
 };
 
 const tasklist = () => {

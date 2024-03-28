@@ -37,8 +37,9 @@ div.task-content p:last-child {
   color: var(--grey-accent-color);
 }
 
-.material-symbols-outlined {
+.task-edit-button {
   color: orange;
-  padding-right: 6px;
   cursor: pointer;
+  position: absolute;
+  right: 6px;
 }

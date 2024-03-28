@@ -13,6 +13,7 @@ const handleSubmit = (event) => {
   const modal = event.srcElement.parentNode;
   form.reset();
   modal.close();
+  document.body.style.overflow = "";
 };
 
 const handleCancel = (event) => {
@@ -20,6 +21,7 @@ const handleCancel = (event) => {
   const modal = form.parentNode;
   form.reset();
   modal.close();
+  document.body.style.overflow = "";
 };
 
 function createProject(form) {
