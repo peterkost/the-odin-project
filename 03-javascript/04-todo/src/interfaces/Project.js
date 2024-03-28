@@ -18,6 +18,10 @@ class Project {
     return this.tasks.values();
   }
 
+  getTask(id) {
+    return this.tasks.get(id);
+  }
+
   addTask(task) {
     this.tasks.set(task.id, task);
   }

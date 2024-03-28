@@ -1,18 +1,33 @@
 import "./style.css";
 import html from "./index.html";
 import state from "../../../helpers/State";
+import domController from "../../../helpers/DomController";
 
 const handleCompleteClick = (event) => {
-  const taskId = event.target.closest(".task-container").id;
-  const projectId = event.target
-    .closest(".task-container")
-    .getAttribute("project-id");
+  const taskContainer = event.target.closest(".task-container");
+  const taskId = taskContainer.id;
+  const projectId = taskContainer.getAttribute("project-id");
 
   event.target.style.backgroundColor = "#0a84ff";
   event.target.closest(".task-container").style.filter = "brightness(0.5";
   setTimeout(() => {
     state.removeTask(taskId, projectId);
   }, 500);
+};
+
+const handleEditClick = (event) => {
+  const taskContainer = event.target.closest(".task-container");
+  const taskId = taskContainer.id;
+  const projectId = taskContainer.getAttribute("project-id");
+  const task = state.getProject(projectId).getTask(taskId);
+
+  document.getElementById("add-title").value = task.title;
+  document.getElementById("add-description").value = task.description;
+  document.getElementById("add-date").value = task.getDateString();
+  document.getElementById("add-project-form").value = task.projectId;
+  document.getElementById("add-priority").value = task.priority;
+
+  document.getElementById("add-modal").show();
 };
 
 const task = (task) => {
@@ -25,9 +40,20 @@ const task = (task) => {
   container.querySelector(".task-complete-button").onclick =
     handleCompleteClick;
 
+  const editButton = container.querySelector(".material-symbols-outlined");
+  editButton.style.display = "none";
+  container.onmouseover = () => (editButton.style.display = "block");
+  container.onmouseout = () => (editButton.style.display = "none");
+  editButton.addEventListener("click", () =>
+    domController.renderProjectListInModal(),
+  );
+  editButton.onclick = container.querySelector(
+    ".task-complete-button",
+  ).onclick = handleEditClick;
+
   container.querySelector(".task-title").innerText = task.title;
   container.querySelector(".task-description").innerText = task.description;
-  container.querySelector(".task-date").innerText = task.dueDate;
+  container.querySelector(".task-date").innerText = task.getDateString();
 
   if (task.priority) {
     container.querySelector(".task-priority").innerText =

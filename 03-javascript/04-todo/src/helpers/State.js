@@ -15,6 +15,7 @@ class State {
   }
 
   loadProjects() {
+    // TODO - Add save and load from local storage
     this.projects = useMock ? mock.getProjects() : new Map();
   }
 

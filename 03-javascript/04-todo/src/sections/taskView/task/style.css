@@ -36,3 +36,9 @@ div.task-content p:last-child {
   gap: 0.5rem;
   color: var(--grey-accent-color);
 }
+
+.material-symbols-outlined {
+  color: orange;
+  padding-right: 6px;
+  cursor: pointer;
+}

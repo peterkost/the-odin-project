@@ -5,7 +5,7 @@ class Task {
   constructor(title, description, dueDate, priority, projectId) {
     this.title = title;
     this.description = description;
-    this.dueDate = dueDate;
+    this.dueDate = new Date(dueDate);
     this.priority = priority;
     this.id = uuid();
     this.projectId = projectId;
@@ -13,6 +13,10 @@ class Task {
 
   getEl() {
     return task(this);
+  }
+
+  getDateString() {
+    return `${this.dueDate.getFullYear()}-${this.dueDate.getMonth().toString().padStart(2, "0")}-${this.dueDate.getDay().toString().padStart(2, "0")}`;
   }
 }
 

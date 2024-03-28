@@ -402,6 +402,12 @@ div.task-content p:last-child {
   gap: 0.5rem;
   color: var(--grey-accent-color);
 }
+
+.material-symbols-outlined {
+  color: orange;
+  padding-right: 6px;
+  cursor: pointer;
+}
 `, ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
@@ -567,7 +573,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 // Module
-var code = "<form id=\"add-form\">\n  <input id=\"add-title\" type=\"text\" name=\"title\" placeholder=\"Title\" />\n  <input type=\"text\" name=\"description\" placeholder=\"Description\" />\n  <input type=\"date\" name=\"dueDate\" />\n  <select name=\"projectId\" id=\"add-project-form\"></select>\n  <select name=\"priority\">\n    <option value=\"\" disabled selected>Priority</option>\n    <option value=\"1\">Low</option>\n    <option value=\"2\">Medium</option>\n    <option value=\"3\">High</option>\n  </select>\n  <div id=\"add-button-container\">\n    <button id=\"close-button\" type=\"button\">Cancel</button>\n    <button id=\"add-button\">Add</button>\n  </div>\n</form>\n";
+var code = "<form id=\"add-form\">\n  <input id=\"add-title\" type=\"text\" name=\"title\" placeholder=\"Title\" />\n  <input\n    id=\"add-description\"\n    type=\"text\"\n    name=\"description\"\n    placeholder=\"Description\"\n  />\n  <input id=\"add-date\" type=\"date\" name=\"dueDate\" />\n  <select id=\"add-project-form\" name=\"projectId\"></select>\n  <select id=\"add-priority\" name=\"priority\">\n    <option value=\"\" disabled selected>Priority</option>\n    <option value=\"1\">Low</option>\n    <option value=\"2\">Medium</option>\n    <option value=\"3\">High</option>\n  </select>\n  <div id=\"add-button-container\">\n    <button id=\"close-button\" type=\"button\">Cancel</button>\n    <button id=\"add-button\">Add</button>\n  </div>\n</form>\n";
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (code);
 
@@ -635,7 +641,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 // Module
-var code = "<button class=\"task-complete-button\"></button>\n<div class=\"task-content\">\n  <p class=\"task-title\"></p>\n  <p class=\"task-description\"></p>\n  <div class=\"task-details-row\">\n    <p class=\"task-date\"></p>\n    <p class=\"task-details-divider\">-</p>\n    <p class=\"task-priority\"></p>\n  </div>\n</div>\n";
+var code = "<link\n  rel=\"stylesheet\"\n  href=\"https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200\"\n/>\n<button class=\"task-complete-button\"></button>\n<div class=\"task-content\">\n  <p class=\"task-title\"></p>\n  <p class=\"task-description\"></p>\n  <div class=\"task-details-row\">\n    <p class=\"task-date\"></p>\n    <p class=\"task-details-divider\">-</p>\n    <p class=\"task-priority\"></p>\n  </div>\n</div>\n<span class=\"material-symbols-outlined\"> edit </span>\n";
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (code);
 
@@ -1643,6 +1649,7 @@ class State {
   }
 
   loadProjects() {
+    // TODO - Add save and load from local storage
     this.projects = useMock ? _Mock__WEBPACK_IMPORTED_MODULE_1__["default"].getProjects() : new Map();
   }
 
@@ -1749,6 +1756,10 @@ class Project {
     return this.tasks.values();
   }
 
+  getTask(id) {
+    return this.tasks.get(id);
+  }
+
   addTask(task) {
     this.tasks.set(task.id, task);
   }
@@ -1786,7 +1797,7 @@ class Task {
   constructor(title, description, dueDate, priority, projectId) {
     this.title = title;
     this.description = description;
-    this.dueDate = dueDate;
+    this.dueDate = new Date(dueDate);
     this.priority = priority;
     this.id = (0,uuid__WEBPACK_IMPORTED_MODULE_1__["default"])();
     this.projectId = projectId;
@@ -1794,6 +1805,10 @@ class Task {
 
   getEl() {
     return (0,_sections_taskView_task__WEBPACK_IMPORTED_MODULE_0__["default"])(this);
+  }
+
+  getDateString() {
+    return `${this.dueDate.getFullYear()}-${this.dueDate.getMonth().toString().padStart(2, "0")}-${this.dueDate.getDay().toString().padStart(2, "0")}`;
   }
 }
 
@@ -1845,7 +1860,7 @@ function addTask(form) {
   const task = new _interfaces_Task__WEBPACK_IMPORTED_MODULE_1__["default"](
     values.title,
     values.description,
-    values.dueDate,
+    new Date(values.dueDate),
     values.priority,
     values.projectId,
   );
@@ -1857,6 +1872,7 @@ const addModal = () => {
   const modal = document.createElement("dialog");
   modal.id = "add-modal";
   modal.innerHTML = _index_html__WEBPACK_IMPORTED_MODULE_0__["default"];
+  modal.addEventListener("show", () => console.log("showing"));
 
   const form = modal.querySelector("form");
   form.addEventListener("submit", handleSubmit);
@@ -1913,7 +1929,7 @@ const handleCancel = (event) => {
 function createProject(form) {
   const formData = new FormData(form);
   const values = Object.fromEntries(formData);
-  return new _interfaces_Project__WEBPACK_IMPORTED_MODULE_1__["default"](values.name, values.color, "", []);
+  return new _interfaces_Project__WEBPACK_IMPORTED_MODULE_1__["default"](values.name, values.color, "", new Map());
 }
 
 const projectModal = () => {
@@ -2087,21 +2103,37 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ "./src/sections/taskView/task/style.css");
 /* harmony import */ var _index_html__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index.html */ "./src/sections/taskView/task/index.html");
 /* harmony import */ var _helpers_State__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../helpers/State */ "./src/helpers/State.js");
+/* harmony import */ var _helpers_DomController__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../helpers/DomController */ "./src/helpers/DomController.js");
+
 
 
 
 
 const handleCompleteClick = (event) => {
-  const taskId = event.target.closest(".task-container").id;
-  const projectId = event.target
-    .closest(".task-container")
-    .getAttribute("project-id");
+  const taskContainer = event.target.closest(".task-container");
+  const taskId = taskContainer.id;
+  const projectId = taskContainer.getAttribute("project-id");
 
   event.target.style.backgroundColor = "#0a84ff";
   event.target.closest(".task-container").style.filter = "brightness(0.5";
   setTimeout(() => {
     _helpers_State__WEBPACK_IMPORTED_MODULE_2__["default"].removeTask(taskId, projectId);
   }, 500);
+};
+
+const handleEditClick = (event) => {
+  const taskContainer = event.target.closest(".task-container");
+  const taskId = taskContainer.id;
+  const projectId = taskContainer.getAttribute("project-id");
+  const task = _helpers_State__WEBPACK_IMPORTED_MODULE_2__["default"].getProject(projectId).getTask(taskId);
+
+  document.getElementById("add-title").value = task.title;
+  document.getElementById("add-description").value = task.description;
+  document.getElementById("add-date").value = task.getDateString();
+  document.getElementById("add-project-form").value = task.projectId;
+  document.getElementById("add-priority").value = task.priority;
+
+  document.getElementById("add-modal").show();
 };
 
 const task = (task) => {
@@ -2114,9 +2146,20 @@ const task = (task) => {
   container.querySelector(".task-complete-button").onclick =
     handleCompleteClick;
 
+  const editButton = container.querySelector(".material-symbols-outlined");
+  editButton.style.display = "none";
+  container.onmouseover = () => (editButton.style.display = "block");
+  container.onmouseout = () => (editButton.style.display = "none");
+  editButton.addEventListener("click", () =>
+    _helpers_DomController__WEBPACK_IMPORTED_MODULE_3__["default"].renderProjectListInModal(),
+  );
+  editButton.onclick = container.querySelector(
+    ".task-complete-button",
+  ).onclick = handleEditClick;
+
   container.querySelector(".task-title").innerText = task.title;
   container.querySelector(".task-description").innerText = task.description;
-  container.querySelector(".task-date").innerText = task.dueDate;
+  container.querySelector(".task-date").innerText = task.getDateString();
 
   if (task.priority) {
     container.querySelector(".task-priority").innerText =

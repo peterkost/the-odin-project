@@ -1,9 +1,14 @@
 <form id="add-form">
   <input id="add-title" type="text" name="title" placeholder="Title" />
-  <input type="text" name="description" placeholder="Description" />
-  <input type="date" name="dueDate" />
-  <select name="projectId" id="add-project-form"></select>
-  <select name="priority">
+  <input
+    id="add-description"
+    type="text"
+    name="description"
+    placeholder="Description"
+  />
+  <input id="add-date" type="date" name="dueDate" />
+  <select id="add-project-form" name="projectId"></select>
+  <select id="add-priority" name="priority">
     <option value="" disabled selected>Priority</option>
     <option value="1">Low</option>
     <option value="2">Medium</option>

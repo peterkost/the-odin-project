@@ -27,7 +27,7 @@ function addTask(form) {
   const task = new Task(
     values.title,
     values.description,
-    values.dueDate,
+    new Date(values.dueDate),
     values.priority,
     values.projectId,
   );
@@ -39,6 +39,7 @@ const addModal = () => {
   const modal = document.createElement("dialog");
   modal.id = "add-modal";
   modal.innerHTML = html;
+  modal.addEventListener("show", () => console.log("showing"));
 
   const form = modal.querySelector("form");
   form.addEventListener("submit", handleSubmit);
