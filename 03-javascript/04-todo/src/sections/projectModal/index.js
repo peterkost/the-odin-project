@@ -2,6 +2,7 @@ import html from "./index.html";
 import Project from "../../interfaces/Project";
 import state from "../../helpers/State";
 import "./style.css";
+import { v4 as uuid } from "uuid";
 
 const handleSubmit = (event) => {
   event.preventDefault();
@@ -27,7 +28,7 @@ const handleCancel = (event) => {
 function createProject(form) {
   const formData = new FormData(form);
   const values = Object.fromEntries(formData);
-  return new Project(values.name, values.color, "", new Map());
+  return new Project(values.name, values.color, "", new Map(), uuid());
 }
 
 const projectModal = () => {

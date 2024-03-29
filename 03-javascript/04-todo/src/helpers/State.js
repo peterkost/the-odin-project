@@ -2,8 +2,9 @@ import domController from "./DomController";
 import mock from "./Mock";
 import Project from "../interfaces/Project";
 import Task from "../interfaces/Task";
+import { v4 as uuid } from "uuid";
+import { getDefaultOptions } from "date-fns";
 
-const useMock = true;
 const LOCAL_STORAGE_KEY = "todo-projects";
 
 let instance;
@@ -18,24 +19,30 @@ class State {
     this.editTaskId = "";
   }
 
-  loadProjects() {
-    this.projects = this.loadState();
-  }
-
   saveState() {
     const projectsJSON = JSON.stringify(Array.from(this.projects.entries()));
     localStorage.setItem(LOCAL_STORAGE_KEY, projectsJSON);
   }
 
-  loadState() {
-    const storedProjects = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
-    console.log(storedProjects);
-    const revived = storedProjects.map(([id, project]) => [
-      id,
-      Project.revive(project),
-    ]);
-    console.log(revived);
-    return new Map(revived);
+  loadProjects() {
+    const storedValue = localStorage.getItem(LOCAL_STORAGE_KEY);
+    if (storedValue) {
+      const storedProjects = JSON.parse(storedValue);
+      const revived = storedProjects.map(([id, project]) => [
+        id,
+        Project.revive(project),
+      ]);
+      this.projects = new Map(revived);
+    } else {
+      const defaultProject = new Project(
+        "My Tasks",
+        "#4BA626",
+        "",
+        new Map(),
+        uuid(),
+      );
+      this.projects.set(defaultProject.id, defaultProject);
+    }
   }
 
   getTasks() {
@@ -72,6 +79,7 @@ class State {
     this.getProject(projectId).removeTask(taskId);
     domController.renderTasks();
     domController.updateTaskCount(projectId);
+    this.saveState();
   }
 
   setEditTaskId(id) {

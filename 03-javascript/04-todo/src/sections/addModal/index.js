@@ -3,6 +3,7 @@ import Task from "../../interfaces/Task";
 import state from "../../helpers/State";
 import "./style.css";
 const { parse } = require("date-fns");
+import { v4 as uuid } from "uuid";
 
 const handleSubmit = (event) => {
   event.preventDefault();
@@ -27,13 +28,16 @@ const handleCancel = (event) => {
 function addTask(form) {
   const formData = new FormData(form);
   const values = Object.fromEntries(formData);
+  const id = state.editTaskId ? state.editTaskId : uuid();
   const task = new Task(
     values.title,
     values.description,
-    parse(values.dueDate, "yyyy-MM-dd", new Date()),
+    values.dueDate
+      ? parse(values.dueDate, "yyyy-MM-dd", new Date())
+      : undefined,
     values.priority,
     values.projectId,
-    state.isEditingTask() ? state.editTaskId : "",
+    id,
   );
 
   state.addTask(task);

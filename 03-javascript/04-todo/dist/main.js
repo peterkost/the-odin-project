@@ -23192,10 +23192,8 @@ class DomController {
   }
 
   handleSelectedProjectChange(prevId, newId) {
-    console.log(_State__WEBPACK_IMPORTED_MODULE_0__["default"]);
     const taskViewTitle = document.getElementById("taskview-title");
     const newProject = _State__WEBPACK_IMPORTED_MODULE_0__["default"].getProject(newId);
-    console.log("new proj", newProject, prevId, newId, newId == -1);
     taskViewTitle.innerText = newId === -1 ? "All Tasks" : newProject.name;
     taskViewTitle.style.color = newId === -1 ? "#0a84ff" : newProject.color;
 
@@ -23325,12 +23323,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Mock__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Mock */ "./src/helpers/Mock.js");
 /* harmony import */ var _interfaces_Project__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../interfaces/Project */ "./src/interfaces/Project.js");
 /* harmony import */ var _interfaces_Task__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../interfaces/Task */ "./src/interfaces/Task.js");
+/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/v4.js");
 
 
 
 
 
-const useMock = true;
+
+
 const LOCAL_STORAGE_KEY = "todo-projects";
 
 let instance;
@@ -23345,24 +23345,30 @@ class State {
     this.editTaskId = "";
   }
 
-  loadProjects() {
-    this.projects = this.loadState();
-  }
-
   saveState() {
     const projectsJSON = JSON.stringify(Array.from(this.projects.entries()));
     localStorage.setItem(LOCAL_STORAGE_KEY, projectsJSON);
   }
 
-  loadState() {
-    const storedProjects = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
-    console.log(storedProjects);
-    const revived = storedProjects.map(([id, project]) => [
-      id,
-      _interfaces_Project__WEBPACK_IMPORTED_MODULE_2__["default"].revive(project),
-    ]);
-    console.log(revived);
-    return new Map(revived);
+  loadProjects() {
+    const storedValue = localStorage.getItem(LOCAL_STORAGE_KEY);
+    if (storedValue) {
+      const storedProjects = JSON.parse(storedValue);
+      const revived = storedProjects.map(([id, project]) => [
+        id,
+        _interfaces_Project__WEBPACK_IMPORTED_MODULE_2__["default"].revive(project),
+      ]);
+      this.projects = new Map(revived);
+    } else {
+      const defaultProject = new _interfaces_Project__WEBPACK_IMPORTED_MODULE_2__["default"](
+        "My Tasks",
+        "#4BA626",
+        "",
+        new Map(),
+        (0,uuid__WEBPACK_IMPORTED_MODULE_4__["default"])(),
+      );
+      this.projects.set(defaultProject.id, defaultProject);
+    }
   }
 
   getTasks() {
@@ -23399,6 +23405,7 @@ class State {
     this.getProject(projectId).removeTask(taskId);
     _DomController__WEBPACK_IMPORTED_MODULE_0__["default"].renderTasks();
     _DomController__WEBPACK_IMPORTED_MODULE_0__["default"].updateTaskCount(projectId);
+    this.saveState();
   }
 
   setEditTaskId(id) {
@@ -23461,9 +23468,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _sections_projectPanel_project__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../sections/projectPanel/project */ "./src/sections/projectPanel/project/index.js");
-/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/v4.js");
 /* harmony import */ var _Task__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Task */ "./src/interfaces/Task.js");
-
 
 
 
@@ -23473,7 +23478,7 @@ class Project {
     this.color = color;
     this.icon = icon;
     this.tasks = tasks;
-    this.id = projectId ? projectId : (0,uuid__WEBPACK_IMPORTED_MODULE_2__["default"])();
+    this.id = projectId;
   }
 
   getTaskCount() {
@@ -23529,10 +23534,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _sections_taskView_task__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../sections/taskView/task */ "./src/sections/taskView/task/index.js");
-/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/v4.js");
 
-
-const { format, parse } = __webpack_require__(/*! date-fns */ "./node_modules/date-fns/index.js");
+const { format, parse, isDate } = __webpack_require__(/*! date-fns */ "./node_modules/date-fns/index.js");
 
 class Task {
   constructor(title, description, dueDate, priority, projectId, taskId) {
@@ -23541,7 +23544,7 @@ class Task {
     this.dueDate = dueDate;
     this.priority = priority;
     this.projectId = projectId;
-    this.id = taskId ? taskId : (0,uuid__WEBPACK_IMPORTED_MODULE_1__["default"])();
+    this.id = taskId;
   }
 
   getEl() {
@@ -23549,17 +23552,17 @@ class Task {
   }
 
   getDateString() {
-    return format(this.dueDate, "yyyy-MM-dd");
+    return isDate(this.dueDate) ? format(this.dueDate, "yyyy-MM-dd") : "";
   }
 
   static revive(t) {
     return new Task(
       t.title,
       t.description,
-      new Date(t.dueDate),
+      t.dueDate ? parse(values.dueDate, "yyyy-MM-dd", new Date()) : undefined,
       t.priority,
       t.projectId,
-      t.taskId,
+      t.id,
     );
   }
 }
@@ -23583,11 +23586,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _interfaces_Task__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../interfaces/Task */ "./src/interfaces/Task.js");
 /* harmony import */ var _helpers_State__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../helpers/State */ "./src/helpers/State.js");
 /* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./style.css */ "./src/sections/addModal/style.css");
+/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/v4.js");
 
 
 
 
 const { parse } = __webpack_require__(/*! date-fns */ "./node_modules/date-fns/index.js");
+
 
 const handleSubmit = (event) => {
   event.preventDefault();
@@ -23612,13 +23617,16 @@ const handleCancel = (event) => {
 function addTask(form) {
   const formData = new FormData(form);
   const values = Object.fromEntries(formData);
+  const id = _helpers_State__WEBPACK_IMPORTED_MODULE_2__["default"].editTaskId ? _helpers_State__WEBPACK_IMPORTED_MODULE_2__["default"].editTaskId : (0,uuid__WEBPACK_IMPORTED_MODULE_4__["default"])();
   const task = new _interfaces_Task__WEBPACK_IMPORTED_MODULE_1__["default"](
     values.title,
     values.description,
-    parse(values.dueDate, "yyyy-MM-dd", new Date()),
+    values.dueDate
+      ? parse(values.dueDate, "yyyy-MM-dd", new Date())
+      : undefined,
     values.priority,
     values.projectId,
-    _helpers_State__WEBPACK_IMPORTED_MODULE_2__["default"].isEditingTask() ? _helpers_State__WEBPACK_IMPORTED_MODULE_2__["default"].editTaskId : "",
+    id,
   );
 
   _helpers_State__WEBPACK_IMPORTED_MODULE_2__["default"].addTask(task);
@@ -23657,6 +23665,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _interfaces_Project__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../interfaces/Project */ "./src/interfaces/Project.js");
 /* harmony import */ var _helpers_State__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../helpers/State */ "./src/helpers/State.js");
 /* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./style.css */ "./src/sections/projectModal/style.css");
+/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/v4.js");
+
 
 
 
@@ -23686,7 +23696,7 @@ const handleCancel = (event) => {
 function createProject(form) {
   const formData = new FormData(form);
   const values = Object.fromEntries(formData);
-  return new _interfaces_Project__WEBPACK_IMPORTED_MODULE_1__["default"](values.name, values.color, "", new Map());
+  return new _interfaces_Project__WEBPACK_IMPORTED_MODULE_1__["default"](values.name, values.color, "", new Map(), (0,uuid__WEBPACK_IMPORTED_MODULE_4__["default"])());
 }
 
 const projectModal = () => {

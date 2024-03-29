@@ -1,5 +1,4 @@
 import project from "../sections/projectPanel/project";
-import { v4 as uuid } from "uuid";
 import Task from "./Task";
 
 class Project {
@@ -8,7 +7,7 @@ class Project {
     this.color = color;
     this.icon = icon;
     this.tasks = tasks;
-    this.id = projectId ? projectId : uuid();
+    this.id = projectId;
   }
 
   getTaskCount() {

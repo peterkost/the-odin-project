@@ -37,10 +37,8 @@ class DomController {
   }
 
   handleSelectedProjectChange(prevId, newId) {
-    console.log(state);
     const taskViewTitle = document.getElementById("taskview-title");
     const newProject = state.getProject(newId);
-    console.log("new proj", newProject, prevId, newId, newId == -1);
     taskViewTitle.innerText = newId === -1 ? "All Tasks" : newProject.name;
     taskViewTitle.style.color = newId === -1 ? "#0a84ff" : newProject.color;
 

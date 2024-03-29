@@ -1,6 +1,5 @@
 import task from "../sections/taskView/task";
-import { v4 as uuid } from "uuid";
-const { format, parse } = require("date-fns");
+const { format, parse, isDate } = require("date-fns");
 
 class Task {
   constructor(title, description, dueDate, priority, projectId, taskId) {
@@ -9,7 +8,7 @@ class Task {
     this.dueDate = dueDate;
     this.priority = priority;
     this.projectId = projectId;
-    this.id = taskId ? taskId : uuid();
+    this.id = taskId;
   }
 
   getEl() {
@@ -17,17 +16,17 @@ class Task {
   }
 
   getDateString() {
-    return format(this.dueDate, "yyyy-MM-dd");
+    return isDate(this.dueDate) ? format(this.dueDate, "yyyy-MM-dd") : "";
   }
 
   static revive(t) {
     return new Task(
       t.title,
       t.description,
-      new Date(t.dueDate),
+      t.dueDate ? parse(values.dueDate, "yyyy-MM-dd", new Date()) : undefined,
       t.priority,
       t.projectId,
-      t.taskId,
+      t.id,
     );
   }
 }
