@@ -1,5 +1,5 @@
 import task from "../sections/taskView/task";
-const { format, parse, isDate } = require("date-fns");
+const { format, isDate } = require("date-fns");
 
 class Task {
   constructor(title, description, dueDate, priority, projectId, taskId) {
@@ -20,10 +20,11 @@ class Task {
   }
 
   static revive(t) {
+    console.log(t);
     return new Task(
       t.title,
       t.description,
-      t.dueDate ? parse(values.dueDate, "yyyy-MM-dd", new Date()) : undefined,
+      t.dueDate ? new Date(t.dueDate) : undefined,
       t.priority,
       t.projectId,
       t.id,

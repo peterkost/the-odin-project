@@ -23535,7 +23535,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _sections_taskView_task__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../sections/taskView/task */ "./src/sections/taskView/task/index.js");
 
-const { format, parse, isDate } = __webpack_require__(/*! date-fns */ "./node_modules/date-fns/index.js");
+const { format, isDate } = __webpack_require__(/*! date-fns */ "./node_modules/date-fns/index.js");
 
 class Task {
   constructor(title, description, dueDate, priority, projectId, taskId) {
@@ -23556,10 +23556,11 @@ class Task {
   }
 
   static revive(t) {
+    console.log(t);
     return new Task(
       t.title,
       t.description,
-      t.dueDate ? parse(values.dueDate, "yyyy-MM-dd", new Date()) : undefined,
+      t.dueDate ? new Date(t.dueDate) : undefined,
       t.priority,
       t.projectId,
       t.id,
