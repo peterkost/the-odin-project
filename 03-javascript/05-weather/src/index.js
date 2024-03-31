@@ -1,11 +1,16 @@
-import GetWeather from "./utils/GetWeather";
-function component() {
-  const el = document.createElement("div");
-  el.innerHTML = "src/index.js";
-  return el;
+import "./style.css";
+import getWeather from "./utils/GetWeather";
+import error from "./pages/error";
+import weather from "./pages/weather";
+
+getWeather().then(displayWeather).catch(displayError);
+
+function displayWeather(data) {
+  document.body.innerHTML = "";
+  document.body.appendChild(weather(data));
 }
 
-document.body.appendChild(component());
-
-const weather = await GetWeather();
-console.log(weather);
+function displayError() {
+  document.body.innerHTML = "";
+  document.body.appendChild(error());
+}

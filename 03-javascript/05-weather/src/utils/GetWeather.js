@@ -9,8 +9,7 @@ export default async (location = "Novorossiysk", units = "metric") =>
     ? mockWeather
     : getCoords(location)
         .then((coords) => getWeatherJson(...coords, units))
-        .then(processWeatherJson)
-        .catch((_) => -1);
+        .then(processWeatherJson);
 
 async function getCoords(location) {
   const url = `http://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=${RESPONSE_LIMIT}&appid=${API_KEY}`;
