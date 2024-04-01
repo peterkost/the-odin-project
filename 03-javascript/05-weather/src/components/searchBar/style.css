@@ -1,0 +1,17 @@
+#search-container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+#search-bar {
+  border: 0;
+  background: 0;
+  background-color: rgba(124, 200, 247, 0.5);
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+}
+
+#search-bar::placeholder {
+  color: #dae2e6;
+}

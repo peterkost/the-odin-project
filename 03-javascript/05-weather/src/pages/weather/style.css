@@ -1,3 +1,49 @@
+body {
+  font-family: "HelveticaNeue-Thin", Arial, sans-serif;
+}
+h1,
+p {
+  margin: 0;
+}
+#weather-page {
+  background-color: rgb(82, 143, 206);
+  padding: 1rem;
+  height: 100%;
+  color: white;
+}
+
+#location-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 #location {
-  color: blue;
+  font-weight: 400;
+}
+
+#temperature {
+  font-size: 3rem;
+}
+
+#description {
+  font-size: 1.5rem;
+}
+
+#squares-container {
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 1rem;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.square {
+  flex-shrink: 0;
+  height: 200px;
+  width: 200px;
+  box-sizing: border-box;
+  background-color: rgb(50, 125, 199);
+  border-radius: 0.5rem;
+  padding: 1rem;
 }

@@ -1,7 +1,7 @@
 import { mockWeather } from "./Mock";
 import countryCodeEmoji from "country-code-emoji";
 
-const USE_MOCK = false;
+const USE_MOCK = true;
 const API_KEY = "04d4d495e39f2311c4acd1148b6e2130"; // Not leaking my key, yoinked this one >:)
 const RESPONSE_LIMIT = 1;
 
