@@ -1,7 +1,7 @@
 import { mockWeather } from "./Mock";
 import countryCodeEmoji from "country-code-emoji";
 
-const USE_MOCK = true;
+const USE_MOCK = false;
 const API_KEY = "04d4d495e39f2311c4acd1148b6e2130"; // Not leaking my key, yoinked this one >:)
 const RESPONSE_LIMIT = 1;
 
@@ -53,7 +53,16 @@ function processWeatherJson(j, units) {
 }
 
 function convertDegreesToDirection(degrees) {
-  const directions = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"];
+  const directions = [
+    "North East",
+    "East",
+    "South East",
+    "South",
+    "South West",
+    "West",
+    "North West",
+  ];
+
   const index = Math.round(degrees / 45) % 8;
   return directions[index];
 }

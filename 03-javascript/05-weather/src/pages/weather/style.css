@@ -6,7 +6,6 @@ p {
   margin: 0;
 }
 #weather-page {
-  background-color: rgb(82, 143, 206);
   padding: 1rem;
   height: 100%;
   color: white;
@@ -46,4 +45,47 @@ p {
   background-color: rgb(50, 125, 199);
   border-radius: 0.5rem;
   padding: 1rem;
+}
+
+.squareTitle {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.75rem;
+  padding-bottom: 0.5rem;
+  color: rgb(111, 190, 255);
+}
+
+.material-symbols-outlined {
+  font-size: 1rem !important;
+}
+
+.square-main-text {
+  font-size: 2rem;
+}
+
+.wind-data-details {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  padding-top: 0.25rem;
+}
+
+.wind-data:nth-child(2) {
+  border-bottom: 1px solid lightgray;
+  padding-bottom: 0.25rem;
+}
+
+.wind-units {
+  color: rgb(111, 190, 255);
+}
+
+.wind-units,
+.wind-type {
+  font-size: 0.75rem;
+}
+
+#direction {
+  padding-top: 0.5rem;
+  font-size: 1.5rem;
 }

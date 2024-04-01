@@ -1,3 +1,7 @@
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+/>
 <div id="location-header">
   <img
     id="weather-icon"
@@ -9,15 +13,43 @@
   <p id="description"></p>
 </div>
 <div id="squares-container">
-  <div id="wind-container" class="square">
+  <div id="wind-square" class="square">
+    <div class="squareTitle">
+      <span class="material-symbols-outlined"> air </span>
+      WIND
+    </div>
+    <div class="wind-data">
+      <div class="wind-data-details">
+        <p id="speed" class="square-main-text"></p>
+        <div>
+          <p class="wind-units"></p>
+          <p class="wind-type">Wind</p>
+        </div>
+      </div>
+    </div>
+    <div class="wind-data">
+      <div class="wind-data-details">
+        <p id="gusts" class="square-main-text"></p>
+        <div>
+          <p class="wind-units"></p>
+          <p class="wind-type">Wind</p>
+        </div>
+      </div>
+    </div>
     <p id="direction"></p>
-    <p id="speed"></p>
-    <p id="gusts"></p>
   </div>
-  <div id="pressure-container" class="square">
-    <p id="pressure"></p>
+  <div id="humidity-square" class="square">
+    <div class="squareTitle">
+      <span class="material-symbols-outlined"> humidity_mid</span>
+      HUMIDITY
+    </div>
+    <p id="humidity" class="square-main-text"></p>
   </div>
-  <div id="humidity-container" class="square">
-    <p id="humidity"></p>
+  <div id="pressure-square" class="square">
+    <div class="squareTitle">
+      <span class="material-symbols-outlined"> compress </span>
+      PRESSURE
+    </div>
+    <p id="pressure" class="square-main-text"></p>
   </div>
 </div>

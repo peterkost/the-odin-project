@@ -13,6 +13,6 @@ export const mockWeather = {
   wind: {
     speed: 1.33,
     gusts: 1.45,
-    direction: "NE",
+    direction: "North East",
   },
 };
