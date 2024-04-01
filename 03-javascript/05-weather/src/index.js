@@ -3,7 +3,11 @@ import getWeather from "./utils/GetWeather";
 import error from "./pages/error";
 import weather from "./pages/weather";
 
-getWeather().then(displayWeather).catch(displayError);
+changeLocation("Novorossiysk", "metric");
+
+export function changeLocation(location, units) {
+  getWeather(location, units).then(displayWeather).catch(displayError);
+}
 
 function displayWeather(data) {
   document.body.innerHTML = "";
