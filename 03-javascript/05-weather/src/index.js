@@ -14,7 +14,8 @@ function displayWeather(data) {
   document.body.appendChild(weather(data));
 }
 
-function displayError() {
+function displayError(e) {
+  console.error(e);
   document.body.innerHTML = "";
   document.body.appendChild(error());
 }

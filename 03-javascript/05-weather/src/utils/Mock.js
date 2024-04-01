@@ -1,4 +1,9 @@
 export const mockWeather = {
+  location: {
+    city: "Novorossiysk",
+    flag: "🇷🇺",
+  },
+  units: "metric",
   condition: "Clouds",
   description: "broken clouds",
   iconURL: "https://openweathermap.org/img/wn/04n@2x.png",

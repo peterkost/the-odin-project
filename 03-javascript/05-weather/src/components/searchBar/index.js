@@ -13,10 +13,11 @@ export default () => {
 };
 
 function handleKeyPress(e) {
-  if (e.key === "Enter") {
+  if (e.key === "Enter" && e.target.value !== "") {
     const units = document.getElementById("use-imperial").checked
       ? "imperial"
       : "metric";
     changeLocation(e.target.value, units);
+    e.target.value = "";
   }
 }

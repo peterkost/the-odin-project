@@ -1,6 +1,7 @@
 import { mockWeather } from "./Mock";
+import countryCodeEmoji from "country-code-emoji";
 
-const USE_MOCK = true;
+const USE_MOCK = false;
 const API_KEY = "04d4d495e39f2311c4acd1148b6e2130"; // Not leaking my key, yoinked this one >:)
 const RESPONSE_LIMIT = 1;
 
@@ -9,7 +10,7 @@ export default async (location = "Novorossiysk", units = "metric") =>
     ? mockWeather
     : getCoords(location)
         .then((coords) => getWeatherJson(...coords, units))
-        .then(processWeatherJson);
+        .then((json) => processWeatherJson(json, units));
 
 async function getCoords(location) {
   const url = `http://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=${RESPONSE_LIMIT}&appid=${API_KEY}`;
@@ -30,8 +31,13 @@ async function getWeatherJson(lat, lon, units) {
   return response.json();
 }
 
-function processWeatherJson(j) {
+function processWeatherJson(j, units) {
   return {
+    location: {
+      city: j.name,
+      flag: countryCodeEmoji(j.sys.country),
+    },
+    units,
     condition: j.weather[0].main,
     description: j.weather[0].description,
     iconURL: `https://openweathermap.org/img/wn/${j.weather[0].icon}@2x.png`,
