@@ -3,19 +3,26 @@ import getWeather from "./utils/GetWeather";
 import error from "./pages/error";
 import weather from "./pages/weather";
 
+const content = document.getElementById("content");
+const spinner = document.getElementById("lds-spinner");
+
 changeLocation("Novorossiysk", "metric");
 
 export function changeLocation(location, units) {
-  getWeather(location, units).then(displayWeather).catch(displayError);
+  spinner.style.display = "flex";
+  getWeather(location, units)
+    .then(displayWeather)
+    .catch(displayError)
+    .finally((spinner.style.display = "none"));
 }
 
 function displayWeather(data) {
-  document.body.innerHTML = "";
-  document.body.appendChild(weather(data));
+  content.innerHTML = "";
+  content.appendChild(weather(data));
 }
 
 function displayError(e) {
   console.error(e);
-  document.body.innerHTML = "";
-  document.body.appendChild(error());
+  content.innerHTML = "";
+  content.appendChild(error());
 }

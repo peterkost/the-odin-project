@@ -13,7 +13,7 @@ export default async (location = "Novorossiysk", units = "metric") =>
         .then((json) => processWeatherJson(json, units));
 
 async function getCoords(location) {
-  const url = `http://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=${RESPONSE_LIMIT}&appid=${API_KEY}`;
+  const url = `https://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=${RESPONSE_LIMIT}&appid=${API_KEY}`;
   const response = await fetch(url);
   if (!response.ok) {
     throw new Error("Error getting city coords");
