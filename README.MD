@@ -91,3 +91,7 @@ Completed 2024/03/28
 Completed 2024/04/01
 
 [Live Preview](https://peterkost.github.io/the-odin-project/03-javascript/05-weather/dist/)
+
+### Recursion
+
+Completed 2024/04/02
