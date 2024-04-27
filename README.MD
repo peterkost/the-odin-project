@@ -103,3 +103,5 @@ Completed 2024/04/13
 ### Hash Map
 
 Completed 2024/04/14
+
+Extra credit (Hash Set) completed on 2024/04/27
