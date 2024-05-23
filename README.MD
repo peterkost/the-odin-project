@@ -106,6 +106,10 @@ Completed 2024/04/14
 
 Extra credit (Hash Set) completed on 2024/04/27
 
-### Hash Map
+### Binary Search Tree
 
 Completed 2024/05/22
+
+### Knights Travails
+
+Completed 2024/05/23
