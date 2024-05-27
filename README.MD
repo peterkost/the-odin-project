@@ -6,6 +6,9 @@
 
 Completed in 19:49:59
 
+<details>
+  <summary><h3>Project List</h3></summary>
+
 ### Recipes
 
 Completed 2024/02/16
@@ -36,11 +39,16 @@ Completed 2024/02/21
 
 [Live Preview](https://peterkost.github.io/the-odin-project/01-foundations/05-calculator/)
 
+</details>
+
 ## Intermediate HTML and CSS
 
 2024/02/22-2024/02/28
 
 Completed in 15:48:14
+
+<details>
+  <summary><h3>Project List</h3></summary>
 
 ### Sign up form
 
@@ -56,11 +64,16 @@ Making this made me appreciate component based libraries. Even a single page lik
 
 [Live Preview](https://peterkost.github.io/the-odin-project/02-intermediate-html-and-css/02-admin-dashboard/)
 
+</details>
+
 ## JavaScript
 
 2024/02/28-
 
 Completed in
+
+<details>
+  <summary><h3>Project List</h3></summary>
 
 ### Library
 
@@ -119,3 +132,5 @@ Completed 2024/05/23
 Completed 2024/05/27
 
 Coincidentally read Farley's Modern Software Engineering at the same time as doing this lesson. TDD is pretty based. I will now go and evangelize this new and exciting thing I just learned.
+
+</details>
