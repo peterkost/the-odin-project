@@ -113,3 +113,9 @@ Completed 2024/05/22
 ### Knights Travails
 
 Completed 2024/05/23
+
+### Testing Practice
+
+Completed 2024/05/27
+
+Coincidentally read Farley's Modern Software Engineering at the same time as doing this lesson. TDD is pretty based. I will now go and evangelize this new and exciting thing I just learned.
