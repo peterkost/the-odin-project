@@ -7,6 +7,7 @@ module.exports = {
   devtool: "cheap-source-map",
   devServer: {
     static: "./dist",
+    hot: true,
     open: {
       app: {
         name: "Google Chrome",
