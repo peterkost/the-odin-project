@@ -8,6 +8,7 @@ module.exports = {
   devServer: {
     static: "./dist",
     hot: true,
+    watchFiles: ["src/*.html"],
     open: {
       app: {
         name: "Google Chrome",
