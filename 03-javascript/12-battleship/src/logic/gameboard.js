@@ -9,7 +9,7 @@ const SIZE = 10;
 export { MISS, HIT };
 
 export default class GameBoard {
-  #board = Array.from(Array(SIZE), () => new Array(SIZE).fill(EMPTY));
+  board = Array.from(Array(SIZE), () => new Array(SIZE).fill(EMPTY));
   #ships = new Map();
   #nextShipId = 0;
 
@@ -26,11 +26,11 @@ export default class GameBoard {
 
     if (start.x === end.x) {
       for (let i = start.y; i <= end.y; i++) {
-        this.#board[i][start.x] = this.#nextShipId;
+        this.board[i][start.x] = this.#nextShipId;
       }
     } else {
       for (let i = start.x; i <= end.x; i++) {
-        this.#board[start.y][i] = this.#nextShipId;
+        this.board[start.y][i] = this.#nextShipId;
       }
     }
 
@@ -51,10 +51,10 @@ export default class GameBoard {
 
     const tile = this.getTile(coords);
     if (isNaN(parseInt(tile))) {
-      this.#board[coords.y][coords.x] = MISS;
+      this.board[coords.y][coords.x] = MISS;
       return false;
     } else {
-      this.#board[coords.y][coords.x] = HIT;
+      this.board[coords.y][coords.x] = HIT;
       const ship = this.#ships.get(tile);
       ship.hit();
       if (ship.isSunk()) {
@@ -66,7 +66,7 @@ export default class GameBoard {
   }
 
   getTile(coords) {
-    return this.#board[coords.y][coords.x];
+    return this.board[coords.y][coords.x];
   }
 
   areAllSunk() {
@@ -80,13 +80,13 @@ export default class GameBoard {
   #isOverlapping(start, end) {
     if (start.x === end.x) {
       for (let i = start.y; i <= end.y; i++) {
-        if (this.#board[i][start.x] !== EMPTY) {
+        if (this.board[i][start.x] !== EMPTY) {
           return true;
         }
       }
     } else {
       for (let i = start.x; i <= end.x; i++) {
-        if (this.#board[start.y][i] !== EMPTY) {
+        if (this.board[start.y][i] !== EMPTY) {
           return true;
         }
       }
@@ -95,6 +95,6 @@ export default class GameBoard {
   }
 
   print() {
-    console.log(this.#board.map((row) => row.join(" ")).join("\n"));
+    console.log(this.board.map((row) => row.join(" ")).join("\n"));
   }
 }
