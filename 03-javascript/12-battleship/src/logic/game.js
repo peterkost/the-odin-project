@@ -18,6 +18,9 @@ export default class Game {
     if (this.computer.gameBoard.areAllSunk()) {
       this.renderer.gameEnd(true);
     }
+
+    this.user.gameBoard.attack(this.computer.getAttack());
+    this.renderer.redrawGrid(this.user.gameBoard.board, true);
   }
 
   run() {

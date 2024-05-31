@@ -6,8 +6,19 @@ const ShipType = Object.freeze({
   DESTROYER: Symbol(2),
 });
 
-const Coords = (x, y) => {
-  return { x, y };
+class Coords {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+
+  hash() {
+    return `${this.x},${this.y}`;
+  }
+}
+
+const createCoords = (x, y) => {
+  return new Coords(x, y);
 };
 
-export { ShipType, Coords };
+export { ShipType, createCoords as Coords };

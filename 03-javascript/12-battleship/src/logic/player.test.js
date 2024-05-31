@@ -27,4 +27,22 @@ describe("Player", () => {
     const player = new Player(false, true);
     expect(player.gameBoard.areAllSunk()).toBe(false);
   });
+
+  describe("NPC Attack", () => {
+    test("Returns a coordinate", () => {
+      const player = new Player(false, true);
+      expect(player.getAttack()).toHaveProperty("x");
+      expect(player.getAttack()).toHaveProperty("y");
+    });
+
+    test("Coordinate is on unexplored tile", () => {
+      const player = new Player(false, true);
+      const attacked = new Set();
+      for (let i = 0; i < 100; i++) {
+        const attack = player.getAttack();
+        expect(attacked).not.toContain(attack.hash());
+        attacked.add(attack.hash());
+      }
+    });
+  });
 });

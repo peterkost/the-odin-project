@@ -17,7 +17,9 @@ export default class Renderer {
         square.classList.add("grid-tile");
         square.innerHTML = grid[i][j];
         square.id = `${left ? "left" : "right"}-${i},${j}`;
-        square.onclick = () => onClick(Coords(j, i));
+        if (!left) {
+          square.onclick = () => onClick(Coords(j, i));
+        }
 
         row.appendChild(square);
       }
