@@ -23,4 +23,9 @@ export default class Renderer {
       }
     }
   }
+
+  gameEnd(win) {
+    const gridContainer = document.getElementById("gb-right");
+    gridContainer.innerHTML = "<h1>You win!</h1>";
+  }
 }

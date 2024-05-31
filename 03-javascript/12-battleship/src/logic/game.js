@@ -14,17 +14,26 @@ export default class Game {
       false,
       this.#handleClick.bind(this),
     );
+
+    if (this.computer.gameBoard.areAllSunk()) {
+      this.renderer.gameEnd(true);
+    }
   }
 
   run() {
-    console.log("starting game");
-    this.user.gameBoard.print();
+    this.resetState();
     this.renderer.redrawGrid(this.user.gameBoard.board, true);
     this.renderer.redrawGrid(
       this.computer.gameBoard.board,
       false,
       this.#handleClick.bind(this),
     );
+  }
+
+  resetState() {
+    this.user = new Player(false, true);
+    this.computer = new Player(true, true);
+    this.userTurn = true;
   }
 
   continueGame() {

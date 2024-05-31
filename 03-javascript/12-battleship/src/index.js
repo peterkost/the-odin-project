@@ -8,6 +8,9 @@ function component() {
   return el;
 }
 
-document.body.appendChild(component());
 const game = new Game();
+document.body.appendChild(component());
+const startButton = document.getElementById("start-button");
+console.log(startButton);
+startButton.onclick = () => game.run();
 game.run();
