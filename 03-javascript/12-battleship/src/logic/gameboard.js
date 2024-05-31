@@ -36,7 +36,7 @@ export default class GameBoard {
 
     this.ships.set(
       this.#nextShipId,
-      new Ship(Math.max(end.x - start.x, end.y, start.y) + 1),
+      new Ship(Math.max(end.x - start.x, end.y - start.y) + 1),
     );
 
     this.#nextShipId += 1;
