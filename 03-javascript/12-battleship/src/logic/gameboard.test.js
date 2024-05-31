@@ -12,6 +12,9 @@ describe("GameBoard", () => {
   describe("Ship placement", () => {
     test("Valid", () => {
       expect(gb.place(Coords(0, 0), Coords(0, 3))).toEqual(true);
+      expect(gb.ships.size).toEqual(1);
+      gb.place(Coords(1, 0), Coords(1, 3));
+      expect(gb.ships.size).toEqual(2);
     });
 
     test("Invalid, ends out of bounds", () => {
@@ -28,6 +31,17 @@ describe("GameBoard", () => {
       gb.place(Coords(0, 0), Coords(0, 3));
 
       expect(gb.areAllSunk()).toBe(false);
+    });
+
+    test("Reflected in board", () => {
+      const start = 0;
+      const end = 5;
+      gb.place(Coords(0, 0), Coords(0, 5));
+      expect(gb.place(Coords(1, 1), Coords(5, 1))).toBe(true);
+      for (let i = start; i < end; i++) {
+        expect(gb.board[i][0]).toBe(0);
+        expect(gb.board[1][i + 1]).toBe(1);
+      }
     });
   });
 

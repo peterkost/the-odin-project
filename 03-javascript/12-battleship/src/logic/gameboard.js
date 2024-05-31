@@ -10,7 +10,7 @@ export { MISS, HIT };
 
 export default class GameBoard {
   board = Array.from(Array(SIZE), () => new Array(SIZE).fill(EMPTY));
-  #ships = new Map();
+  ships = new Map();
   #nextShipId = 0;
 
   place(start, end) {
@@ -34,7 +34,7 @@ export default class GameBoard {
       }
     }
 
-    this.#ships.set(
+    this.ships.set(
       this.#nextShipId,
       new Ship(Math.max(end.x - start.x, end.y, start.y) + 1),
     );
@@ -55,10 +55,10 @@ export default class GameBoard {
       return false;
     } else {
       this.board[coords.y][coords.x] = HIT;
-      const ship = this.#ships.get(tile);
+      const ship = this.ships.get(tile);
       ship.hit();
       if (ship.isSunk()) {
-        this.#ships.delete(tile);
+        this.ships.delete(tile);
       }
 
       return true;
@@ -70,7 +70,7 @@ export default class GameBoard {
   }
 
   areAllSunk() {
-    return !this.#ships.size;
+    return !this.ships.size;
   }
 
   #invalidCoords(coords) {
