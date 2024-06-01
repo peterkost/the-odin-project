@@ -23,6 +23,10 @@ export default class Game {
 
     this.user.gameBoard.attack(this.computer.getAttack());
     this.renderer.redrawGrid(this.user.gameBoard.board, true);
+
+    if (this.user.gameBoard.areAllSunk()) {
+      this.renderer.gameEnd(false);
+    }
   }
 
   run() {
