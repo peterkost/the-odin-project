@@ -43,4 +43,20 @@ export default class Renderer {
     const gridContainer = document.getElementById("gb-right");
     gridContainer.innerHTML = `<h1>You ${win ? "win" : "lose"}!</h1>`;
   }
+
+  newGame(start, onClick) {
+    const container = document.getElementById("button-container");
+    container.innerHTML = "";
+    if (start) {
+      const shuffleButton = document.createElement("button");
+      shuffleButton.innerText = "Shuffle ships";
+      shuffleButton.onclick = onClick;
+      container.append(shuffleButton);
+    } else {
+      const restartButton = document.createElement("button");
+      restartButton.innerText = "Restart";
+      restartButton.onclick = onClick;
+      container.append(restartButton);
+    }
+  }
 }

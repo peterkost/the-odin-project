@@ -8,6 +8,8 @@ export default class Game {
   renderer = new Renderer();
 
   #handleClick(coords) {
+    this.renderer.newGame(false, this.run.bind(this));
+
     if (!this.computer.gameBoard.attack(coords)) {
       return;
     }
@@ -52,6 +54,7 @@ export default class Game {
     this.user = new Player(false, true);
     this.computer = new Player(true, true);
     this.userTurn = true;
+    this.renderer.newGame(true, this.run.bind(this));
   }
 
   continueGame() {
