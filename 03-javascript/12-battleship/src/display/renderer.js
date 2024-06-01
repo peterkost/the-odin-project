@@ -15,11 +15,16 @@ export default class Renderer {
       for (let j = 0; j < grid[0].length; j++) {
         const square = document.createElement("div");
         square.classList.add("grid-tile");
-        square.innerHTML = grid[i][j];
         square.id = `${left ? "left" : "right"}-${i},${j}`;
+
+        let tileContent = grid[i][j];
         if (!left) {
           square.onclick = () => onClick(Coords(j, i));
+          if (!isNaN(parseInt(tileContent))) {
+            tileContent = "~";
+          }
         }
+        square.innerHTML = tileContent;
 
         row.appendChild(square);
       }
