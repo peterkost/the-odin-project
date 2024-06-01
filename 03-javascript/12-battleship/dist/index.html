@@ -3,7 +3,24 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Webpack Site</title>
+    <title>Battleship</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap"
+      rel="stylesheet"
+    />
   <script defer src="main.js"></script></head>
-  <body><p>src/index.html</p</body>
+  <body>
+    <h1 id="title">Battleship Kostemkin</h1>
+    <div id="button-container"></div>
+    <div id="game-container">
+      <div id="gb-left" class="gameboard">1</div>
+      <div id="gb-right" class="gameboard">2</div>
+      <h2 class="column-title">User</h1>
+      <h2 class="column-title">Computer</h1>
+      <div id="ships-left" class="ships"></div>
+      <div id="ships-right" class="ships"></div>
+    </div>
+  </body>
 </html>
