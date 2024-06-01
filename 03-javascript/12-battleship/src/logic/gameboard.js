@@ -50,9 +50,13 @@ export default class GameBoard {
     }
 
     const tile = this.getTile(coords);
+
+    if (tile === HIT || tile === MISS) {
+      return false;
+    }
+
     if (isNaN(parseInt(tile))) {
       this.board[coords.y][coords.x] = MISS;
-      return false;
     } else {
       this.board[coords.y][coords.x] = HIT;
       const ship = this.ships.get(tile);
@@ -60,9 +64,8 @@ export default class GameBoard {
       if (ship.isSunk()) {
         this.ships.delete(tile);
       }
-
-      return true;
     }
+    return true;
   }
 
   getTile(coords) {

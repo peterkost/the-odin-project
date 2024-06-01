@@ -8,7 +8,9 @@ export default class Game {
   renderer = new Renderer();
 
   #handleClick(coords) {
-    this.computer.gameBoard.attack(coords);
+    if (!this.computer.gameBoard.attack(coords)) {
+      return;
+    }
     this.renderer.redrawGrid(
       this.computer.gameBoard.board,
       false,
