@@ -4,7 +4,6 @@ import Renderer from "../display/renderer";
 export default class Game {
   user = new Player(false, true);
   computer = new Player(true, true);
-  userTurn = true;
   renderer = new Renderer();
 
   #handleClick(coords) {
@@ -53,7 +52,6 @@ export default class Game {
   resetState() {
     this.user = new Player(false, true);
     this.computer = new Player(true, true);
-    this.userTurn = true;
     this.renderer.newGame(true, this.run.bind(this));
   }
 
