@@ -68,9 +68,9 @@ Making this made me appreciate component based libraries. Even a single page lik
 
 ## JavaScript
 
-2024/02/28-
+2024/02/28-2024/05/31
 
-Completed in
+Completed in 102:48:14
 
 <details>
   <summary><h3>Project List</h3></summary>
@@ -132,5 +132,13 @@ Completed 2024/05/23
 Completed 2024/05/27
 
 Coincidentally read Farley's Modern Software Engineering at the same time as doing this lesson. TDD is pretty based. I will now go and evangelize this new and exciting thing I just learned.
+
+### Battleship
+
+Completed 2024/05/31
+
+Decided not to spend any time polishing this or implementing the extra features. I may comeback to it, but for now I have no intention of demoing this so I feel like it is not worth the effort.
+
+[Live Preview](https://peterkost.github.io/the-odin-project/03-javascript/12-battleship/dist/)
 
 </details>
