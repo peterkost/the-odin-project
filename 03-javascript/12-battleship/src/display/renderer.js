@@ -1,7 +1,7 @@
 import { Coords } from "../logic/types";
 
 export default class Renderer {
-  redrawGrid(grid, left, onClick) {
+  grid(grid, left, onClick) {
     const gridContainer = document.getElementById(
       `gb-${left ? "left" : "right"}`,
     );
@@ -24,6 +24,14 @@ export default class Renderer {
         row.appendChild(square);
       }
     }
+  }
+
+  score(left, right) {
+    const leftEl = document.getElementById("ships-left");
+    leftEl.innerHTML = `${5 - left} sunk - ${left} afloat`;
+
+    const rightEl = document.getElementById("ships-right");
+    rightEl.innerHTML = `${5 - right} sunk - ${right} afloat`;
   }
 
   gameEnd(win) {

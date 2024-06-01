@@ -14,12 +14,6 @@ export default class Player {
     }
   }
 
-  #generateBoard() {
-    const shipCoords = [[Coords(0, 0), Coords(0, 1)]];
-
-    shipCoords.forEach((coords) => this.gameBoard.place(coords[0], coords[1]));
-  }
-
   getAttack() {
     if (this.#unAttacked.length === 0) {
       throw new Error("Out of attacks");

@@ -11,7 +11,7 @@ export default class Game {
     if (!this.computer.gameBoard.attack(coords)) {
       return;
     }
-    this.renderer.redrawGrid(
+    this.renderer.grid(
       this.computer.gameBoard.board,
       false,
       this.#handleClick.bind(this),
@@ -22,17 +22,26 @@ export default class Game {
     }
 
     this.user.gameBoard.attack(this.computer.getAttack());
-    this.renderer.redrawGrid(this.user.gameBoard.board, true);
+    this.renderer.grid(this.user.gameBoard.board, true);
 
     if (this.user.gameBoard.areAllSunk()) {
       this.renderer.gameEnd(false);
     }
+
+    this.renderer.score(
+      this.user.gameBoard.ships.size,
+      this.computer.gameBoard.ships.size,
+    );
   }
 
   run() {
     this.resetState();
-    this.renderer.redrawGrid(this.user.gameBoard.board, true);
-    this.renderer.redrawGrid(
+    this.renderer.score(
+      this.user.gameBoard.ships.size,
+      this.computer.gameBoard.ships.size,
+    );
+    this.renderer.grid(this.user.gameBoard.board, true);
+    this.renderer.grid(
       this.computer.gameBoard.board,
       false,
       this.#handleClick.bind(this),
