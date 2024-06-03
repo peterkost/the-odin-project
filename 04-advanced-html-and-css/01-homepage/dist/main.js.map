@@ -1,0 +1,1 @@
+{"version":3,"file":"main.js","mappings":";;;;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA","sources":["webpack://webpack-template/./src/index.js"],"sourcesContent":["function component() {\n  const el = document.createElement(\"div\");\n  el.innerHTML = \"src/index.js\";\n  return el;\n}\n\ndocument.body.appendChild(component());\n"],"names":[],"sourceRoot":""}
