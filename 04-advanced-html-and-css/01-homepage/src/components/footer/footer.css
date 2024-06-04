@@ -1,3 +1,7 @@
+footer {
+  color: white;
+}
+
 address {
   font-style: normal;
 }
@@ -5,6 +9,8 @@ address {
 #footer-content > address > p {
   margin: 0;
   margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
 }
 
 #footer-content {
@@ -42,4 +48,39 @@ address {
   object-fit: cover;
   width: 100%;
   margin-bottom: -1rem;
+}
+
+.footer-address-icons {
+  filter: invert(100%);
+  display: none;
+  width: 1.5rem;
+  padding-right: 0.5rem;
+}
+
+@media (min-width: 751px) {
+  footer {
+    display: grid;
+    grid-template: auto / 4fr 1fr;
+  }
+
+  #footer-image {
+    padding: var(--padding-med);
+    width: 20rem;
+  }
+
+  #footer-header {
+    text-align: left;
+  }
+
+  #footer-icons-container {
+    justify-content: left;
+  }
+
+  #footer-content {
+    padding: 4rem var(--padding-med) 0 var(--padding-med);
+  }
+
+  .footer-address-icons {
+    display: inline;
+  }
 }

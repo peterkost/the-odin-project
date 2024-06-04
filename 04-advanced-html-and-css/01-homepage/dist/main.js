@@ -21,13 +21,19 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, `address {
+___CSS_LOADER_EXPORT___.push([module.id, `footer {
+  color: white;
+}
+
+address {
   font-style: normal;
 }
 
 #footer-content > address > p {
   margin: 0;
   margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
 }
 
 #footer-content {
@@ -66,6 +72,41 @@ ___CSS_LOADER_EXPORT___.push([module.id, `address {
   width: 100%;
   margin-bottom: -1rem;
 }
+
+.footer-address-icons {
+  filter: invert(100%);
+  display: none;
+  width: 1.5rem;
+  padding-right: 0.5rem;
+}
+
+@media (min-width: 751px) {
+  footer {
+    display: grid;
+    grid-template: auto / 4fr 1fr;
+  }
+
+  #footer-image {
+    padding: var(--padding-med);
+    width: 20rem;
+  }
+
+  #footer-header {
+    text-align: left;
+  }
+
+  #footer-icons-container {
+    justify-content: left;
+  }
+
+  #footer-content {
+    padding: 4rem var(--padding-med) 0 var(--padding-med);
+  }
+
+  .footer-address-icons {
+    display: inline;
+  }
+}
 `, ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
@@ -94,12 +135,9 @@ var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBP
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, `body {
   --padding-small: 2rem;
+  --padding-med: 4rem;
   box-sizing: border-box;
   margin: 0;
-}
-
-footer {
-  color: white;
 }
 
 .font-title {
@@ -247,12 +285,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_html_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_html_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_0__);
 // Imports
 
-var ___HTML_LOADER_IMPORT_0___ = new URL(/* asset import */ __webpack_require__(/*! ../../resources/footer-image-close.jpeg */ "./src/resources/footer-image-close.jpeg"), __webpack_require__.b);
-var ___HTML_LOADER_IMPORT_1___ = new URL(/* asset import */ __webpack_require__(/*! ../../resources/footer-image.jpeg */ "./src/resources/footer-image.jpeg"), __webpack_require__.b);
+var ___HTML_LOADER_IMPORT_0___ = new URL(/* asset import */ __webpack_require__(/*! ../../resources/icons/phone-outline.svg */ "./src/resources/icons/phone-outline.svg"), __webpack_require__.b);
+var ___HTML_LOADER_IMPORT_1___ = new URL(/* asset import */ __webpack_require__(/*! ../../resources/icons/email-outline.svg */ "./src/resources/icons/email-outline.svg"), __webpack_require__.b);
+var ___HTML_LOADER_IMPORT_2___ = new URL(/* asset import */ __webpack_require__(/*! ../../resources/images/footer-image-close.jpeg */ "./src/resources/images/footer-image-close.jpeg"), __webpack_require__.b);
+var ___HTML_LOADER_IMPORT_3___ = new URL(/* asset import */ __webpack_require__(/*! ../../resources/images/footer-image.jpeg */ "./src/resources/images/footer-image.jpeg"), __webpack_require__.b);
 // Module
 var ___HTML_LOADER_REPLACEMENT_0___ = _node_modules_html_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_0___default()(___HTML_LOADER_IMPORT_0___);
 var ___HTML_LOADER_REPLACEMENT_1___ = _node_modules_html_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_0___default()(___HTML_LOADER_IMPORT_1___);
-var code = "<div id=\"footer-content\" class=\"background-main\">\n  <h1 id=\"footer-header\" class=\"font-title\">Contact me</h1>\n  <p id=\"footer-subheading\">\n    Please get in touch if you think our work could be mutually beneficial!\n  </p>\n  <address>\n    <p id=\"footer-address\">\n      1234 Random Road <br />\n      Random Town, California 12345\n    </p>\n    <p>555-555-5555</p>\n    <p>ashleywilliams.is.not.real@gmail.com</p>\n  </address>\n\n  <div id=\"footer-icons-container\">\n    <img\n      class=\"footer-icon\"\n      src=\"https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg\"\n    />\n    <img\n      class=\"footer-icon\"\n      src=\"https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linkedin/linkedin-plain.svg\"\n    />\n    <a href=\"https://twitter.com\">\n      <img\n        class=\"footer-icon\"\n        src=\"https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/twitter/twitter-original.svg\"\n        alt=\"Twitter\"\n    /></a>\n  </div>\n</div>\n<picture>\n  <source\n    media=\"(max-width: 750px)\"\n    srcset=\"" + ___HTML_LOADER_REPLACEMENT_0___ + "\"\n  />\n  <source\n    media=\"(min-width: 751px)\"\n    srcset=\"" + ___HTML_LOADER_REPLACEMENT_1___ + "\"\n  />\n  <img\n    id=\"footer-image\"\n    src=\"" + ___HTML_LOADER_REPLACEMENT_1___ + "\"\n    alt=\"Jack standing by window\"\n  />\n</picture>\n";
+var ___HTML_LOADER_REPLACEMENT_2___ = _node_modules_html_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_0___default()(___HTML_LOADER_IMPORT_2___);
+var ___HTML_LOADER_REPLACEMENT_3___ = _node_modules_html_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_0___default()(___HTML_LOADER_IMPORT_3___);
+var code = "<div id=\"footer-content\">\n  <h1 id=\"footer-header\" class=\"font-title\">Contact me</h1>\n  <p id=\"footer-subheading\">\n    Please get in touch if you think our work could be mutually beneficial!\n  </p>\n  <address>\n    <p id=\"footer-address\">\n      1234 Random Road <br />\n      Random Town, California 12345\n    </p>\n    <p>\n      <img\n        src=\"" + ___HTML_LOADER_REPLACEMENT_0___ + "\"\n        alt=\"\"\n        class=\"footer-address-icons\"\n      />\n      555-555-5555\n    </p>\n    <p>\n      <img\n        src=\"" + ___HTML_LOADER_REPLACEMENT_1___ + "\"\n        alt=\"\"\n        class=\"footer-address-icons\"\n      />\n      ashleywilliams.is.not.real@gmail.com\n    </p>\n  </address>\n\n  <div id=\"footer-icons-container\">\n    <img\n      class=\"footer-icon\"\n      src=\"https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg\"\n    />\n    <img\n      class=\"footer-icon\"\n      src=\"https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linkedin/linkedin-plain.svg\"\n    />\n    <a href=\"https://twitter.com\">\n      <img\n        class=\"footer-icon\"\n        src=\"https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/twitter/twitter-original.svg\"\n        alt=\"Twitter\"\n    /></a>\n  </div>\n</div>\n<picture>\n  <source\n    media=\"(max-width: 2048px)\"\n    srcset=\"" + ___HTML_LOADER_REPLACEMENT_2___ + "\"\n  />\n  <source\n    media=\"(min-width: 2049px)\"\n    srcset=\"" + ___HTML_LOADER_REPLACEMENT_3___ + "\"\n  />\n  <img\n    id=\"footer-image\"\n    src=\"" + ___HTML_LOADER_REPLACEMENT_3___ + "\"\n    alt=\"Jack standing by window\"\n  />\n</picture>\n";
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (code);
 
@@ -689,20 +731,40 @@ const setFooter = () => {
 
 /***/ }),
 
-/***/ "./src/resources/footer-image-close.jpeg":
+/***/ "./src/resources/icons/email-outline.svg":
 /*!***********************************************!*\
-  !*** ./src/resources/footer-image-close.jpeg ***!
+  !*** ./src/resources/icons/email-outline.svg ***!
   \***********************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = __webpack_require__.p + "ffe24abaeb56c6af70c1.svg";
+
+/***/ }),
+
+/***/ "./src/resources/icons/phone-outline.svg":
+/*!***********************************************!*\
+  !*** ./src/resources/icons/phone-outline.svg ***!
+  \***********************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = __webpack_require__.p + "04d357205b0858045638.svg";
+
+/***/ }),
+
+/***/ "./src/resources/images/footer-image-close.jpeg":
+/*!******************************************************!*\
+  !*** ./src/resources/images/footer-image-close.jpeg ***!
+  \******************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = __webpack_require__.p + "365331760e7427a54085.jpeg";
 
 /***/ }),
 
-/***/ "./src/resources/footer-image.jpeg":
-/*!*****************************************!*\
-  !*** ./src/resources/footer-image.jpeg ***!
-  \*****************************************/
+/***/ "./src/resources/images/footer-image.jpeg":
+/*!************************************************!*\
+  !*** ./src/resources/images/footer-image.jpeg ***!
+  \************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = __webpack_require__.p + "d10df0a0ddc1846bc770.jpeg";
