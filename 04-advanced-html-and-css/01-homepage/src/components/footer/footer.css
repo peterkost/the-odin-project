@@ -1,0 +1,45 @@
+address {
+  font-style: normal;
+}
+
+#footer-content > address > p {
+  margin: 0;
+  margin-bottom: 0.5rem;
+}
+
+#footer-content {
+  padding: 0 var(--padding-small);
+}
+
+#footer-header {
+  text-align: center;
+  font-size: 3rem;
+  padding-top: 2rem;
+  font-weight: 100;
+}
+
+#footer-subheading {
+  font-size: 1.25rem;
+}
+
+#footer-address {
+  padding-bottom: 0.8rem;
+}
+
+#footer-icons-container {
+  justify-content: center;
+  display: flex;
+  padding-top: 1rem;
+  padding-bottom: 5rem;
+  gap: 2rem;
+}
+
+.footer-icon {
+  width: 3rem;
+}
+
+#footer-image {
+  object-fit: cover;
+  width: 100%;
+  margin-bottom: -1rem;
+}
