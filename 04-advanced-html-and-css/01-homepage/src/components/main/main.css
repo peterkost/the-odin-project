@@ -1,0 +1,6 @@
+#main-projects {
+  display: grid;
+  padding: 1rem var(--padding-small);
+  padding-bottom: 8rem;
+  gap: 3rem;
+}

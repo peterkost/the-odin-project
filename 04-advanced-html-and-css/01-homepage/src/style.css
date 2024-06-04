@@ -1,5 +1,5 @@
 body {
-  --padding-small: 2rem;
+  --padding-small: 1.5rem;
   --padding-med: 4rem;
   --padding-lg: 8rem;
   box-sizing: border-box;
@@ -21,4 +21,10 @@ body {
 
 .background-main {
   background-color: #0891b2;
+}
+
+.section-title {
+  text-align: center;
+  margin: 0;
+  padding: 0 var(--padding-small);
 }

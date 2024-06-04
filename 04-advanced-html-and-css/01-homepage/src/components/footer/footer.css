@@ -17,14 +17,10 @@ address {
   padding: 0 var(--padding-small);
 }
 
-#footer-header {
-  text-align: center;
-  font-size: 3rem;
-  padding-top: 2rem;
-  font-weight: 100;
-}
-
 #footer-subheading {
+  margin: 0;
+  padding-top: 0.5rem;
+  padding-bottom: 1rem;
   font-size: 1.25rem;
 }
 
@@ -68,10 +64,6 @@ address {
     width: 20rem;
   }
 
-  #footer-header {
-    text-align: left;
-  }
-
   #footer-icons-container {
     justify-content: left;
   }
@@ -90,10 +82,6 @@ address {
     display: grid;
     grid-template: auto / 1fr 2fr;
     font-size: 2rem;
-  }
-
-  #footer-header {
-    font-size: 6rem;
   }
 
   #footer-subheading {
