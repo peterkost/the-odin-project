@@ -84,3 +84,34 @@ address {
     display: inline;
   }
 }
+
+@media (min-width: 2880px) {
+  footer {
+    display: grid;
+    grid-template: auto / 1fr 2fr;
+    font-size: 2rem;
+  }
+
+  #footer-header {
+    font-size: 6rem;
+  }
+
+  #footer-subheading {
+    font-size: 2rem;
+  }
+
+  #footer-image {
+    padding: var(--padding-lg);
+    width: 66%;
+    padding-left: auto;
+    float: right;
+  }
+
+  .footer-icon {
+    width: 6rem;
+  }
+  .footer-address-icons {
+    width: 3rem;
+    padding-right: 1rem;
+  }
+}

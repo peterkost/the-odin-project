@@ -107,6 +107,37 @@ address {
     display: inline;
   }
 }
+
+@media (min-width: 2880px) {
+  footer {
+    display: grid;
+    grid-template: auto / 1fr 2fr;
+    font-size: 2rem;
+  }
+
+  #footer-header {
+    font-size: 6rem;
+  }
+
+  #footer-subheading {
+    font-size: 2rem;
+  }
+
+  #footer-image {
+    padding: var(--padding-lg);
+    width: 66%;
+    padding-left: auto;
+    float: right;
+  }
+
+  .footer-icon {
+    width: 6rem;
+  }
+  .footer-address-icons {
+    width: 3rem;
+    padding-right: 1rem;
+  }
+}
 `, ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
@@ -136,6 +167,7 @@ var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBP
 ___CSS_LOADER_EXPORT___.push([module.id, `body {
   --padding-small: 2rem;
   --padding-med: 4rem;
+  --padding-lg: 8rem;
   box-sizing: border-box;
   margin: 0;
 }
@@ -294,7 +326,7 @@ var ___HTML_LOADER_REPLACEMENT_0___ = _node_modules_html_loader_dist_runtime_get
 var ___HTML_LOADER_REPLACEMENT_1___ = _node_modules_html_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_0___default()(___HTML_LOADER_IMPORT_1___);
 var ___HTML_LOADER_REPLACEMENT_2___ = _node_modules_html_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_0___default()(___HTML_LOADER_IMPORT_2___);
 var ___HTML_LOADER_REPLACEMENT_3___ = _node_modules_html_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_0___default()(___HTML_LOADER_IMPORT_3___);
-var code = "<div id=\"footer-content\">\n  <h1 id=\"footer-header\" class=\"font-title\">Contact me</h1>\n  <p id=\"footer-subheading\">\n    Please get in touch if you think our work could be mutually beneficial!\n  </p>\n  <address>\n    <p id=\"footer-address\">\n      1234 Random Road <br />\n      Random Town, California 12345\n    </p>\n    <p>\n      <img\n        src=\"" + ___HTML_LOADER_REPLACEMENT_0___ + "\"\n        alt=\"\"\n        class=\"footer-address-icons\"\n      />\n      555-555-5555\n    </p>\n    <p>\n      <img\n        src=\"" + ___HTML_LOADER_REPLACEMENT_1___ + "\"\n        alt=\"\"\n        class=\"footer-address-icons\"\n      />\n      ashleywilliams.is.not.real@gmail.com\n    </p>\n  </address>\n\n  <div id=\"footer-icons-container\">\n    <img\n      class=\"footer-icon\"\n      src=\"https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg\"\n    />\n    <img\n      class=\"footer-icon\"\n      src=\"https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linkedin/linkedin-plain.svg\"\n    />\n    <a href=\"https://twitter.com\">\n      <img\n        class=\"footer-icon\"\n        src=\"https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/twitter/twitter-original.svg\"\n        alt=\"Twitter\"\n    /></a>\n  </div>\n</div>\n<picture>\n  <source\n    media=\"(max-width: 2048px)\"\n    srcset=\"" + ___HTML_LOADER_REPLACEMENT_2___ + "\"\n  />\n  <source\n    media=\"(min-width: 2049px)\"\n    srcset=\"" + ___HTML_LOADER_REPLACEMENT_3___ + "\"\n  />\n  <img\n    id=\"footer-image\"\n    src=\"" + ___HTML_LOADER_REPLACEMENT_3___ + "\"\n    alt=\"Jack standing by window\"\n  />\n</picture>\n";
+var code = "<div id=\"footer-content\">\n  <h1 id=\"footer-header\" class=\"font-title\">Contact me</h1>\n  <p id=\"footer-subheading\">\n    Please get in touch if you think our work could be mutually beneficial!\n  </p>\n  <address>\n    <p id=\"footer-address\">\n      1234 Random Road <br />\n      Random Town, California 12345\n    </p>\n    <p>\n      <img\n        src=\"" + ___HTML_LOADER_REPLACEMENT_0___ + "\"\n        alt=\"\"\n        class=\"footer-address-icons\"\n      />\n      555-555-5555\n    </p>\n    <p>\n      <img\n        src=\"" + ___HTML_LOADER_REPLACEMENT_1___ + "\"\n        alt=\"\"\n        class=\"footer-address-icons\"\n      />\n      ashleywilliams.is.not.real@gmail.com\n    </p>\n  </address>\n\n  <div id=\"footer-icons-container\">\n    <img\n      class=\"footer-icon\"\n      src=\"https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg\"\n    />\n    <img\n      class=\"footer-icon\"\n      src=\"https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linkedin/linkedin-plain.svg\"\n    />\n    <a href=\"https://twitter.com\">\n      <img\n        class=\"footer-icon\"\n        src=\"https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/twitter/twitter-original.svg\"\n        alt=\"Twitter\"\n    /></a>\n  </div>\n</div>\n<picture>\n  <source\n    media=\"(max-width: 2880px)\"\n    srcset=\"" + ___HTML_LOADER_REPLACEMENT_2___ + "\"\n  />\n  <source\n    media=\"(min-width: 2881px)\"\n    srcset=\"" + ___HTML_LOADER_REPLACEMENT_3___ + "\"\n  />\n  <img\n    id=\"footer-image\"\n    src=\"" + ___HTML_LOADER_REPLACEMENT_3___ + "\"\n    alt=\"Jack standing by window\"\n  />\n</picture>\n";
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (code);
 
