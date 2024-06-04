@@ -152,11 +152,36 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, `#main-projects {
+___CSS_LOADER_EXPORT___.push([module.id, `main {
+  padding: 1rem var(--padding-small) 8rem var(--padding-small);
+}
+
+#main-projects {
   display: grid;
-  padding: 1rem var(--padding-small);
-  padding-bottom: 8rem;
   gap: 3rem;
+  padding-top: 1rem;
+}
+
+@media (min-width: 751px) {
+  main {
+    padding: 2rem var(--padding-med) 8rem var(--padding-med);
+  }
+
+  #main-projects {
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+}
+
+@media (min-width: 2880px) {
+  main {
+    padding: 4rem var(--padding-lg) 16rem var(--padding-lg);
+  }
+
+  #main-projects {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8rem;
+  }
 }
 `, ""]);
 // Exports
@@ -270,7 +295,14 @@ ___CSS_LOADER_EXPORT___.push([module.id, `body {
 .section-title {
   text-align: center;
   margin: 0;
-  padding: 0 var(--padding-small);
+}
+
+@media (min-width: 751px) {
+  .section-title {
+    text-align: left;
+  }
+}
+@media (min-width: 2880px) {
 }
 `, ""]);
 // Exports
@@ -410,7 +442,7 @@ var ___HTML_LOADER_REPLACEMENT_0___ = _node_modules_html_loader_dist_runtime_get
 var ___HTML_LOADER_REPLACEMENT_1___ = _node_modules_html_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_0___default()(___HTML_LOADER_IMPORT_1___);
 var ___HTML_LOADER_REPLACEMENT_2___ = _node_modules_html_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_0___default()(___HTML_LOADER_IMPORT_2___);
 var ___HTML_LOADER_REPLACEMENT_3___ = _node_modules_html_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_0___default()(___HTML_LOADER_IMPORT_3___);
-var code = "<div id=\"footer-content\">\n  <h1 class=\"font-title section-title\">Contact me</h1>\n  <p id=\"footer-subheading\">\n    Please get in touch if you think our work could be mutually beneficial!\n  </p>\n  <address>\n    <p id=\"footer-address\">\n      1234 Random Road <br />\n      Random Town, California 12345\n    </p>\n    <p>\n      <img\n        src=\"" + ___HTML_LOADER_REPLACEMENT_0___ + "\"\n        alt=\"\"\n        class=\"footer-address-icons\"\n      />\n      555-555-5555\n    </p>\n    <p>\n      <img\n        src=\"" + ___HTML_LOADER_REPLACEMENT_1___ + "\"\n        alt=\"\"\n        class=\"footer-address-icons\"\n      />\n      ashleywilliams.is.not.real@gmail.com\n    </p>\n  </address>\n\n  <div id=\"footer-icons-container\">\n    <img\n      class=\"footer-icon\"\n      src=\"https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg\"\n    />\n    <img\n      class=\"footer-icon\"\n      src=\"https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linkedin/linkedin-plain.svg\"\n    />\n    <a href=\"https://twitter.com\">\n      <img\n        class=\"footer-icon\"\n        src=\"https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/twitter/twitter-original.svg\"\n        alt=\"Twitter\"\n    /></a>\n  </div>\n</div>\n<picture>\n  <source\n    media=\"(max-width: 2880px)\"\n    srcset=\"" + ___HTML_LOADER_REPLACEMENT_2___ + "\"\n  />\n  <source\n    media=\"(min-width: 2881px)\"\n    srcset=\"" + ___HTML_LOADER_REPLACEMENT_3___ + "\"\n  />\n  <img\n    id=\"footer-image\"\n    src=\"" + ___HTML_LOADER_REPLACEMENT_3___ + "\"\n    alt=\"Jack standing by window\"\n  />\n</picture>\n";
+var code = "<div id=\"footer-content\">\n  <h1 class=\"font-title section-title\">Contact me</h1>\n  <p id=\"footer-subheading\">\n    Please get in touch if you think our work could be mutually beneficial!\n  </p>\n  <address>\n    <p id=\"footer-address\">\n      1234 Random Road <br />\n      Random Town, California 12345\n    </p>\n    <p>\n      <img\n        src=\"" + ___HTML_LOADER_REPLACEMENT_0___ + "\"\n        alt=\"\"\n        class=\"footer-address-icons\"\n      />\n      555-555-5555\n    </p>\n    <p>\n      <img\n        src=\"" + ___HTML_LOADER_REPLACEMENT_1___ + "\"\n        alt=\"\"\n        class=\"footer-address-icons\"\n      />\n      ashleywilliams.is.not.real@gmail.com\n    </p>\n  </address>\n\n  <div id=\"footer-icons-container\">\n    <img\n      class=\"footer-icon\"\n      src=\"https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg\"\n    />\n    <img\n      class=\"footer-icon\"\n      src=\"https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linkedin/linkedin-plain.svg\"\n    />\n    <a href=\"https://twitter.com\">\n      <img\n        class=\"footer-icon\"\n        src=\"https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/twitter/twitter-original.svg\"\n        alt=\"Twitter\"\n    /></a>\n  </div>\n</div>\n<picture>\n  <source\n    media=\"(max-width: 2879px)\"\n    srcset=\"" + ___HTML_LOADER_REPLACEMENT_2___ + "\"\n  />\n  <source\n    media=\"(min-width: 2880px)\"\n    srcset=\"" + ___HTML_LOADER_REPLACEMENT_3___ + "\"\n  />\n  <img\n    id=\"footer-image\"\n    src=\"" + ___HTML_LOADER_REPLACEMENT_3___ + "\"\n    alt=\"Jack standing by window\"\n  />\n</picture>\n";
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (code);
 
