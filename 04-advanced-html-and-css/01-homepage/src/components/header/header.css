@@ -1,0 +1,42 @@
+header {
+  padding: var(--padding-small) var(--padding-small) 6rem var(--padding-small);
+  overflow: hidden;
+  position: relative;
+}
+
+#header-background {
+  aspect-ratio: 1 /1;
+  position: absolute;
+  width: calc(100vw * 2);
+  top: -100vw;
+  left: -100vw;
+  z-index: -1;
+  transform: rotate(-0.3turn);
+}
+
+#header-image {
+  width: 100%;
+}
+
+#header-name {
+  padding-left: 1rem;
+  transform: translateY(-13rem);
+  font-size: 3.5rem;
+  color: white;
+  margin-bottom: -10rem;
+}
+
+#header-icons-container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+#header-text {
+  font-size: 1.3rem;
+  line-height: 2rem;
+}
+
+.header-icon {
+  width: 2rem;
+}
