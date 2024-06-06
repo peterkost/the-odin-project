@@ -142,3 +142,32 @@ Decided not to spend any time polishing this or implementing the extra features.
 [Live Preview](https://peterkost.github.io/the-odin-project/03-javascript/12-battleship/dist/)
 
 </details>
+
+## Advanced HTML and CSS
+
+2024/06/01-2024/06/05
+
+Completed in 12:30:51
+
+<details>
+  <summary><h3>Project List</h3></summary>
+
+### Homepage
+
+Completed 2024/05/31
+
+Unable to finish this one due to time constraints. The mobile layout is completed, but the header for medium and large is incomplete. I used the resolution of the sample images as the breakpoints, but I don't think that was the correct idea. The resolutions seem way to high. I may redo the breakpoints entirely when I revisit this at the end of the course.
+
+[Live Preview](https://peterkost.github.io/the-odin-project/04-advanced-html-and-css/01-homepage/dist/)
+
+</details>
+
+## React
+
+2024/06/06-
+
+Completed in
+
+<details>
+  <summary><h3>Project List</h3></summary>
+</details>
