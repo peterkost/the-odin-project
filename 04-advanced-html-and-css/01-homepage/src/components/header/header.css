@@ -40,3 +40,26 @@ header {
 .header-icon {
   width: 2rem;
 }
+
+@media (min-width: 751px) {
+  #header-icons-container {
+    display: none;
+  }
+
+  #header-image {
+    width: 30vw;
+    float: left;
+  }
+
+  #header-container {
+    background-color: white;
+  }
+
+  #header-name {
+    padding-left: 1rem;
+    font-size: 3.5rem;
+    color: red;
+  }
+}
+@media (min-width: 2880px) {
+}
