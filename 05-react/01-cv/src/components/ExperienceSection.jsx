@@ -1,18 +1,20 @@
 import SectionHeading from "./SectionHeading";
 import TextField from "./TextField";
 
-const ExperienceSection = () => (
+const ExperienceSection = ({ editing }) => (
   <>
     <SectionHeading title="Experience" />
     <div className="two-col">
-      <TextField label="Company" />
-      <TextField label="Title" />
-      <TextField label="Start" type="date" />
-      <TextField label="End" type="date" />
+      <TextField label="Company" disabled={!editing} />
+      <TextField label="Title" disabled={!editing} />
+      <TextField label="Start" type="date" disabled={!editing} />
+      <TextField label="End" type="date" disabled={!editing} />
     </div>
-    <TextField label="Responsibilities" type="textarea" />
+    <TextField label="Responsibilities" type="textarea" disabled={!editing} />
     <div className="justify-right">
-      <button type="button">Add</button>
+      <button type="button" disabled={!editing}>
+        Add
+      </button>
     </div>
   </>
 );
