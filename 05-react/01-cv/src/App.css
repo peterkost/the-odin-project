@@ -2,6 +2,7 @@
   max-width: 1280px;
   padding: 2rem;
   width: 100%;
+  margin: 0 auto;
 }
 
 #title {
@@ -21,4 +22,10 @@
 
 .gap {
   gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .two-col {
+    grid-template-columns: 1fr;
+  }
 }
