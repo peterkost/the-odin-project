@@ -1,6 +1,6 @@
-import { useState } from "react";
 import EducationInputs from "./EducationInputs";
 import SectionHeading from "./SectionHeading";
+import { useState } from "react";
 
 const EducationSection = ({ editing }) => {
   const [educationSections, setEducationSections] = useState([
@@ -30,4 +30,5 @@ const EducationSection = ({ editing }) => {
     </>
   );
 };
+
 export default EducationSection;

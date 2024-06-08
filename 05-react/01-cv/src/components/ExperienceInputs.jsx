@@ -12,7 +12,12 @@ const ExperienceInputs = ({ onDelete, editing, inputId, ...buttonProps }) => {
         <TextField label="Start" type="date" disabled={!editing} />
         <TextField label="End" type="date" disabled={!editing} />
       </div>
-      <TextField label="Responsibilities" type="textarea" disabled={!editing} />
+      <TextField
+        className="experience-text-area"
+        label="Responsibilities"
+        type="textarea"
+        disabled={!editing}
+      />
       <AddButtons onDelete={deleteSelf} editing={editing} {...buttonProps} />
     </>
   );
