@@ -170,4 +170,13 @@ Completed in
 
 <details>
   <summary><h3>Project List</h3></summary>
+
+### CV Application
+
+Completed 2024/06/08
+
+Feels good to finally get to the React section, so much easier to worth with then plain HTML/CSS/JS. Took only a few minutes to deploy to Vercel, how cool! Github pages was kind of ugly for a monorepo, but Vercel handles it perfectly (for my little use case at least).
+
+[Live Preview](https://koscv.vercel.app)
+
 </details>
