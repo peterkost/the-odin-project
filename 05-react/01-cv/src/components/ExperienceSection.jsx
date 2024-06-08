@@ -1,22 +1,34 @@
+import ExperienceInputs from "./ExperienceInputs";
 import SectionHeading from "./SectionHeading";
-import TextField from "./TextField";
+import { useState } from "react";
 
-const ExperienceSection = ({ editing }) => (
-  <>
-    <SectionHeading title="Experience" />
-    <div className="two-col">
-      <TextField label="Company" disabled={!editing} />
-      <TextField label="Title" disabled={!editing} />
-      <TextField label="Start" type="date" disabled={!editing} />
-      <TextField label="End" type="date" disabled={!editing} />
-    </div>
-    <TextField label="Responsibilities" type="textarea" disabled={!editing} />
-    <div className="justify-right">
-      <button type="button" disabled={!editing}>
-        Add
-      </button>
-    </div>
-  </>
-);
+const ExperienceSection = ({ editing }) => {
+  const [experienceSections, setExperienceSections] = useState([
+    crypto.randomUUID(),
+  ]);
+
+  const handleAdd = () =>
+    setExperienceSections([...experienceSections, crypto.randomUUID()]);
+
+  const handleDelete = (target) =>
+    setExperienceSections(experienceSections.filter((id) => id !== target));
+
+  return (
+    <>
+      <SectionHeading title="Experience" />
+      {experienceSections.map((id, index) => (
+        <ExperienceInputs
+          key={id}
+          editing={editing}
+          onAdd={handleAdd}
+          onDelete={handleDelete}
+          isLast={index === experienceSections.length - 1}
+          isOnly={experienceSections.length === 1}
+          inputId={id}
+        />
+      ))}
+    </>
+  );
+};
 
 export default ExperienceSection;
