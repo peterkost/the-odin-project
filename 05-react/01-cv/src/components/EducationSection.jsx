@@ -1,21 +1,33 @@
+import { useState } from "react";
+import EducationInputs from "./EducationInputs";
 import SectionHeading from "./SectionHeading";
-import TextField from "./TextField";
 
-const EducationSection = ({ editing }) => (
-  <>
-    <SectionHeading title="Education" />
-    <div className="two-col">
-      <TextField label="School" disabled={!editing} />
-      <TextField label="Degree" disabled={!editing} />
-      <TextField label="Start" type="date" disabled={!editing} />
-      <TextField label="End" type="date" disabled={!editing} />
-    </div>
-    <div className="justify-right">
-      <button type="button" disabled={!editing}>
-        Add
-      </button>
-    </div>
-  </>
-);
+const EducationSection = ({ editing }) => {
+  const [educationSections, setEducationSections] = useState([
+    crypto.randomUUID(),
+  ]);
 
+  const handleAdd = () =>
+    setEducationSections([...educationSections, crypto.randomUUID()]);
+
+  const handleDelete = (target) =>
+    setEducationSections(educationSections.filter((id) => id !== target));
+
+  return (
+    <>
+      <SectionHeading title="Education" />
+      {educationSections.map((id, index) => (
+        <EducationInputs
+          key={id}
+          editing={editing}
+          onAdd={handleAdd}
+          onDelete={handleDelete}
+          isLast={index === educationSections.length - 1}
+          isOnly={educationSections.length === 1}
+          inputId={id}
+        />
+      ))}
+    </>
+  );
+};
 export default EducationSection;
