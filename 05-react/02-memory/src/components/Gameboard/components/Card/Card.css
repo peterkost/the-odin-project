@@ -1,15 +1,24 @@
-.game-card {
-  background-color: #4caf50;
-  aspect-ratio: 1/1;
-  border: 0.1rem solid black;
-  border-radius: 1.5rem;
+.card-image {
+  width: 100%; /* Ensure the image takes up full width of inner frame */
+  height: auto; /* Maintain aspect ratio */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Center the image */
 }
 
-.card-image {
-  object-fit: cover;
-  height: 90%;
-  width: 90%;
+.card-frame {
+  width: 300px; /* Adjust width of the frame */
+  height: 200px; /* Adjust height of the frame */
+  background-color: #8b4513; /* Brown color for the frame */
+  border: 20px solid #cd853f; /* Lighter brown border */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Drop shadow for depth */
+  position: relative;
+  overflow: hidden; /* Ensure the inner content doesn't overflow */
+}
 
-  border: 0.1rem solid black;
-  border-radius: 1.5rem;
+.inner-frame {
+  height: 100%; /* Full height */
+  overflow: hidden; /* Ensure the image is cropped inside */
+  position: relative;
 }

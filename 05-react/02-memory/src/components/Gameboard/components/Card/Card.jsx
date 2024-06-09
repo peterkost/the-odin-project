@@ -1,9 +1,10 @@
 import "./Card.css";
 const Card = ({ card, onClick }) => {
   return (
-    <div className="game-card" onClick={() => onClick(card.id)}>
-      <img className="card-image" src={card.image} alt="" />
-      <p>{card.id}</p>
+    <div className="card-frame" onClick={() => onClick(card.id)}>
+      <div className="inner-frame">
+        <img className="card-image" src={card.image} alt={card.name} />
+      </div>
     </div>
   );
 };

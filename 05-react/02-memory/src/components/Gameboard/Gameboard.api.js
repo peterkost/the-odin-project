@@ -28,14 +28,16 @@ const fetchGalleryItem = async (id) => {
   );
 
   const rawItem = await response.json();
-  const galleryItem = {
-    name: rawItem.objectName,
-    id: rawItem.objectID,
-    image: rawItem.primaryImageSmall,
-  };
+  if (rawItem.primaryImageSmall) {
+    const galleryItem = {
+      name: rawItem.title,
+      id: rawItem.objectID,
+      image: rawItem.primaryImageSmall,
+    };
 
-  cachedGalleryItems.set(id, galleryItem);
-  return galleryItem;
+    cachedGalleryItems.set(id, galleryItem);
+    return galleryItem;
+  }
 };
 
 export { fetchIds, fetchGalleryItem };
