@@ -1,5 +1,5 @@
 .card-image {
-  width: 100%; /* Ensure the image takes up full width of inner frame */
+  width: 90%; /* Ensure the image takes up full width of inner frame */
   height: auto; /* Maintain aspect ratio */
   position: absolute;
   top: 50%;
@@ -8,17 +8,12 @@
 }
 
 .card-frame {
-  width: 300px; /* Adjust width of the frame */
-  height: 200px; /* Adjust height of the frame */
-  background-color: #8b4513; /* Brown color for the frame */
-  border: 20px solid #cd853f; /* Lighter brown border */
+  width: 100%; /* Adjust width of the frame */
+  aspect-ratio: 1 / 1;
+  background-color: white; /* Brown color for the frame */
+  border: 20px solid black; /* Lighter brown border */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Drop shadow for depth */
   position: relative;
   overflow: hidden; /* Ensure the inner content doesn't overflow */
-}
-
-.inner-frame {
-  height: 100%; /* Full height */
-  overflow: hidden; /* Ensure the image is cropped inside */
-  position: relative;
+  box-sizing: border-box;
 }
