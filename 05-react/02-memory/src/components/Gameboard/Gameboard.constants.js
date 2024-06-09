@@ -1,3 +1,4 @@
 const DISPLAYED_CARDS = 8;
+const DECK_SIZE = 24;
 
-export { DISPLAYED_CARDS };
+export { DISPLAYED_CARDS, DECK_SIZE };

@@ -1,26 +1,16 @@
-import { DISPLAYED_CARDS } from "./Gameboard.constants";
+import { DECK_SIZE, DISPLAYED_CARDS } from "./Gameboard.constants";
+import { fetchIds, fetchGalleryItem } from "./Gameboard.api";
 
-const fetchAllCards = () => {
-  const allCards = [
-    { title: "SAMPLE TEXT", id: crypto.randomUUID() },
-    { title: "SAMPLE TEXT", id: crypto.randomUUID() },
-    { title: "SAMPLE TEXT", id: crypto.randomUUID() },
-    { title: "SAMPLE TEXT", id: crypto.randomUUID() },
-    { title: "SAMPLE TEXT", id: crypto.randomUUID() },
-    { title: "SAMPLE TEXT", id: crypto.randomUUID() },
-    { title: "SAMPLE TEXT", id: crypto.randomUUID() },
-    { title: "SAMPLE TEXT", id: crypto.randomUUID() },
-    { title: "SAMPLE TEXT", id: crypto.randomUUID() },
-    { title: "SAMPLE TEXT", id: crypto.randomUUID() },
-    { title: "SAMPLE TEXT", id: crypto.randomUUID() },
-  ];
-  return allCards;
+const buildDeck = async () => {
+  const allIds = await fetchIds();
+  const deckIds = allIds.sort(() => 0.5 - Math.random()).slice(0, DECK_SIZE);
+  const deck = await Promise.all(deckIds.map((id) => fetchGalleryItem(id)));
+  return deck;
 };
 
-const getRandomCards = (count = DISPLAYED_CARDS) => {
-  const allCards = fetchAllCards();
-  const shuffled = allCards.sort(() => 0.5 - Math.random());
-  return shuffled.slice(0, count);
+const getHand = (deck, count = DISPLAYED_CARDS) => {
+  const shuffled = deck.sort(() => 0.5 - Math.random()).slice(0, count);
+  return shuffled;
 };
 
-export { getRandomCards };
+export { buildDeck, getHand };

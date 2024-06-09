@@ -1,12 +1,19 @@
-import { getRandomCards } from "./Gameboard.helpers";
+import { buildDeck, getHand } from "./Gameboard.helpers";
 import Card from "./components/Card";
 import "./Gameboard.css";
+import { useEffect, useState } from "react";
 
 const Gameboard = () => {
-  const cards = getRandomCards();
+  const [deck, setDeck] = useState([]);
+  useEffect(() => {
+    buildDeck().then((deck) => setDeck(deck));
+  }, []);
+
+  const hand = getHand(deck);
+
   return (
     <div id="gameBoard">
-      {cards.map((card) => (
+      {hand.map((card) => (
         <Card card={card} key={card.id} />
       ))}
     </div>
