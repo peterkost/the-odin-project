@@ -1,0 +1,7 @@
+.game-card {
+  background-color: #4caf50;
+  box-sizing: border-box;
+  aspect-ratio: 1/1;
+  border: 0.1rem solid black;
+  border-radius: 1.5rem;
+}

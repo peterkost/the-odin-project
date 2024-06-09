@@ -1,0 +1,3 @@
+const DISPLAYED_CARDS = 8;
+
+export { DISPLAYED_CARDS };
