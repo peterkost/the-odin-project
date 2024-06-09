@@ -8,7 +8,7 @@ const fetchIds = async () => {
   fetchingIds = true;
 
   const response = await fetch(
-    "https://collectionapi.metmuseum.org/public/collection/v1/objects",
+    "https://collectionapi.metmuseum.org/public/collection/v1/objects?departmentIds=11",
   );
   const ids = await response.json();
   cachedIds = ids.objectIDs;
