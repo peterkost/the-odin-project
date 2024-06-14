@@ -1,57 +1,18 @@
 import Header from "../../components/Header";
 import ShopItem from "./components/ShopItem";
 import styles from "./Shop.module.css";
+import useShopApi from "./use-shop-api.hook";
 
 const Shop = () => {
-  const mockItems = [
-    {
-      id: 1,
-      name: "SAMPLE PRODUCT",
-      price: 3.16,
-      imageUrl: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-    },
-    {
-      id: 2,
-      name: "SAMPLE PRODUCT",
-      price: 3.16,
-      imageUrl: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-    },
-    {
-      id: 3,
-      name: "SAMPLE PRODUCT",
-      price: 3.16,
-      imageUrl: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-    },
-    {
-      id: 4,
-      name: "SAMPLE PRODUCT",
-      price: 3.16,
-      imageUrl: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-    },
-    {
-      id: 5,
-      name: "SAMPLE PRODUCT",
-      price: 3.16,
-      imageUrl: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-    },
-    {
-      id: 6,
-      name: "SAMPLE PRODUCT",
-      price: 3.16,
-      imageUrl: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-    },
-    {
-      id: 7,
-      name: "SAMPLE PRODUCT",
-      price: 3.16,
-      imageUrl: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-    },
-  ];
+  const { data, loading, error } = useShopApi();
+
+  if (loading || error) return;
+
   return (
     <>
       <Header />
       <div id={styles.productGrid}>
-        {mockItems.map((item) => (
+        {data.map((item) => (
           <ShopItem key={item.id} {...item} />
         ))}
       </div>
