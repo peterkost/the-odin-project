@@ -1,0 +1,33 @@
+header {
+  align-items: center;
+  position: relative;
+  color: black;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+}
+
+#title {
+  text-align: center;
+  margin: 0;
+  flex: 1;
+  font-size: 2rem;
+}
+
+.titleButton {
+  background: none;
+}
+
+.titleButton:hover {
+  border-color: transparent;
+}
+
+.headerButton {
+  justify-self: flex-end;
+  top: 0.5rem;
+  background: none;
+}
+
+.headerButton:hover {
+  text-decoration: underline;
+  border-color: transparent;
+}

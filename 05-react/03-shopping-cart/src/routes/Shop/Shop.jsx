@@ -1,5 +1,12 @@
+import Header from "../../components/Header";
+
 const Shop = () => {
-  return <p> SHOP </p>;
+  return (
+    <>
+      <Header />
+      <p> SHOP </p>
+    </>
+  );
 };
 
 export default Shop;
