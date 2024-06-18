@@ -8,26 +8,35 @@ import useCart from "./use-cart.hook";
 
 const Shop = () => {
   const location = useLocation();
-  const { data, loading, error } = useShopApi();
-  const { incrementCartItem, decrementCartItem, getItemCount } = useCart();
+  const { items, loading, error } = useShopApi();
+  const {
+    incrementCartItem,
+    decrementCartItem,
+    getItemCount,
+    removeItem,
+    setItemCount,
+  } = useCart();
 
   const onCart = location.pathname == CART_ROUTE;
 
   if (loading || error) return;
 
+  const itemsInCart = items.filter((item) => getItemCount(item.id) > 0);
+
   return (
     <>
       <Header />
       {onCart ? (
-        <Outlet />
+        <Outlet context={[itemsInCart, getItemCount, removeItem]} />
       ) : (
         <div id={styles.productGrid}>
-          {data.map((item) => (
+          {items.map((item) => (
             <ShopItem
               key={item.id}
               getCount={getItemCount}
               add={incrementCartItem}
               remove={decrementCartItem}
+              setQuantity={setItemCount}
               {...item}
             />
           ))}

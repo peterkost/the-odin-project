@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { SHOP_API_URL } from "../../constants";
 
 const useShopApi = () => {
-  const [data, setData] = useState(null);
+  const [items, setItems] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -15,7 +15,7 @@ const useShopApi = () => {
           throw new Error("Error fetching products");
         }
         const result = await response.json();
-        setData(parseResponse(result));
+        setItems(parseResponse(result));
       } catch (error) {
         setError(error);
       } finally {
@@ -26,7 +26,7 @@ const useShopApi = () => {
     fetchData();
   }, []);
 
-  return { data, loading, error };
+  return { items, loading, error };
 };
 
 const parseResponse = (json) => {

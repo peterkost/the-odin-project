@@ -1,0 +1,10 @@
+.cartItem {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+}
+
+.productImage {
+  height: 300px;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+}
