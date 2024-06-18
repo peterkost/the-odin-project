@@ -185,4 +185,10 @@ Completed 2024/06/09
 
 [Live Preview](https://kosmemory.vercel.app)
 
+### Shopping Cart
+
+Completed 2024/06/18
+
+[Live Preview](https://kosstore.vercel.app)
+
 </details>
