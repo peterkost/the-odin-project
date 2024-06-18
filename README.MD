@@ -164,9 +164,9 @@ Unable to finish this one due to time constraints. The mobile layout is complete
 
 ## React
 
-2024/06/06-
+2024/06/06-2024/06/18
 
-Completed in
+Completed in 26:44:07
 
 <details>
   <summary><h3>Project List</h3></summary>
