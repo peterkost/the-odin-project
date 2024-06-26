@@ -206,6 +206,4 @@ Completed in
 
 Completed 2024/06/26
 
-[Live Preview]()
-
 </details>
