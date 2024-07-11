@@ -5,7 +5,8 @@ block content
   p Welcome to #{title}
   a(href='/new') New
   each message in messages
-      .xd
+      .message-container
           p= message.text
           p= message.user
-          p= message.added
+          p #{message.added.toLocaleString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false })}
+
