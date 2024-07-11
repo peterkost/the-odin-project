@@ -1,0 +1,16 @@
+doctype html
+html
+  head
+    title New Message
+  body
+    h1 Create a New Message
+    form(action="/new", method="post")
+      div
+        label(for="user") User:
+        input(type="text", name="user", id="user")
+      div
+        label(for="message") Message:
+        input(type="text", name="message", id="message")
+      div
+        button(type="submit") Submit
+
