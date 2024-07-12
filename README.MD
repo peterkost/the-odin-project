@@ -1,5 +1,3 @@
-# The Odin Project
-
 ## Foundations
 
 2024/02/15-2024/02/21
@@ -205,5 +203,11 @@ Completed in
 ### Basic Informational Site
 
 Completed 2024/06/26
+
+### Mini Message Board
+
+Completed 2024/07/12
+
+[Live Preview](https://the-odin-project.onrender.com/)
 
 </details>
